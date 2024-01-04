@@ -10,6 +10,9 @@
 library(rvdat)
 ```
 
+Download current version of VDAT executable and point `vdat_here` to its
+location.
+
 Set system location of vdat.exe:
 
 ``` r
