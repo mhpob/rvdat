@@ -35,4 +35,3 @@ Call VDAT using standard flags:
 call_vdat('--help')
 ```
 
-Currently only prints the "0" in the README, but will print full help output in the console.
