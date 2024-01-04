@@ -1,4 +1,5 @@
 #'
+#' @export
 
 to_csv <- function(file, outdir = getwd()){
   # v2csv('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/VR2AR_546323_20231012_1.vrl')
@@ -18,6 +19,16 @@ to_csv <- function(file, outdir = getwd()){
       '--format=csv.fathom',
       file,
       paste0('--output=', outdir)
-    )
+    ),
+    error = FALSE
   )
+
+  if(shell_out$status == 1){
+    cli::cli_abort(
+      c(
+        'x' = 'Call to VDAT failed.',
+        'i' = '{?Is/are} the location{?s} of {file} correct?'
+      )
+    )
+  }
 }
