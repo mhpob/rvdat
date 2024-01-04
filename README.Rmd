@@ -23,7 +23,7 @@ library(rvdat)
 ```
 
 
-Download current version of VDAT executable and point `vdat_here` to its location.
+Download [current version of VDAT executable](https://gitlab.oceantrack.org/otndc/vdat-working-group) and point `vdat_here` to its location.
 
 Set system location of vdat.exe:
 ```{r}
