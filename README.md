@@ -6,13 +6,43 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+## Development notes
+
+If contributing, please use the following general style:
+
+- Begin any function that will call `vdat.exe` with the
+  `vdat_loc <- check_vdat_location()` helper function.
+- Use the [`sys` package](https://jeroen.r-universe.dev/sys) to send
+  commands to `vdat.exe`, usually via `sys::exec_internal`. The “cmd”
+  argument can then be `vdat_loc`.
+- Create informative messages, warnings, and errors using the [`cli`
+  package](https://cli.r-lib.org/).
+- In summary:
+
 ``` r
-library(rvdat)
+a_new_wrapper <- function(some_command){
+  vdat_loc <- check_vdat_location()
+  
+  sys::exec_internal(
+    vdat_loc,
+    args = some_command
+  )
+  
+  cli::cli_alert_success('Woohoo!!')
+}
 ```
+
+## Actually using the package
 
 Download [current version of VDAT
 executable](https://gitlab.oceantrack.org/otndc/vdat-working-group) and
 point `vdat_here` to its location.
+
+Load the package:
+
+``` r
+library(rvdat)
+```
 
 Set system location of vdat.exe:
 
