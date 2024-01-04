@@ -12,4 +12,6 @@ check_vdat_location <- function(){
       )
     )
   }
+
+  vdat_loc
 }

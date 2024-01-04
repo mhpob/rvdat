@@ -2,10 +2,10 @@
 #' @export
 call_vdat <- function(what = '--help'){
 
-  check_vdat_location()
+  vdat_loc <- check_vdat_location()
 
   shell_out <- sys::exec_internal(
-    cmd = Sys.getenv('VDAT_EXE'),
+    cmd = vdat_loc,
     args = what
   )
 
