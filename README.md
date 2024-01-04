@@ -4,7 +4,14 @@
 # rvdat
 
 <!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
+
+The intent of this package is to provide R wrapper functions to Frank
+Smith’s VDAT for those who are intimidated by the shell (me) or just
+want to keep everything in one language (R, also me).
 
 ## Development notes
 
