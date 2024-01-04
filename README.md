@@ -13,6 +13,26 @@ The intent of this package is to provide R wrapper functions to Frank
 Smith’s VDAT for those who are intimidated by the shell (me) or just
 want to keep everything in one language (R, also me).
 
+## Progress
+
+- [ ] Look for `vdat.exe`
+- [x] Check VDAT is where you say it is
+- Convert VRL to
+  - [x] CSV
+  - [x] folder of CSVs by factor
+  - [ ] JSON
+- [ ] Convert multiple VRLs
+- [x] Output location
+- [ ] Time correction
+- [ ] Time offset
+- [ ] Detection filter
+- [ ] Sensor values
+- [ ] Logging
+- [ ] Inspect content of file
+- [ ] Create template for
+  - [ ] CSV
+  - [ ] JSON
+
 ## Development notes
 
 If contributing, please use the following general style:
