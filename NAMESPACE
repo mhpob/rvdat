@@ -2,4 +2,6 @@
 
 export(call_vdat)
 export(to_csv)
+export(to_folder)
 export(vdat_here)
+export(vdat_version)
