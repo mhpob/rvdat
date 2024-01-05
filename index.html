@@ -65,6 +65,24 @@
 <p>The intent of this package is to provide lightweight R wrapper functions for Frank Smith’s VDAT for those who are intimidated by the shell (me) or just want to keep everything in one language (R, also me).</p>
 <p>For similar implementation that has a few more bells and whistles, check out <a href="https://github.com/ocean-tracking-network/glatos/blob/dev/R/util-vdat.r" class="external-link"><code>glatos::vdat_convert</code></a> in version &gt;= 0.8.0 of the <a href="https://github.com/ocean-tracking-network/glatos" class="external-link">glatos package</a>.</p>
 <div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the most-up-to-date version from <a href="https://mhpob.r-universe.dev/rvdat" class="external-link">R-universe</a> or <a href="https://github.com/mhpob/rvdat" class="external-link">GitHub</a>.</p>
+<p>R-universe:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="st">"rvdat"</span>,</span>
+<span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"https://mhpob.r-universe.dev"</span>,</span>
+<span>    <span class="st">"https://cloud.r-project.org"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mhpob/rvdat"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="progress">Progress<a class="anchor" aria-label="anchor" href="#progress"></a>
 </h2>
 <ul>
@@ -110,50 +128,28 @@
 </ul>
 </div>
 <div class="section level2">
-<h2 id="development-notes">Development notes<a class="anchor" aria-label="anchor" href="#development-notes"></a>
-</h2>
-<p>If contributing, please use the following general style:</p>
-<ul>
-<li>Begin any function that will call <code>vdat.exe</code> with the <code>vdat_loc &lt;- check_vdat_location()</code> helper function.</li>
-<li>Use the <a href="https://jeroen.r-universe.dev/sys" class="external-link"><code>sys</code> package</a> to send commands to <code>vdat.exe</code>, usually via <code><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">sys::exec_internal</a></code>. The “cmd” argument can then be <code>vdat_loc</code>.</li>
-<li>Create informative messages, warnings, and errors using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code> package</a>.</li>
-<li>In summary:</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a_new_wrapper</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">some_command</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">vdat_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_vdat_location.html">check_vdat_location</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="fu">sys</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">exec_internal</a></span><span class="op">(</span></span>
-<span>    <span class="va">vdat_loc</span>,</span>
-<span>    args <span class="op">=</span> <span class="va">some_command</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_success</a></span><span class="op">(</span><span class="st">"Woohoo!!"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="actually-using-the-package">Actually using the package<a class="anchor" aria-label="anchor" href="#actually-using-the-package"></a>
+<h2 id="using-the-package">Using the package<a class="anchor" aria-label="anchor" href="#using-the-package"></a>
 </h2>
 <p>Download <a href="https://gitlab.oceantrack.org/otndc/vdat-working-group" class="external-link">current version of VDAT executable</a> and point <code>vdat_here</code> to its location.</p>
 <p>Load the package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rvdat.obrien.page" class="external-link">rvdat</a></span><span class="op">)</span></span></code></pre></div>
 <p>Set system location of vdat.exe:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="st">"vdat.exe"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ vdat.exe is located at vdat.exe</span></span></code></pre></div>
 <p>What version?</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_version.html">vdat_version</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; vdat-7.0.0-20231107-14c992-release</span></span></code></pre></div>
 <p>Convert a VRL to CSV:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_to_folder.html">vdat_to_folder</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
 <p>Call VDAT using standard flags:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; VDAT File Tool</span></span>
 <span><span class="co">#&gt; Usage:</span></span>
@@ -219,6 +215,28 @@
 <span><span class="co">#&gt;             .  Example:  vdat template --format=vfwp</span></span>
 <span><span class="co">#&gt;             </span></span>
 <span><span class="co">#&gt; </span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="development-notes">Development notes<a class="anchor" aria-label="anchor" href="#development-notes"></a>
+</h2>
+<p>If contributing, please use the following general style:</p>
+<ul>
+<li>Begin any function that will call <code>vdat.exe</code> with the <code>vdat_loc &lt;- check_vdat_location()</code> helper function.</li>
+<li>Use the <a href="https://jeroen.r-universe.dev/sys" class="external-link"><code>sys</code> package</a> to send commands to <code>vdat.exe</code>, usually via <code><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">sys::exec_internal</a></code>. The “cmd” argument can then be <code>vdat_loc</code>.</li>
+<li>Create informative messages, warnings, and errors using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code> package</a>.</li>
+<li>In summary:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a_new_wrapper</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">some_command</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">vdat_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_vdat_location.html">check_vdat_location</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">sys</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">exec_internal</a></span><span class="op">(</span></span>
+<span>    <span class="va">vdat_loc</span>,</span>
+<span>    args <span class="op">=</span> <span class="va">some_command</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_success</a></span><span class="op">(</span><span class="st">"Woohoo!!"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
