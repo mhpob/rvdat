@@ -82,12 +82,6 @@ What version?
 vdat_version()
 ```
 
-
-Call VDAT using standard flags:
-```{r}
-call_vdat('--help')
-```
-
 Convert a VRL to CSV:
 ```{r, eval=FALSE}
 to_csv('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
@@ -96,5 +90,10 @@ to_csv('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
 Convert a VRL to a folder of CSVs split by data type:
 ```{r, eval=FALSE}
 to_folder('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
+```
+
+Call VDAT using standard flags:
+```{r}
+call_vdat('--help')
 ```
 
