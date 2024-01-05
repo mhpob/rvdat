@@ -1,5 +1,5 @@
 Package: rvdat
-Title: What the Package Does (One Line, Title Case)
+Title: An R VDAT Wrapper
 Version: 0.0.0.9000
 Authors@R: c(
     person("Frank", "Smith", , "first.last@example.com", role = c("aut", "cph"),
@@ -8,7 +8,7 @@ Authors@R: c(
             role = c("aut", "cre"),
             comment = c(ORCID = "0000-0003-1420-6395"))
   )
-Description: What the package does (one paragraph).
+Description: Provides R-friendly syntax for VDAT shell functions.
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
