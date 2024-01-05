@@ -3,3 +3,4 @@
 ^README\.Rmd$
 ^vdat\.exe$
 ^\.github$
+^LICENSE\.md$
