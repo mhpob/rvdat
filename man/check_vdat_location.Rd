@@ -2,11 +2,13 @@
 % Please edit documentation in R/check_vdat.R
 \name{check_vdat_location}
 \alias{check_vdat_location}
-\title{Check that the vdat.exe exists}
+\title{Check that \code{vdat.exe} exists.}
 \usage{
 check_vdat_location()
 }
 \description{
-Check that the vdat.exe exists
+Used as a helper function within functions that call \code{vdat.exe}, this
+function checks that the \code{VDAT_EXE} environmental variable returns
+a value. If not, it prompts you to run \code{\link{vdat_here}} first.
 }
 \keyword{internal}

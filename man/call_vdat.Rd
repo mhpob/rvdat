@@ -2,15 +2,16 @@
 % Please edit documentation in R/call_vdat.R
 \name{call_vdat}
 \alias{call_vdat}
-\title{Interface directly with vdat.exe}
+\title{Interface directly with \code{vdat.exe}.}
 \usage{
 call_vdat(what = "--help", ...)
 }
 \arguments{
-\item{what}{arguments passed to vdat.exe. Defaults to '--help'}
+\item{what}{arguments passed to \code{vdat.exe}. Defaults to \code{--help}.}
 
-\item{...}{arguments passed to sys::exec_internal}
+\item{...}{arguments passed to \code{sys::\link[sys]{exec_internal}}.}
 }
 \description{
-Interface directly with vdat.exe
+Low-level interface to \code{vdat.exe}, wherein arguments are passed directly
+to \code{vdat.exe}.
 }

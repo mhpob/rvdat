@@ -5,7 +5,11 @@
 #'  current working directory.
 #'
 #' @export
-#' @examplesIf not_building_on_ci()
+#' @examples
+#' \dontrun{
+#'
+#'
+#' }
 #'
 to_csv <- function(file, outdir = getwd()) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
@@ -45,10 +49,11 @@ to_csv <- function(file, outdir = getwd()) {
 #' Convert a VRL file to a folder of CSVs by data type
 #'
 #' @param file location of VRL file(s) to convert to CSV.
-#' @param outdir output directory for the created CSV files. Defaults to the current
-#'  working directory.
+#' @param outdir output directory for the created CSV files. Defaults to the
+#'    current working directory.
 #'
 #' @export
+#' @examplesIf not_building_on_ci()
 
 to_folder <- function(file, outdir = getwd()) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)

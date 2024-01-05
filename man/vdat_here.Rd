@@ -2,16 +2,16 @@
 % Please edit documentation in R/vdat_here.R
 \name{vdat_here}
 \alias{vdat_here}
-\title{User-supplied location of vdat.exe}
+\title{User-supplied location of \code{vdat.exe}.}
 \usage{
 vdat_here(here)
 }
 \arguments{
-\item{here}{location of vdata.exe, either a full path name or relative to the
-current working directory}
+\item{here}{location of \code{vdat.exe}, either a full path name or relative
+to the current working directory.}
 }
 \description{
-User-supplied location of vdat.exe
+User-supplied location of \code{vdat.exe}.
 }
 \examples{
 \dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

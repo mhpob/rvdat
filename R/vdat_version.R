@@ -1,4 +1,4 @@
-#' Report the version of VDAT identified in vdata_here
+#' Report the version of VDAT identified in \code{vdat_here}.
 #'
 #' @export
 #' @examplesIf not_building_on_ci()

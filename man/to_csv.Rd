@@ -16,6 +16,9 @@ current working directory.}
 Convert VRL file(s) to CSV(s)
 }
 \examples{
-\dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\dontshow{\}) # examplesIf}
+\dontrun{
+
+
+}
+
 }

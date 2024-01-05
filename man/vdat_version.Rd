@@ -2,12 +2,12 @@
 % Please edit documentation in R/vdat_version.R
 \name{vdat_version}
 \alias{vdat_version}
-\title{Report the version of VDAT identified in vdata_here}
+\title{Report the version of VDAT identified in \code{vdat_here}.}
 \usage{
 vdat_version()
 }
 \description{
-Report the version of VDAT identified in vdata_here
+Report the version of VDAT identified in \code{vdat_here}.
 }
 \examples{
 \dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

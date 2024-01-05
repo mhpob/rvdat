@@ -9,9 +9,13 @@ to_folder(file, outdir = getwd())
 \arguments{
 \item{file}{location of VRL file(s) to convert to CSV.}
 
-\item{outdir}{output directory for the created CSV files. Defaults to the current
-working directory.}
+\item{outdir}{output directory for the created CSV files. Defaults to the
+current working directory.}
 }
 \description{
 Convert a VRL file to a folder of CSVs by data type
+}
+\examples{
+\dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{\}) # examplesIf}
 }

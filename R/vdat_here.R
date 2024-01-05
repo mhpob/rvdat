@@ -1,7 +1,7 @@
-#' User-supplied location of vdat.exe
+#' User-supplied location of \code{vdat.exe}.
 #'
-#' @param here location of vdata.exe, either a full path name or relative to the
-#'    current working directory
+#' @param here location of \code{vdat.exe}, either a full path name or relative
+#'    to the current working directory.
 #'
 #' @export
 #' @examplesIf not_building_on_ci()
