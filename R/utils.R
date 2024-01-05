@@ -11,6 +11,6 @@
 #'
 #' @keywords internal
 
-not_building_on_ci <- function(){
-  Sys.getenv('CI') == ''
+not_building_on_ci <- function() {
+  Sys.getenv("CI") == ""
 }
