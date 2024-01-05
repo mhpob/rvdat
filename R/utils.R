@@ -9,7 +9,7 @@
 #'    built locally, "CI" will be "" and \code{not_building_on_ci} will return
 #'    \code{TRUE}.
 #'
-#' @keywords internal
+#' @export
 
 not_building_on_ci <- function() {
   Sys.getenv("CI") == ""

@@ -16,4 +16,3 @@ and \code{not_building_on_ci} will return \code{FALSE}. If it is being
 built locally, "CI" will be "" and \code{not_building_on_ci} will return
 \code{TRUE}.
 }
-\keyword{internal}
