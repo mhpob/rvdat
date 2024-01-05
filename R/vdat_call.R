@@ -1,10 +1,10 @@
-#' Interface directly with \code{vdat.exe}.
+#' Interface directly with `vdat.exe`.
 #'
-#' Low-level interface to \code{vdat.exe}, wherein arguments are passed directly
-#'    to \code{vdat.exe}.
+#' Low-level interface to `vdat.exe`, wherein arguments are passed directly
+#'    to `vdat.exe`.
 #'
-#' @param what arguments passed to \code{vdat.exe}. Defaults to \code{--help}.
-#' @param ... arguments passed to \code{sys::\link[sys]{exec_internal}}.
+#' @param what arguments passed to `vdat.exe`. Defaults to `--help`.
+#' @param ... arguments passed to [`sys::exec_internal`].
 #'
 #' @export
 vdat_call <- function(what = "--help", ...) {

@@ -9,7 +9,7 @@ vdat_call(what = "--help", ...)
 \arguments{
 \item{what}{arguments passed to \code{vdat.exe}. Defaults to \code{--help}.}
 
-\item{...}{arguments passed to \code{sys::\link[sys]{exec_internal}}.}
+\item{...}{arguments passed to \code{\link[sys:exec]{sys::exec_internal}}.}
 }
 \description{
 Low-level interface to \code{vdat.exe}, wherein arguments are passed directly

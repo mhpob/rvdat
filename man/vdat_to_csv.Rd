@@ -18,7 +18,6 @@ Convert VRL file(s) to CSV(s)
 \examples{
 \dontrun{
 
-
 }
 
 }
