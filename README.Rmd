@@ -5,7 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set( 
+knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
@@ -50,15 +50,15 @@ If contributing, please use the following general style:
 -   In summary:
 
 ```{r, eval=FALSE}
-a_new_wrapper <- function(some_command){
+a_new_wrapper <- function(some_command) {
   vdat_loc <- check_vdat_location()
-  
+
   sys::exec_internal(
     vdat_loc,
     args = some_command
   )
-  
-  cli::cli_alert_success('Woohoo!!')
+
+  cli::cli_alert_success("Woohoo!!")
 }
 ```
 
@@ -74,7 +74,7 @@ library(rvdat)
 
 Set system location of vdat.exe:
 ```{r}
-vdat_here('vdat.exe')
+vdat_here("vdat.exe")
 ```
 
 What version?
@@ -84,16 +84,16 @@ vdat_version()
 
 Convert a VRL to CSV:
 ```{r, eval=FALSE}
-to_csv('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
+to_csv("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 ```{r, eval=FALSE}
-to_folder('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
+to_folder("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Call VDAT using standard flags:
 ```{r}
-call_vdat('--help')
+call_vdat("--help")
 ```
 

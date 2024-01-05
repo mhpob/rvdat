@@ -2,10 +2,10 @@
 #'
 #' @keywords internal
 
-check_vdat_location <- function(){
-  vdat_loc <- Sys.getenv('VDAT_EXE')
+check_vdat_location <- function() {
+  vdat_loc <- Sys.getenv("VDAT_EXE")
 
-  if(vdat_loc == ''){
+  if (vdat_loc == "") {
     cli::cli_abort(
       c(
         "x" = "No VDAT.exe listed.",
