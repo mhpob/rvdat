@@ -6,8 +6,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' vdat_here('vdat.exe')
+#'
+#' vdat_here("vdat.exe")
+#'
 #' }
+
 vdat_here <- function(here) {
   Sys.setenv(VDAT_EXE = here)
 

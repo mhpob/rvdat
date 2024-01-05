@@ -11,7 +11,10 @@ Report the version of VDAT identified in vdata_here
 }
 \examples{
 \dontrun{
-vdat_here('vdat.exe')
+
+vdat_here("vdat.exe")
+
 vdat_version()
+
 }
 }
