@@ -10,9 +10,15 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The intent of this package is to provide R wrapper functions to Frank
-Smith’s VDAT for those who are intimidated by the shell (me) or just
-want to keep everything in one language (R, also me).
+The intent of this package is to provide lightweight R wrapper functions
+for Frank Smith’s VDAT for those who are intimidated by the shell (me)
+or just want to keep everything in one language (R, also me).
+
+For similar implementation that has a few more bells and whistles, check
+out
+[`glatos::vdat_convert`](https://github.com/ocean-tracking-network/glatos/blob/dev/R/util-vdat.r)
+in version \>= 0.8.0 of the [glatos
+package](https://github.com/ocean-tracking-network/glatos).
 
 ## Progress
 
@@ -48,15 +54,15 @@ If contributing, please use the following general style:
 - In summary:
 
 ``` r
-a_new_wrapper <- function(some_command){
+a_new_wrapper <- function(some_command) {
   vdat_loc <- check_vdat_location()
-  
+
   sys::exec_internal(
     vdat_loc,
     args = some_command
   )
-  
-  cli::cli_alert_success('Woohoo!!')
+
+  cli::cli_alert_success("Woohoo!!")
 }
 ```
 
@@ -75,7 +81,7 @@ library(rvdat)
 Set system location of vdat.exe:
 
 ``` r
-vdat_here('vdat.exe')
+vdat_here("vdat.exe")
 #> ℹ vdat.exe is located at vdat.exe
 ```
 
@@ -89,19 +95,19 @@ vdat_version()
 Convert a VRL to CSV:
 
 ``` r
-to_csv('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
+to_csv("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
-to_folder('VR2AR_XXXXXX_YYYYMMDD_1.vrl')
+to_folder("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Call VDAT using standard flags:
 
 ``` r
-call_vdat('--help')
+call_vdat("--help")
 #> VDAT File Tool
 #> Usage:
 #>   vdat [OPTION...] [COMMAND [ARG]...]...
