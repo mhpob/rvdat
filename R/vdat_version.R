@@ -2,7 +2,7 @@
 #' @export
 
 vdat_version <- function(){
-  vdat_loc <- rvdat:::check_vdat_location()
+  vdat_loc <- check_vdat_location()
 
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,

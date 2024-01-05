@@ -12,7 +12,7 @@ to_csv <- function(file, outdir = getwd()){
   # vdat convert --format=csv.fathom.split <input_file>
 
 
-  vdat_loc <- rvdat:::check_vdat_location()
+  vdat_loc <- check_vdat_location()
 
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,
@@ -42,7 +42,7 @@ to_csv <- function(file, outdir = getwd()){
 to_folder <- function(file, outdir = getwd()){
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
 
-  vdat_loc <- rvdat:::check_vdat_location()
+  vdat_loc <- check_vdat_location()
 
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,
