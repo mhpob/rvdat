@@ -14,7 +14,7 @@ current working directory}
 User-supplied location of vdat.exe
 }
 \examples{
-
+\dontrun{
 vdat_here('vdat.exe')
-
+}
 }
