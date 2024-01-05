@@ -9,3 +9,8 @@ vdat_version()
 \description{
 Report the version of VDAT identified in vdata_here
 }
+\examples{
+
+vdat_here('vdat.exe')
+vdat_version()
+}
