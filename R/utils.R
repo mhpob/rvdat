@@ -1,6 +1,6 @@
 #' Miscellaneous functions for package checking, building, and CI
 #'
-#'`not_building_on_ci` checks the environment for a variable called "CI"
+#' `not_building_on_ci` checks the environment for a variable called "CI"
 #'    and returns `TRUE` if it does not exist. Used to run examples if the
 #'    package is being built locally and there's a chance that `vdat.exe`
 #'    exists. If the package is being built on a continuous integration
