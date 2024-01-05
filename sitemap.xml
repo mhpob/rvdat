@@ -13,9 +13,6 @@
     <loc>https://mhpob.github.io/rvdat/index.html</loc>
   </url>
   <url>
-    <loc>https://mhpob.github.io/rvdat/reference/call_vdat.html</loc>
-  </url>
-  <url>
     <loc>https://mhpob.github.io/rvdat/reference/check_vdat_location.html</loc>
   </url>
   <url>
@@ -25,13 +22,16 @@
     <loc>https://mhpob.github.io/rvdat/reference/not_building_on_ci.html</loc>
   </url>
   <url>
-    <loc>https://mhpob.github.io/rvdat/reference/to_csv.html</loc>
-  </url>
-  <url>
-    <loc>https://mhpob.github.io/rvdat/reference/to_folder.html</loc>
+    <loc>https://mhpob.github.io/rvdat/reference/vdat_call.html</loc>
   </url>
   <url>
     <loc>https://mhpob.github.io/rvdat/reference/vdat_here.html</loc>
+  </url>
+  <url>
+    <loc>https://mhpob.github.io/rvdat/reference/vdat_to_csv.html</loc>
+  </url>
+  <url>
+    <loc>https://mhpob.github.io/rvdat/reference/vdat_to_folder.html</loc>
   </url>
   <url>
     <loc>https://mhpob.github.io/rvdat/reference/vdat_version.html</loc>
