@@ -7,6 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The intent of this package is to provide R wrapper functions to Frank
@@ -74,8 +75,8 @@ library(rvdat)
 Set system location of vdat.exe:
 
 ``` r
-vdat_here('inst/vdat.exe')
-#> ℹ vdat.exe is located at inst/vdat.exe
+vdat_here('vdat.exe')
+#> ℹ vdat.exe is located at vdat.exe
 ```
 
 What version?
