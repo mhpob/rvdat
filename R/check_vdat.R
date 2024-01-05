@@ -1,3 +1,4 @@
+#' Check that the vdat.exe exists
 #'
 #' @keywords internal
 

@@ -1,3 +1,7 @@
+#' User-supplied location of vdat.exe
+#'
+#' @param here location of vdata.exe, either a full path name or relative to the
+#'    current working directory
 #'
 #' @export
 vdat_here <- function(here){

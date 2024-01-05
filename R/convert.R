@@ -1,3 +1,8 @@
+#' Convert VRL file(s) to CSV(s)
+#'
+#' @param file location of VRL file(s) to convert to CSV.
+#' @param outdir output directory for the created CSV files. Defaults to the current
+#'  working directory.
 #'
 #' @export
 
@@ -36,6 +41,11 @@ to_csv <- function(file, outdir = getwd()){
 }
 
 
+#' Convert a VRL file to a folder of CSVs by data type
+#'
+#' @param file location of VRL file(s) to convert to CSV.
+#' @param outdir output directory for the created CSV files. Defaults to the current
+#'  working directory.
 #'
 #' @export
 

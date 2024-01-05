@@ -1,3 +1,4 @@
+#' Report the version of VDAT identified in vdata_here
 #'
 #' @export
 

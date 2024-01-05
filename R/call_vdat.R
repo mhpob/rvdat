@@ -1,3 +1,7 @@
+#' Interface directly with vdat.exe
+#'
+#' @param what arguments passed to vdat.exe. Defaults to '--help'
+#' @param ... arguments passed to sys::exec_internal
 #'
 #' @export
 call_vdat <- function(what = '--help', ...){
