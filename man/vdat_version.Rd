@@ -10,7 +10,7 @@ vdat_version()
 Report the version of VDAT identified in vdata_here
 }
 \examples{
-\dontshow{if (Sys.getenv('CI') == '') (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 vdat_version()
 \dontshow{\}) # examplesIf}

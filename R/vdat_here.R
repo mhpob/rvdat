@@ -4,7 +4,7 @@
 #'    current working directory
 #'
 #' @export
-#' @examplesIf Sys.getenv('CI') == ''
+#' @examplesIf not_building_on_ci()
 #'
 #' vdat_here("vdat.exe")
 

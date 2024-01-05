@@ -1,7 +1,7 @@
 #' Report the version of VDAT identified in vdata_here
 #'
 #' @export
-#' @examplesIf Sys.getenv('CI') == ''
+#' @examplesIf not_building_on_ci()
 #'
 #' vdat_version()
 
