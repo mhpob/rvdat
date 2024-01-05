@@ -7,7 +7,7 @@
 #' @param ... arguments passed to \code{sys::\link[sys]{exec_internal}}.
 #'
 #' @export
-call_vdat <- function(what = "--help", ...) {
+vdat_call <- function(what = "--help", ...) {
   vdat_loc <- check_vdat_location()
 
   shell_out <- sys::exec_internal(

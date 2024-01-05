@@ -95,19 +95,19 @@ vdat_version()
 Convert a VRL to CSV:
 
 ``` r
-to_csv("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
+vdat_to_csv("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
-to_folder("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
+vdat_to_folder("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Call VDAT using standard flags:
 
 ``` r
-call_vdat("--help")
+vdat_call("--help")
 #> VDAT File Tool
 #> Usage:
 #>   vdat [OPTION...] [COMMAND [ARG]...]...
