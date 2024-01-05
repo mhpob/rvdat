@@ -8,7 +8,6 @@
 #' @examples
 #' \dontrun{
 #'
-#'
 #' }
 #'
 vdat_to_csv <- function(file, outdir = getwd()) {
@@ -54,7 +53,6 @@ vdat_to_csv <- function(file, outdir = getwd()) {
 #'
 #' @export
 #' @examplesIf not_building_on_ci()
-
 vdat_to_folder <- function(file, outdir = getwd()) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
 
