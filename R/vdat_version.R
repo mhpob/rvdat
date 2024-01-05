@@ -3,9 +3,8 @@
 #' @export
 #' @examples
 #'
-#' vdat_here('vdat.exe')
+#' vdat_here("vdat.exe")
 #' vdat_version()
-
 vdat_version <- function() {
   vdat_loc <- check_vdat_location()
 
