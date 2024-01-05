@@ -10,11 +10,8 @@ vdat_version()
 Report the version of VDAT identified in vdata_here
 }
 \examples{
-\dontrun{
-
-vdat_here("vdat.exe")
+\dontshow{if (Sys.getenv('CI') == '') (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 vdat_version()
-
-}
+\dontshow{\}) # examplesIf}
 }
