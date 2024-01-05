@@ -4,15 +4,18 @@ Version: 0.0.0.9000
 Authors@R: c(
     person("Frank", "Smith", , "first.last@example.com", role = c("aut", "cph"),
            comment = c(ORCID = "YOUR-ORCID-ID")),
-    person("Michael", "O'Brien", email = "mike@obrien.page",
-            role = c("aut", "cre"),
-            comment = c(ORCID = "0000-0003-1420-6395"))
+    person("Michael", "O'Brien", , "mike@obrien.page", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-1420-6395"))
   )
 Description: Provides R-friendly syntax for VDAT shell functions.
 License: AGPL (>= 3)
+URL: https://github.com/mhpob/rvdat
+BugReports: https://github.com/mhpob/rvdat/issues
+Imports: 
+    cli,
+    sys
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Imports: 
-    sys,
-    cli
+SystemRequirements: VDAT command line tools
+    (https://gitlab.oceantrack.org/otndc/vdat-working-group).
