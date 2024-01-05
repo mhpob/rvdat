@@ -4,10 +4,9 @@
 #'    current working directory
 #'
 #' @export
-#' @examplesIf Sys.getenv('CI') == ''
+#' @examplesIf Sys.getenv("CI") == ""
 #'
 #' vdat_here("vdat.exe")
-
 vdat_here <- function(here) {
   Sys.setenv(VDAT_EXE = here)
 
