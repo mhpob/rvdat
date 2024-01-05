@@ -13,3 +13,8 @@ current working directory}
 \description{
 User-supplied location of vdat.exe
 }
+\examples{
+
+vdat_here('vdat.exe')
+
+}
