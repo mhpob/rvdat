@@ -7,7 +7,6 @@
 #' @examplesIf not_building_on_ci()
 #'
 #' vdat_here("vdat.exe")
-
 vdat_here <- function(here) {
   Sys.setenv(VDAT_EXE = here)
 
