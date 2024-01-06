@@ -12,14 +12,14 @@
 #'    `TRUE`. Similarly, if the package is being built on R-Universe, the
 #'    "MY_UNIVERSE" variable will have your universe's name.
 #'
-#' @name utilities
+#' @name CI_utilities
 #' @export
 
 skip_on_ci <- function() {
   Sys.getenv("CI") == ""
 }
 
-#' @rdname utilities
+#' @rdname CI_utilities
 #' @export
 
 skip_on_runiverse <- function() {

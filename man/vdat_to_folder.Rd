@@ -16,6 +16,6 @@ current working directory.}
 Convert a VRL file to a folder of CSVs by data type
 }
 \examples{
-\dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (all(skip_on_ci(), skip_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontshow{\}) # examplesIf}
 }

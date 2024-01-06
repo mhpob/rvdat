@@ -52,7 +52,7 @@ vdat_to_csv <- function(file, outdir = getwd()) {
 #'    current working directory.
 #'
 #' @export
-#' @examplesIf not_building_on_ci()
+#' @examplesIf all(skip_on_ci(), skip_on_runiverse())
 vdat_to_folder <- function(file, outdir = getwd()) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
 
