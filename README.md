@@ -11,8 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The intent of this package is to provide lightweight R wrapper functions
-for Frank Smith’s VDAT for those who are intimidated by the shell (me)
-or just want to keep everything in one language (R, also me).
+around Innovasea’s VDAT File Tool for those who are intimidated by the
+shell (me) or just want to keep everything in one language (R, also me).
 
 For similar implementation that has a few more bells and whistles, check
 out
