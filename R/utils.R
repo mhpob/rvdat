@@ -20,6 +20,7 @@ skip_on_ci <- function() {
 }
 
 #' @rdname utilities
+#' @export
 
 skip_on_runiverse <- function() {
   Sys.getenv("MY_UNIVERSE") == ""

@@ -10,7 +10,7 @@ vdat_version()
 Report the version of VDAT identified in \code{\link{vdat_here}}.
 }
 \examples{
-\dontshow{if (any(skip_on_ci(), skip_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (all(skip_on_ci(), skip_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 vdat_version()
 \dontshow{\}) # examplesIf}
