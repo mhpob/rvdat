@@ -3,12 +3,12 @@
 \name{utilities}
 \alias{utilities}
 \alias{skip_on_ci}
-\alias{skip_on_Runiverse}
+\alias{skip_on_runiverse}
 \title{Miscellaneous functions for package checking, building, and CI}
 \usage{
 skip_on_ci()
 
-skip_on_Runiverse()
+skip_on_runiverse()
 }
 \description{
 Miscellaneous functions for package checking, building, and CI
@@ -16,7 +16,7 @@ Miscellaneous functions for package checking, building, and CI
 \section{Details}{
 
 
-\code{skip_on_ci} and \code{skip_on_Runiverse} check the environment for variables
+\code{skip_on_ci} and \code{skip_on_runiverse} check the environment for variables
 called "CI" and "MY_UNIVERSE", respectively, and return \code{TRUE} if it does
 not exist. Used to run examples if the package is being built locally and
 there's a chance that \code{vdat.exe} exists. If the package is being built on

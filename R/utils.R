@@ -2,7 +2,7 @@
 #'
 #' @section Details:
 #'
-#' `skip_on_ci` and `skip_on_Runiverse` check the environment for variables
+#' `skip_on_ci` and `skip_on_runiverse` check the environment for variables
 #'    called "CI" and "MY_UNIVERSE", respectively, and return `TRUE` if it does
 #'    not exist. Used to run examples if the package is being built locally and
 #'    there's a chance that `vdat.exe` exists. If the package is being built on
@@ -21,6 +21,6 @@ skip_on_ci <- function() {
 
 #' @rdname utilities
 
-skip_on_Runiverse <- function() {
+skip_on_runiverse <- function() {
   Sys.getenv("MY_UNIVERSE") == ""
 }
