@@ -1,0 +1,84 @@
+---
+title: "How to use `rvdat`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to use rvdat}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Getting started
+
+```{r setup}
+library(rvdat)
+```
+
+First, as we should always do when beginning a `rvdat` workflow, we tell R where our `vdat.exe` is located. Mine is within an installed version of [Fathom Connect](https://support.fishtracking.innovasea.com/s/downloads).
+
+```{r, vdat-here}
+vdat_here('c:/program files/innovasea/fathom/vdat.exe')
+```
+
+Next, let's download a sample VRL file from the `glatos` package using `utils::download.file`. I'll be keeping everything in a temporary directory just to keep tidy.
+
+```{r, dl-vrl}
+td <- file.path(
+  tempdir(),
+  'vignette'
+)
+
+dir.create(
+  td
+)
+
+download.file(
+  url = file.path(
+    'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata',
+    'detection_files_raw/VR2AR_546310_20190613_1.vrl'
+  ),
+  destfile = file.path(
+    td,
+    'VR2AR_546310_20190613_1.vrl'
+  ),
+  mode = 'wb',
+  quiet = TRUE
+)
+```
+
+## Converting a VRL to a CSV
+
+Now that we have a VRL to play with, let's convert it to a csv. It's pretty quick with `vdat_to_csv`.
+
+```{r, vrl-to-csv}
+vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
+            outdir = td)
+
+list.files(td, pattern = 'VR2AR')
+```
+`vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
+
+```{r, vrl-to-csv2}
+vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
+            outdir = td)
+
+list.files(td, pattern = 'VR2AR')
+```
+
+## Converting a VRL to a CSV folder
+
+As outlined in `vignette('vdat-data-structure')`
+
+
+
+
+```{r, clean-up, echo=FALSE}
+unlink(td, recursive = TRUE)
+```
+
