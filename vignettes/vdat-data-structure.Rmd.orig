@@ -1,0 +1,103 @@
+---
+title: "VDAT data structure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{VDAT data structure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Getting started
+
+I'll start off the same way as in `vignette('how-to-use-rvdat')`:
+
+1.    Locating `vdat.exe` with `vdat_here`
+2.    Downloading the example VRL file from the `glatos` package
+3.    Converting the VRL to a CSV using `vdat_to_csv`
+
+
+```{r setup}
+library(rvdat)
+
+td <- file.path(
+  tempdir(),
+  'vignette'
+)
+
+dir.create(
+  td
+)
+
+vdat_here('c:/program files/innovasea/fathom/vdat.exe')
+
+download.file(
+  url = file.path(
+    'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata',
+    'detection_files_raw/VR2AR_546310_20190613_1.vrl'
+  ),
+  destfile = file.path(td, 'VR2AR_546310_20190613_1.vrl'),
+  mode = 'wb',
+  quiet = TRUE
+)
+
+vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
+            outdir = td)
+
+list.files(td, pattern = 'VR2AR')
+```
+
+## Exploring the VDAT CSV's data structure
+
+Now for the fun part: what does the csv look like?
+
+```{r, import-err, error=TRUE}
+exported_csv <- read.csv(
+  file.path(td, 'VR2AR_546310_20190613_1.csv')
+)
+```
+
+Uh oh! Something weird! `utils::read.csv` guesses how many columns there should be by looking at the first five lines of the data. Here, it took a guess and more columns showed up later. Let's skip that process by telling it that the first row does not contain column names by using `header = FALSE`.
+
+```{r, import-headless}
+exported_csv <- read.csv(
+  file.path(td, 'VR2AR_546310_20190613_1.csv'),
+  header = FALSE
+)
+
+head(exported_csv)
+```
+
+I suggest that you skim through the data frame with the `View` function. You'll find that it has a few properties:
+
+#### The first row contains metadata about `vdat.exe`, itself.
+
+```{r, first-row}
+exported_csv[1,]
+```
+
+Note that this does, in fact, match the version of `vdat` we are using which can be found using `rvdat::vdat_version`.
+
+```{r, version}
+vdat_version()
+```
+
+
+#### The next 20+ lines contain the column names of different subsets of the data.
+
+These *descriptions* are indicated by appending `_DESC` to the variable name in the form `<variable>_DESC`. This is the reason we couldn't import the CSV the first time -- there are a different number of columns for each variable, and thus the data was more jagged than `read.csv` expected.
+
+```{r, desc-rows}
+exported_csv[2:5,]
+```
+
+
+```{r, clean-up, echo=FALSE}
+unlink(td, recursive = TRUE)
+```

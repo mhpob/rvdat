@@ -7,27 +7,28 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 ## Getting started
 
-
-```r
+```{r setup}
 library(rvdat)
 ```
 
 First, as we should always do when beginning a `rvdat` workflow, we tell R where our `vdat.exe` is located. Mine is within an installed version of [Fathom Connect](https://support.fishtracking.innovasea.com/s/downloads).
 
-
-```r
+```{r, vdat-here}
 vdat_here('c:/program files/innovasea/fathom/vdat.exe')
-#> ℹ vdat.exe is located at c:/program files/innovasea/fathom/vdat.exe
 ```
 
 Next, let's download a sample VRL file from the `glatos` package using `utils::download.file`. I'll be keeping everything in a temporary directory just to keep tidy.
 
-
-```r
+```{r, dl-vrl}
 td <- file.path(
   tempdir(),
   'vignette'
@@ -55,54 +56,43 @@ download.file(
 
 Now that we have a VRL to play with, let's convert it to a csv. It's pretty quick with `vdat_to_csv`.
 
-
-```r
+```{r, vrl-to-csv}
 vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
             outdir = td)
 
 list.files(td, pattern = 'VR2AR')
-#> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
 ```
 `vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
 
-
-```r
+```{r, vrl-to-csv2}
 vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
             outdir = td)
 
 list.files(td, pattern = 'VR2AR')
-#> [1] "VR2AR_546310_20190613_1.csv"                          
-#> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-15-42-04-017721].csv"
 ```
 
 ## Converting a VRL to a CSV folder
 
 As outlined in `vignette('vdat-data-structure')`, the flat CSV exported via `vdat_to_csv` is a mush-together of all available data types in the VDAT file. `vdat.exe` can split these into a folder of files according to data type for you, accessible using `rvdat` via `vdat_to_folder` or `vdat_call(c('convert', '--format=csv.fathom.split', 'FILENAME'))`.
 
-
-```r
+```{r}
 vdat_to_folder(
   file.path(td, 'VR2AR_546310_20190613_1.vrl'),
   outdir = td
 )
 
 list.dirs(td, full.names = F, recursive = F)
-#> [1] "VR2AR_546310_20190613_1.csv-fathom-split"
 
 list.files(
   list.dirs(td, full.names = T, recursive = F)
 )
-#>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
-#>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_REF.csv"        "DATA_SOURCE_FILE.csv"
-#>  [7] "DEPTH.csv"            "DET.csv"              "DIAG.csv"            
-#> [10] "DIAG_FAST.csv"        "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   
-#> [13] "HEALTH_VR2AR.csv"     "TEMP.csv"
 ```
 
 
 
 
 
-
+```{r, clean-up, echo=FALSE}
+unlink(td, recursive = TRUE)
+```
 

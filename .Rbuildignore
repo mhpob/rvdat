@@ -8,3 +8,6 @@
 ^docs$
 ^pkgdown$
 ^CNAME$
+^vignettes/precompile\.R$
+^vignettes/how-to-use-rvdat\.Rmd\.orig$
+^vignettes/vdat-data-structure\.Rmd\.orig$
