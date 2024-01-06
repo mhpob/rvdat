@@ -83,8 +83,8 @@
 <p>Extract and run the installer, paying attention into which directory the program is installed. On my (Windows) machine, it installs itself into <code>C:\Program Files\Innovasea\Fathom</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_to_vdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span></span>
-<span>  path <span class="op">=</span> <span class="st">'C:/Program Files/Innovasea/Fathom'</span>,</span>
-<span>  pattern <span class="op">=</span> <span class="st">'^vdat\\.exe$'</span>,</span>
+<span>  path <span class="op">=</span> <span class="st">"C:/Program Files/Innovasea/Fathom"</span>,</span>
+<span>  pattern <span class="op">=</span> <span class="st">"^vdat\\.exe$"</span>,</span>
 <span>  full.names <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -145,7 +145,7 @@
 <li>
 <input type="checkbox" disabled>Logging</li>
 <li>
-<input type="checkbox" disabled>Inspect content of file</li>
+<input type="checkbox" disabled checked>Inspect content of file</li>
 <li>
 <input type="checkbox" disabled>Create template for<ul class="task-list">
 <li>
@@ -176,8 +176,11 @@
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_to_folder.html">vdat_to_folder</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
-<p>Call VDAT using standard flags:</p>
+<p>Check out the file metadata:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_inspect.html">vdat_inspect</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
+<p>Call VDAT using standard flags:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; VDAT File Tool</span></span>
 <span><span class="co">#&gt; Usage:</span></span>
@@ -254,7 +257,7 @@
 <li>Create informative messages, warnings, and errors using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code> package</a>.</li>
 <li>In summary:</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a_new_wrapper</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">some_command</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">vdat_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_vdat_location.html">check_vdat_location</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
