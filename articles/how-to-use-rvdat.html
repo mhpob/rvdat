@@ -88,7 +88,7 @@ workflow, we tell R where our <code>vdat.exe</code> is located. Mine is
 within an installed version of <a href="https://support.fishtracking.innovasea.com/s/downloads" class="external-link">Fathom
 Connect</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="st">'c:/program files/innovasea/fathom/vdat.exe'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="st">"c:/program files/innovasea/fathom/vdat.exe"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ vdat.exe is located at c:/program files/innovasea/fathom/vdat.exe</span></span></code></pre></div>
 <p>Next, let’s download a sample VRL file from the <code>glatos</code>
 package using <code><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">utils::download.file</a></code>. I’ll be keeping
@@ -96,7 +96,7 @@ everything in a temporary directory just to keep tidy.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">td</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  <span class="st">'vignette'</span></span>
+<span>  <span class="st">"vignette"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span></span>
@@ -105,14 +105,14 @@ everything in a temporary directory just to keep tidy.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
 <span>  url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
-<span>    <span class="st">'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata'</span>,</span>
-<span>    <span class="st">'detection_files_raw/VR2AR_546310_20190613_1.vrl'</span></span>
+<span>    <span class="st">"https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata"</span>,</span>
+<span>    <span class="st">"detection_files_raw/VR2AR_546310_20190613_1.vrl"</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
 <span>    <span class="va">td</span>,</span>
-<span>    <span class="st">'VR2AR_546310_20190613_1.vrl'</span></span>
+<span>    <span class="st">"VR2AR_546310_20190613_1.vrl"</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  mode <span class="op">=</span> <span class="st">'wb'</span>,</span>
+<span>  mode <span class="op">=</span> <span class="st">"wb"</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -122,22 +122,24 @@ everything in a temporary directory just to keep tidy.</p>
 <p>Now that we have a VRL to play with, let’s convert it to a csv. It’s
 pretty quick with <code>vdat_to_csv</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.vrl'</span><span class="op">)</span>,</span>
-<span>            outdir <span class="op">=</span> <span class="va">td</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<span>  outdir <span class="op">=</span> <span class="va">td</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">'VR2AR'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"</span></span></code></pre></div>
 <p><code>vdat</code> is very respectful of your data in that it never
 overwrites files that exist in the same directory. It’ll just tack on a
 time stamp to the name of the newly-exported file.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.vrl'</span><span class="op">)</span>,</span>
-<span>            outdir <span class="op">=</span> <span class="va">td</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<span>  outdir <span class="op">=</span> <span class="va">td</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">'VR2AR'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
 <span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
-<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-15-45-18-703324].csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-16-02-49-913633].csv"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="converting-a-vrl-to-a-csv-folder">Converting a VRL to a CSV folder<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-folder"></a>
@@ -150,7 +152,7 @@ using <code>rvdat</code> via <code>vdat_to_folder</code> or
 <code>vdat_call(c('convert', '--format=csv.fathom.split', 'FILENAME'))</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_folder.html">vdat_to_folder</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.vrl'</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span></span>

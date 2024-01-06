@@ -96,30 +96,31 @@ package</li>
 <span></span>
 <span><span class="va">td</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  <span class="st">'vignette'</span></span>
+<span>  <span class="st">"vignette"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span></span>
 <span>  <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="st">'c:/program files/innovasea/fathom/vdat.exe'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="st">"c:/program files/innovasea/fathom/vdat.exe"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ vdat.exe is located at c:/program files/innovasea/fathom/vdat.exe</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
 <span>  url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
-<span>    <span class="st">'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata'</span>,</span>
-<span>    <span class="st">'detection_files_raw/VR2AR_546310_20190613_1.vrl'</span></span>
+<span>    <span class="st">"https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata"</span>,</span>
+<span>    <span class="st">"detection_files_raw/VR2AR_546310_20190613_1.vrl"</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.vrl'</span><span class="op">)</span>,</span>
-<span>  mode <span class="op">=</span> <span class="st">'wb'</span>,</span>
+<span>  destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<span>  mode <span class="op">=</span> <span class="st">"wb"</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.vrl'</span><span class="op">)</span>,</span>
-<span>            outdir <span class="op">=</span> <span class="va">td</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<span>  outdir <span class="op">=</span> <span class="va">td</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">'VR2AR'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -128,7 +129,7 @@ package</li>
 <p>Now for the fun part: what does the csv look like?</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exported_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.csv'</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.csv"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in read.table(file = file, header = header, sep = sep, quote = quote, : more columns than column names</span></span></code></pre></div>
 <p>Uh oh! Something weird! <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">utils::read.csv</a></code> guesses how many
@@ -138,7 +139,7 @@ process by telling it that the first row does not contain column names
 by using <code>header = FALSE</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exported_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">'VR2AR_546310_20190613_1.csv'</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.csv"</span><span class="op">)</span>,</span>
 <span>  header <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -186,7 +187,7 @@ properties:</p>
 itself.<a class="anchor" aria-label="anchor" href="#the-first-row-contains-metadata-about-vdat-exe-itself-"></a>
 </h4>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;               V1    V2                                 V3 V4 V5 V6 V7 V8 V9</span></span>
 <span><span class="co">#&gt; 1 VEMCO DATA LOG 2.0.0 vdat-7.0.0-20231107-14c992-release                  </span></span>
 <span><span class="co">#&gt;   V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26</span></span>
@@ -209,7 +210,7 @@ import the CSV the first time – there are a different number of columns
 for each variable, and thus the data was more jagged than
 <code>read.csv</code> expected.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;                 V1                V2    V3              V4</span></span>
 <span><span class="co">#&gt; 2      RECORD TYPE             FIELD FIELD           FIELD</span></span>
 <span><span class="co">#&gt; 3    ATTITUDE_DESC Device Time (UTC)  Time Time Offset (h)</span></span>
