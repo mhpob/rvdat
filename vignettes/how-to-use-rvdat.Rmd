@@ -2,7 +2,7 @@
 title: "How to use `rvdat`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How to use rvdat}
+  %\VignetteIndexEntry{How to use `rvdat`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,7 +20,7 @@ First, as we should always do when beginning a `rvdat` workflow, we tell R where
 
 
 ```r
-vdat_here('c:/program files/innovasea/fathom/vdat.exe')
+vdat_here("c:/program files/innovasea/fathom/vdat.exe")
 #> ℹ vdat.exe is located at c:/program files/innovasea/fathom/vdat.exe
 ```
 
@@ -30,7 +30,7 @@ Next, let's download a sample VRL file from the `glatos` package using `utils::d
 ```r
 td <- file.path(
   tempdir(),
-  'vignette'
+  "vignette"
 )
 
 dir.create(
@@ -39,14 +39,14 @@ dir.create(
 
 download.file(
   url = file.path(
-    'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata',
-    'detection_files_raw/VR2AR_546310_20190613_1.vrl'
+    "https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata",
+    "detection_files_raw/VR2AR_546310_20190613_1.vrl"
   ),
   destfile = file.path(
     td,
-    'VR2AR_546310_20190613_1.vrl'
+    "VR2AR_546310_20190613_1.vrl"
   ),
-  mode = 'wb',
+  mode = "wb",
   quiet = TRUE
 )
 ```
@@ -57,23 +57,25 @@ Now that we have a VRL to play with, let's convert it to a csv. It's pretty quic
 
 
 ```r
-vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
-            outdir = td)
+vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td
+)
 
-list.files(td, pattern = 'VR2AR')
+list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
 ```
 `vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
 
 
 ```r
-vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
-            outdir = td)
+vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td
+)
 
-list.files(td, pattern = 'VR2AR')
+list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv"                          
 #> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-15-45-18-703324].csv"
+#> [3] "VR2AR_546310_20190613_1[20240106-16-02-49-913633].csv"
 ```
 
 ## Converting a VRL to a CSV folder
@@ -83,7 +85,7 @@ As outlined in `vignette('vdat-data-structure')`, the flat CSV exported via `vda
 
 ```r
 vdat_to_folder(
-  file.path(td, 'VR2AR_546310_20190613_1.vrl'),
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
 

@@ -9,5 +9,5 @@
 ^pkgdown$
 ^CNAME$
 ^vignettes/precompile\.R$
-^vignettes/how-to-use-rvdat_RAW\.Rmd$
-^vignettes/vdat-data-structure_RAW\.Rmd$
+^vignettes/_how-to-use-rvdat\.Rmd$
+^vignettes/_vdat-data-structure\.Rmd$

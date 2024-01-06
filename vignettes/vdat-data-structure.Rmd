@@ -24,30 +24,31 @@ library(rvdat)
 
 td <- file.path(
   tempdir(),
-  'vignette'
+  "vignette"
 )
 
 dir.create(
   td
 )
 
-vdat_here('c:/program files/innovasea/fathom/vdat.exe')
+vdat_here("c:/program files/innovasea/fathom/vdat.exe")
 #> ℹ vdat.exe is located at c:/program files/innovasea/fathom/vdat.exe
 
 download.file(
   url = file.path(
-    'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata',
-    'detection_files_raw/VR2AR_546310_20190613_1.vrl'
+    "https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata",
+    "detection_files_raw/VR2AR_546310_20190613_1.vrl"
   ),
-  destfile = file.path(td, 'VR2AR_546310_20190613_1.vrl'),
-  mode = 'wb',
+  destfile = file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  mode = "wb",
   quiet = TRUE
 )
 
-vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
-            outdir = td)
+vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td
+)
 
-list.files(td, pattern = 'VR2AR')
+list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
 ```
 
@@ -58,7 +59,7 @@ Now for the fun part: what does the csv look like?
 
 ```r
 exported_csv <- read.csv(
-  file.path(td, 'VR2AR_546310_20190613_1.csv')
+  file.path(td, "VR2AR_546310_20190613_1.csv")
 )
 #> Error in read.table(file = file, header = header, sep = sep, quote = quote, : more columns than column names
 ```
@@ -68,7 +69,7 @@ Uh oh! Something weird! `utils::read.csv` guesses how many columns there should 
 
 ```r
 exported_csv <- read.csv(
-  file.path(td, 'VR2AR_546310_20190613_1.csv'),
+  file.path(td, "VR2AR_546310_20190613_1.csv"),
   header = FALSE
 )
 
@@ -116,7 +117,7 @@ I suggest that you skim through the data frame with the `View` function. You'll 
 
 
 ```r
-exported_csv[1,]
+exported_csv[1, ]
 #>               V1    V2                                 V3 V4 V5 V6 V7 V8 V9
 #> 1 VEMCO DATA LOG 2.0.0 vdat-7.0.0-20231107-14c992-release                  
 #>   V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26
@@ -138,7 +139,7 @@ These *descriptions* are indicated by appending `_DESC` to the variable name in 
 
 
 ```r
-exported_csv[2:5,]
+exported_csv[2:5, ]
 #>                 V1                V2    V3              V4
 #> 2      RECORD TYPE             FIELD FIELD           FIELD
 #> 3    ATTITUDE_DESC Device Time (UTC)  Time Time Offset (h)

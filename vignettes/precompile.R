@@ -3,5 +3,5 @@
 # and this blog post https://ropensci.org/blog/2019/12/08/precompute-vignettes/
 
 library(knitr)
-knit("vignettes/how-to-use-rvdat_RAW.Rmd", "vignettes/how-to-use-rvdat.Rmd")
-knit("vignettes/vdat-data-structure_RAW.Rmd", "vignettes/vdat-data-structure.Rmd")
+knit("vignettes/_how-to-use-rvdat.Rmd", "vignettes/how-to-use-rvdat.Rmd")
+knit("vignettes/_vdat-data-structure.Rmd", "vignettes/vdat-data-structure.Rmd")

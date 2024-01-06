@@ -2,7 +2,7 @@
 title: "How to use `rvdat`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How to use rvdat}
+  %\VignetteIndexEntry{How to use `rvdat`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
