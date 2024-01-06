@@ -14,7 +14,7 @@ to the current working directory.}
 User-supplied location of \code{vdat.exe}.
 }
 \examples{
-\dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (any(skip_on_ci(), skip_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 vdat_here("vdat.exe")
 \dontshow{\}) # examplesIf}

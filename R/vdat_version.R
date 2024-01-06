@@ -1,7 +1,7 @@
 #' Report the version of VDAT identified in [`vdat_here`].
 #'
 #' @export
-#' @examplesIf not_building_on_ci()
+#' @examplesIf any(skip_on_ci(), skip_on_runiverse())
 #'
 #' vdat_version()
 vdat_version <- function() {

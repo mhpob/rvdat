@@ -4,7 +4,7 @@
 #'    to the current working directory.
 #'
 #' @export
-#' @examplesIf not_building_on_ci()
+#' @examplesIf any(skip_on_ci(), skip_on_runiverse())
 #'
 #' vdat_here("vdat.exe")
 vdat_here <- function(here) {
