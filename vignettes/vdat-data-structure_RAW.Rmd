@@ -28,29 +28,30 @@ library(rvdat)
 
 td <- file.path(
   tempdir(),
-  'vignette'
+  "vignette"
 )
 
 dir.create(
   td
 )
 
-vdat_here('c:/program files/innovasea/fathom/vdat.exe')
+vdat_here("c:/program files/innovasea/fathom/vdat.exe")
 
 download.file(
   url = file.path(
-    'https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata',
-    'detection_files_raw/VR2AR_546310_20190613_1.vrl'
+    "https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata",
+    "detection_files_raw/VR2AR_546310_20190613_1.vrl"
   ),
-  destfile = file.path(td, 'VR2AR_546310_20190613_1.vrl'),
-  mode = 'wb',
+  destfile = file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  mode = "wb",
   quiet = TRUE
 )
 
-vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
-            outdir = td)
+vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td
+)
 
-list.files(td, pattern = 'VR2AR')
+list.files(td, pattern = "VR2AR")
 ```
 
 ## Exploring the VDAT CSV's data structure
@@ -59,7 +60,7 @@ Now for the fun part: what does the csv look like?
 
 ```{r, import-err, error=TRUE}
 exported_csv <- read.csv(
-  file.path(td, 'VR2AR_546310_20190613_1.csv')
+  file.path(td, "VR2AR_546310_20190613_1.csv")
 )
 ```
 
@@ -67,7 +68,7 @@ Uh oh! Something weird! `utils::read.csv` guesses how many columns there should 
 
 ```{r, import-headless}
 exported_csv <- read.csv(
-  file.path(td, 'VR2AR_546310_20190613_1.csv'),
+  file.path(td, "VR2AR_546310_20190613_1.csv"),
   header = FALSE
 )
 
@@ -79,7 +80,7 @@ I suggest that you skim through the data frame with the `View` function. You'll 
 #### The first row contains metadata about `vdat.exe`, itself.
 
 ```{r, first-row}
-exported_csv[1,]
+exported_csv[1, ]
 ```
 
 Note that this does, in fact, match the version of `vdat` we are using which can be found using `rvdat::vdat_version`.
@@ -94,7 +95,7 @@ vdat_version()
 These *descriptions* are indicated by appending `_DESC` to the variable name in the form `<variable>_DESC`. This is the reason we couldn't import the CSV the first time -- there are a different number of columns for each variable, and thus the data was more jagged than `read.csv` expected.
 
 ```{r, desc-rows}
-exported_csv[2:5,]
+exported_csv[2:5, ]
 ```
 
 
