@@ -16,6 +16,6 @@ User-supplied location of \code{vdat.exe}.
 \examples{
 \dontshow{if (all(skip_on_ci(), skip_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-vdat_here("vdat.exe")
+vdat_here("c:/program files/innovasea/fathom/vdat.exe")
 \dontshow{\}) # examplesIf}
 }

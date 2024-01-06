@@ -6,7 +6,7 @@
 #' @export
 #' @examplesIf all(skip_on_ci(), skip_on_runiverse())
 #'
-#' vdat_here("vdat.exe")
+#' vdat_here("c:/program files/innovasea/fathom/vdat.exe")
 vdat_here <- function(here) {
   Sys.setenv(VDAT_EXE = here)
 
