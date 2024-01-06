@@ -73,7 +73,7 @@ vdat_to_csv(file.path(td, 'VR2AR_546310_20190613_1.vrl'),
 list.files(td, pattern = 'VR2AR')
 #> [1] "VR2AR_546310_20190613_1.csv"                          
 #> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-15-42-04-017721].csv"
+#> [3] "VR2AR_546310_20190613_1[20240106-15-45-18-703324].csv"
 ```
 
 ## Converting a VRL to a CSV folder
