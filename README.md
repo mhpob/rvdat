@@ -39,8 +39,8 @@ program is installed. On my (Windows) machine, it installs itself into
 
 ``` r
 path_to_vdat <- list.files(
-  path = 'C:/Program Files/Innovasea/Fathom',
-  pattern = '^vdat\\.exe$',
+  path = "C:/Program Files/Innovasea/Fathom",
+  pattern = "^vdat\\.exe$",
   full.names = TRUE
 )
 
@@ -88,7 +88,7 @@ remotes::install_github("mhpob/rvdat")
 - [ ] Detection filter
 - [ ] Sensor values
 - [ ] Logging
-- [ ] Inspect content of file
+- [x] Inspect content of file
 - [ ] Create template for
   - [ ] CSV
   - [ ] JSON
@@ -125,6 +125,12 @@ Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
 vdat_to_folder("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
+```
+
+Check out the file metadata:
+
+``` r
+vdat_inspect("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
 ```
 
 Call VDAT using standard flags:
