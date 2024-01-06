@@ -13,5 +13,21 @@ vdat_call(what = "--help", ...)
 }
 \description{
 Low-level interface to \code{vdat.exe}, wherein arguments are passed directly
-to \code{vdat.exe}.
+to \code{vdat.exe}. Arguments should be character vectors, each element being
+one command.
+}
+\examples{
+\dontrun{
+
+# Check the help documentation
+vdat_call()
+
+#
+vdat_call('--help')
+
+# Inspect a file; multiple arguments are passed in a character vector
+vdat_call(c('inspect', 'FILENAME'))
+
+}
+
 }
