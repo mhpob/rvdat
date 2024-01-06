@@ -22,7 +22,35 @@ package](https://github.com/ocean-tracking-network/glatos).
 
 ## Installation
 
-You can install the most-up-to-date version from
+### Download `vdat.exe`
+
+`rvdat` requires a VDAT executable (`vdat.exe`) in order to work, which
+comes packaged in Innovasea’s Fathom Connect software. You can [download
+the software
+here](https://support.fishtracking.innovasea.com/s/downloads) after
+providing your contact details and agreeing to their End User License
+Agreement.
+
+![](man/figures/README-fathom_connect_download.png)
+
+Extract and run the installer, paying attention into which directory the
+program is installed. On my (Windows) machine, it installs itself into
+`C:\Program Files\Innovasea\Fathom`.
+
+``` r
+path_to_vdat <- list.files(
+  path = 'C:/Program Files/Innovasea/Fathom',
+  pattern = '^vdat\\.exe$',
+  full.names = TRUE
+)
+
+path_to_vdat
+#> [1] "C:/Program Files/Innovasea/Fathom/vdat.exe"
+```
+
+### Install `rvdat`
+
+You can install the most-up-to-date version of this package from
 [R-universe](https://mhpob.r-universe.dev/rvdat) or
 [GitHub](https://github.com/mhpob/rvdat).
 
@@ -67,10 +95,6 @@ remotes::install_github("mhpob/rvdat")
 
 ## Using the package
 
-Download [current version of VDAT
-executable](https://gitlab.oceantrack.org/otndc/vdat-working-group) and
-point `vdat_here` to its location.
-
 Load the package:
 
 ``` r
@@ -80,8 +104,8 @@ library(rvdat)
 Set system location of vdat.exe:
 
 ``` r
-vdat_here("vdat.exe")
-#> ℹ vdat.exe is located at vdat.exe
+vdat_here(path_to_vdat)
+#> ℹ vdat.exe is located at C:/Program Files/Innovasea/Fathom/vdat.exe
 ```
 
 What version?
