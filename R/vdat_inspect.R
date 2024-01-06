@@ -4,13 +4,13 @@
 #' @param ... arguments passed to [`sys::exec_internal`].
 #'
 #' @export
-vdat_inspect <- function(file){
+vdat_inspect <- function(file) {
   vdat_loc <- rvdat:::check_vdat_location()
 
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,
     args = c(
-      'inspect',
+      "inspect",
       file
     ),
     error = FALSE
