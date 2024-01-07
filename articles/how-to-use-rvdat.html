@@ -78,6 +78,9 @@
 
     
     
+<p>This vignette is a working draft. There will be lots of changes as
+<code>rvdat</code> gets fleshed out, so please check back often!</p>
+<p>The most recent changes were made on 2024-01-07.</p>
 <div class="section level2">
 <h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h2>
@@ -102,9 +105,6 @@ everything in a temporary directory just to keep tidy.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span></span>
 <span>  <span class="va">td</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in dir.create(td):</span></span>
-<span><span class="co">#&gt; 'C:\Users\darpa2\AppData\Local\Temp\RtmpeecJDT\vignette' already</span></span>
-<span><span class="co">#&gt; exists</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
 <span>  url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
@@ -130,56 +130,22 @@ everything in a temporary directory just to keep tidy.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ==============================================================================</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt;                                      VRL                                      </span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; ==============================================================================</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; File:      VR2AR_546310_20190613_1.vrl</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Original:  VR2AR_546310_20190613_1.vrl</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Container: VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Created:   2019-06-13T13:30:54</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Data UUID: ffee6ee7-450a-db42-b54c-334b672fddf5</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Rx Model:  VR2AR-69</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Rx Serial: 546310</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; </span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; ==============================================================================</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt;                                     Device                                    </span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; ==============================================================================</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Decoding Map:      MAP-113</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; Blanking Interval: 260 ms</span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; </span></span>
-<span></span>
-<span></span>
 <span><span class="co">#&gt; </span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -195,11 +161,7 @@ let’s convert it to a csv. It’s pretty quick with
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
-<span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
-<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"</span></span>
-<span><span class="co">#&gt; [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"</span></span>
-<span><span class="co">#&gt; [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"</span></span></code></pre></div>
 <p><code>vdat</code> is very respectful of your data in that it never
 overwrites files that exist in the same directory. It’ll just tack on a
 time stamp to the name of the newly-exported file.</p>
@@ -212,10 +174,7 @@ time stamp to the name of the newly-exported file.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
 <span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
-<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"</span></span>
-<span><span class="co">#&gt; [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"</span></span>
-<span><span class="co">#&gt; [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"</span></span>
-<span><span class="co">#&gt; [6] "VR2AR_546310_20190613_1[20240106-22-28-10-211125].csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240107-12-19-57-923825].csv"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="converting-a-vrl-to-a-csv-with-time-correction">Converting a VRL to a CSV with time correction<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-with-time-correction"></a>
@@ -242,7 +201,7 @@ microsecond.</p>
 <span><span class="co">#&gt; 46 2019-06-11 02:47:00 2019-06-11 02:47:00.000725</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="converting-a-vrl-to-a-csv-folder">Converting a VRL to a CSV folder<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-folder"></a>
+<h2 id="splitting-a-vrl-into-a-folder-of-csvs">Splitting a VRL into a folder of CSVs<a class="anchor" aria-label="anchor" href="#splitting-a-vrl-into-a-folder-of-csvs"></a>
 </h2>
 <p>As outlined in <code><a href="../articles/vdat-data-structure.html">vignette('vdat-data-structure')</a></code>, the flat
 CSV exported via <code>vdat_to_csv</code> is a mush-together of all

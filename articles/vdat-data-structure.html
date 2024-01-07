@@ -78,8 +78,633 @@
 
     
     
+<p>This vignette is a working draft. There will be lots of changes as
+<code>rvdat</code> gets fleshed out, so please check back often!</p>
+<p>The most recent changes were made on 2024-01-07.</p>
 <div class="section level2">
-<h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+<h2 id="data-dictionary">Data dictionary<a class="anchor" aria-label="anchor" href="#data-dictionary"></a>
+</h2>
+<p>The bulk of this vignette describes, row by row, the structure of a
+VDAT file (<code>.vrl</code>, eg.) that has been exported to a CSV via
+<code>vdat.exe</code> or <code><a href="../reference/vdat_to_csv.html">rvdat::vdat_to_csv</a></code>. However, I
+want to put the good stuff up front and give a quick reference table,
+the guts of which will be described further down.</p>
+<p>The table below shows, in alphabetical order, each logged data type
+(attitude, battery, etc.) and their respective column names/data fields
+in bullets.</p>
+<div class="section level4">
+<h4 id="attitude">ATTITUDE<a class="anchor" aria-label="anchor" href="#attitude"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Tilt (deg)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="battery">BATTERY<a class="anchor" aria-label="anchor" href="#battery"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Battery Position</li>
+<li>Battery Type</li>
+<li>Battery Serial Number</li>
+<li>Battery Voltage (V)</li>
+<li>Battery Remaining (%)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="cfg_channel">CFG_CHANNEL<a class="anchor" aria-label="anchor" href="#cfg_channel"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Channel</li>
+<li>Detection Type</li>
+<li>Frequency (kHz)</li>
+<li>Blanking (ms)</li>
+<li>Map ID</li>
+<li>Coding ID</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="cfg_station">CFG_STATION<a class="anchor" aria-label="anchor" href="#cfg_station"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Serial Number</li>
+<li>Station Name</li>
+<li>Latitude (deg)</li>
+<li>Longitude (deg)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="cfg_study">CFG_STUDY<a class="anchor" aria-label="anchor" href="#cfg_study"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Description</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="cfg_transmitter">CFG_TRANSMITTER<a class="anchor" aria-label="anchor" href="#cfg_transmitter"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Transmission Type</li>
+<li>Full ID</li>
+<li>ID</li>
+<li>Power Level</li>
+<li>Min Delay (s)</li>
+<li>Max Delay (s)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="clock_ref">CLOCK_REF<a class="anchor" aria-label="anchor" href="#clock_ref"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Serial Number</li>
+<li>External Time (UTC)</li>
+<li>External Difference (s)</li>
+<li>Source</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="clock_set">CLOCK_SET<a class="anchor" aria-label="anchor" href="#clock_set"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Serial Number</li>
+<li>Prior Device Time (UTC)</li>
+<li>Prior Difference (s)</li>
+<li>Source</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="data_error">DATA_ERROR<a class="anchor" aria-label="anchor" href="#data_error"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Type</li>
+<li>Error</li>
+<li>Page</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Offset</li>
+<li>Description</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="data_source_file">DATA_SOURCE_FILE<a class="anchor" aria-label="anchor" href="#data_source_file"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>File Name</li>
+<li>UUID</li>
+<li>Type</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Size</li>
+<li>State</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="depth">DEPTH<a class="anchor" aria-label="anchor" href="#depth"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Depth (m)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="depth_stats">DEPTH_STATS<a class="anchor" aria-label="anchor" href="#depth_stats"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Depth Min (m)</li>
+<li>Depth Max (m)</li>
+<li>Depth Mean (m)</li>
+<li>Sample Count</li>
+<li>Accumulation Period (s)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="det">DET<a class="anchor" aria-label="anchor" href="#det"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Channel</li>
+<li>Detection Type</li>
+<li>Full ID</li>
+<li>ID</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Raw Data</li>
+<li>Transmitter Serial</li>
+<li>Signal Strength (dB)</li>
+<li>Noise (dB)</li>
+<li>Gain (dB)</li>
+<li>Quality Score</li>
+<li>Station Name</li>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>GPS HDOP</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="det_filter">DET_FILTER<a class="anchor" aria-label="anchor" href="#det_filter"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Filter Name</li>
+<li>Details</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Rejected Detections</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="det_sens">DET_SENS<a class="anchor" aria-label="anchor" href="#det_sens"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Channel</li>
+<li>Detection Type</li>
+<li>Full ID</li>
+<li>ID</li>
+<li>Raw Data</li>
+<li>Transmitter Serial</li>
+<li>Signal Strength (dB)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Noise (dB)</li>
+<li>Gain (dB)</li>
+<li>Quality Score</li>
+<li>Station Name</li>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>GPS HDOP</li>
+<li>Transmitter Type</li>
+<li>Sensor Function</li>
+<li>Sensor Value</li>
+<li>Sensor Unit</li>
+<li>Sensor Precision</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="diag">DIAG<a class="anchor" aria-label="anchor" href="#diag"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Ambient Temperature (deg C)</li>
+<li>Noise Mean (mV)</li>
+<li>Tilt (deg)</li>
+<li>Depth (m)</li>
+<li>PPM Pings</li>
+<li>PPM Detections</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="diag_fast">DIAG_FAST<a class="anchor" aria-label="anchor" href="#diag_fast"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Serial Number</li>
+<li>Ambient Temperature (deg C)</li>
+<li>Noise (mV)</li>
+<li>Tilt (deg)</li>
+<li>Depth (m)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="event">EVENT<a class="anchor" aria-label="anchor" href="#event"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Type</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Subtype</li>
+<li>Description</li>
+<li>Values</li>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>GPS HDOP</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="event_fault">EVENT_FAULT<a class="anchor" aria-label="anchor" href="#event_fault"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Serial Number</li>
+<li>Fault Importance</li>
+<li>Fault Code</li>
+<li>Fault Description</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="event_init">EVENT_INIT<a class="anchor" aria-label="anchor" href="#event_init"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Serial Number</li>
+<li>Prior Device Time (UTC)</li>
+<li>External Time Zone</li>
+<li>Firmware Version</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="event_offload">EVENT_OFFLOAD<a class="anchor" aria-label="anchor" href="#event_offload"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+<li>External Time (UTC)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>External Time Zone</li>
+<li>HR Total Accepted Detections</li>
+<li>PPM Total Accepted Detections</li>
+<li>Memory Remaining (%)</li>
+<li>Battery Remaining (%)</li>
+<li>Original File</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="health_vr2ar">HEALTH_VR2AR<a class="anchor" aria-label="anchor" href="#health_vr2ar"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Memory Remaining (%)</li>
+<li>RTC Time</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="ping">PING<a class="anchor" aria-label="anchor" href="#ping"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Channel</li>
+<li>Frequency (kHz)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Blanking (ms)</li>
+<li>Signal Strength (dB)</li>
+<li>Noise (dB)</li>
+<li>Gain (dB)</li>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>GPS HDOP</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="temp">TEMP<a class="anchor" aria-label="anchor" href="#temp"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Model</li>
+<li>Serial Number</li>
+<li>Ambient (deg C)</li>
+<li>Internal (deg C)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="temp_stats">TEMP_STATS<a class="anchor" aria-label="anchor" href="#temp_stats"></a>
+</h4>
+<div style="display: flex;">
+<div>
+<ul>
+<li>Device Time (UTC)</li>
+<li>Time</li>
+<li>Time Offset (h)</li>
+<li>Time Correction (s)</li>
+<li>Model</li>
+<li>Serial Number</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Ambient Min (deg C)</li>
+<li>Ambient Max (deg C)</li>
+<li>Ambient Mean (deg C)</li>
+<li>Sample Count</li>
+<li>Accumulation Period (s)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="row-by-row-data-description">Row-by-row data description<a class="anchor" aria-label="anchor" href="#row-by-row-data-description"></a>
 </h2>
 <p>I’ll start off the same way as in
 <code><a href="../articles/how-to-use-rvdat.html">vignette('how-to-use-rvdat')</a></code>:</p>
@@ -104,7 +729,6 @@ package</li>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="st">"c:/program files/innovasea/fathom/vdat.exe"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ℹ vdat.exe is located at c:/program files/innovasea/fathom/vdat.exe</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
 <span>  url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
@@ -118,16 +742,16 @@ package</li>
 <span></span>
 <span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="exploring-the-vdat-csvs-data-structure">Exploring the VDAT CSV’s data structure<a class="anchor" aria-label="anchor" href="#exploring-the-vdat-csvs-data-structure"></a>
 </h2>
 <p>Now for the fun part: what does the csv look like?</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exported_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.csv"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -137,27 +761,34 @@ columns there should be by looking at the first five lines of the data.
 Here, it took a guess and more columns showed up later. Let’s skip that
 process by telling it that the first row does not contain column names
 by using <code>header = FALSE</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exported_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.csv"</span><span class="op">)</span>,</span>
 <span>  header <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">exported_csv</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                 V1                V2                                 V3</span></span>
-<span><span class="co">#&gt; 1   VEMCO DATA LOG             2.0.0 vdat-7.0.0-20231107-14c992-release</span></span>
-<span><span class="co">#&gt; 2      RECORD TYPE             FIELD                              FIELD</span></span>
-<span><span class="co">#&gt; 3    ATTITUDE_DESC Device Time (UTC)                               Time</span></span>
-<span><span class="co">#&gt; 4     BATTERY_DESC Device Time (UTC)                               Time</span></span>
-<span><span class="co">#&gt; 5 CFG_CHANNEL_DESC Device Time (UTC)                               Time</span></span>
-<span><span class="co">#&gt; 6 CFG_STATION_DESC Device Time (UTC)                               Time</span></span>
-<span><span class="co">#&gt;                V4                  V5    V6            V7               V8</span></span>
-<span><span class="co">#&gt; 1                                                                         </span></span>
-<span><span class="co">#&gt; 2           FIELD               FIELD FIELD         FIELD            FIELD</span></span>
-<span><span class="co">#&gt; 3 Time Offset (h) Time Correction (s) Model Serial Number       Tilt (deg)</span></span>
-<span><span class="co">#&gt; 4 Time Offset (h) Time Correction (s) Model Serial Number Battery Position</span></span>
-<span><span class="co">#&gt; 5 Time Offset (h) Time Correction (s) Model Serial Number          Channel</span></span>
-<span><span class="co">#&gt; 6 Time Offset (h) Time Correction (s) Model Serial Number     Station Name</span></span>
+<span><span class="co">#&gt;                 V1                V2</span></span>
+<span><span class="co">#&gt; 1   VEMCO DATA LOG             2.0.0</span></span>
+<span><span class="co">#&gt; 2      RECORD TYPE             FIELD</span></span>
+<span><span class="co">#&gt; 3    ATTITUDE_DESC Device Time (UTC)</span></span>
+<span><span class="co">#&gt; 4     BATTERY_DESC Device Time (UTC)</span></span>
+<span><span class="co">#&gt; 5 CFG_CHANNEL_DESC Device Time (UTC)</span></span>
+<span><span class="co">#&gt; 6 CFG_STATION_DESC Device Time (UTC)</span></span>
+<span><span class="co">#&gt;                                   V3              V4</span></span>
+<span><span class="co">#&gt; 1 vdat-7.0.0-20231107-14c992-release                </span></span>
+<span><span class="co">#&gt; 2                              FIELD           FIELD</span></span>
+<span><span class="co">#&gt; 3                               Time Time Offset (h)</span></span>
+<span><span class="co">#&gt; 4                               Time Time Offset (h)</span></span>
+<span><span class="co">#&gt; 5                               Time Time Offset (h)</span></span>
+<span><span class="co">#&gt; 6                               Time Time Offset (h)</span></span>
+<span><span class="co">#&gt;                    V5    V6            V7               V8</span></span>
+<span><span class="co">#&gt; 1                                                         </span></span>
+<span><span class="co">#&gt; 2               FIELD FIELD         FIELD            FIELD</span></span>
+<span><span class="co">#&gt; 3 Time Correction (s) Model Serial Number       Tilt (deg)</span></span>
+<span><span class="co">#&gt; 4 Time Correction (s) Model Serial Number Battery Position</span></span>
+<span><span class="co">#&gt; 5 Time Correction (s) Model Serial Number          Channel</span></span>
+<span><span class="co">#&gt; 6 Time Correction (s) Model Serial Number     Station Name</span></span>
 <span><span class="co">#&gt;               V9                   V10                 V11</span></span>
 <span><span class="co">#&gt; 1                                                         </span></span>
 <span><span class="co">#&gt; 2          FIELD                 FIELD               FIELD</span></span>
@@ -165,19 +796,19 @@ by using <code>header = FALSE</code>.</p>
 <span><span class="co">#&gt; 4   Battery Type Battery Serial Number Battery Voltage (V)</span></span>
 <span><span class="co">#&gt; 5 Detection Type       Frequency (kHz)       Blanking (ms)</span></span>
 <span><span class="co">#&gt; 6 Latitude (deg)       Longitude (deg)                    </span></span>
-<span><span class="co">#&gt;                     V12       V13   V14   V15   V16   V17   V18   V19   V20</span></span>
-<span><span class="co">#&gt; 1                                                                          </span></span>
-<span><span class="co">#&gt; 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
-<span><span class="co">#&gt; 3                                                                          </span></span>
-<span><span class="co">#&gt; 4 Battery Remaining (%)                                                    </span></span>
-<span><span class="co">#&gt; 5                Map ID Coding ID                                          </span></span>
-<span><span class="co">#&gt; 6                                                                          </span></span>
-<span><span class="co">#&gt;     V21   V22   V23   V24   V25   V26</span></span>
-<span><span class="co">#&gt; 1                                    </span></span>
-<span><span class="co">#&gt; 2 FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
-<span><span class="co">#&gt; 3                                    </span></span>
-<span><span class="co">#&gt; 4                                    </span></span>
-<span><span class="co">#&gt; 5                                    </span></span>
+<span><span class="co">#&gt;                     V12       V13   V14   V15   V16   V17   V18</span></span>
+<span><span class="co">#&gt; 1                                                              </span></span>
+<span><span class="co">#&gt; 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
+<span><span class="co">#&gt; 3                                                              </span></span>
+<span><span class="co">#&gt; 4 Battery Remaining (%)                                        </span></span>
+<span><span class="co">#&gt; 5                Map ID Coding ID                              </span></span>
+<span><span class="co">#&gt; 6                                                              </span></span>
+<span><span class="co">#&gt;     V19   V20   V21   V22   V23   V24   V25   V26</span></span>
+<span><span class="co">#&gt; 1                                                </span></span>
+<span><span class="co">#&gt; 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
+<span><span class="co">#&gt; 3                                                </span></span>
+<span><span class="co">#&gt; 4                                                </span></span>
+<span><span class="co">#&gt; 5                                                </span></span>
 <span><span class="co">#&gt; 6</span></span></code></pre></div>
 <p>I suggest that you skim through the data frame with the
 <code>View</code> function. You’ll find that it has a few
@@ -186,16 +817,29 @@ properties:</p>
 <h4 id="the-first-row-contains-metadata-about-vdat-exe-itself-">The first row contains metadata about <code>vdat.exe</code>,
 itself.<a class="anchor" aria-label="anchor" href="#the-first-row-contains-metadata-about-vdat-exe-itself-"></a>
 </h4>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
-<span><span class="co">#&gt;               V1    V2                                 V3 V4 V5 V6 V7 V8 V9</span></span>
-<span><span class="co">#&gt; 1 VEMCO DATA LOG 2.0.0 vdat-7.0.0-20231107-14c992-release                  </span></span>
-<span><span class="co">#&gt;   V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26</span></span>
-<span><span class="co">#&gt; 1</span></span></code></pre></div>
-<p>Note that this does, in fact, match the version of <code>vdat</code>
-we are using which can be found using
-<code><a href="../reference/vdat_version.html">rvdat::vdat_version</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
+<span><span class="co">#&gt;               V1    V2                                 V3 V4 V5</span></span>
+<span><span class="co">#&gt; 1 VEMCO DATA LOG 2.0.0 vdat-7.0.0-20231107-14c992-release      </span></span>
+<span><span class="co">#&gt;   V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21</span></span>
+<span><span class="co">#&gt; 1                                                            </span></span>
+<span><span class="co">#&gt;   V22 V23 V24 V25 V26</span></span>
+<span><span class="co">#&gt; 1</span></span></code></pre></div>
+<p>While there are 26 columns as a separate row takes that many fields
+to describe its data structure (see the next section), only the first
+three are pertinent.</p>
+<ol style="list-style-type: decimal">
+<li>This is a VEMCO data log;</li>
+<li>It is using version 2.0.0 of the schema;</li>
+<li>It was created with some specific vdat version.
+<ol style="list-style-type: lower-alpha">
+<li>Note that this does, in fact, match the version of <code>vdat</code>
+we are using. This can be found using
+<code><a href="../reference/vdat_version.html">rvdat::vdat_version</a></code>.</li>
+</ol>
+</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_version.html">vdat_version</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; vdat-7.0.0-20231107-14c992-release</span></span></code></pre></div>
 </div>
@@ -203,39 +847,205 @@ we are using which can be found using
 <h4 id="the-next-20-lines-contain-the-column-names-of-different-subsets-of-the-data-">The next 20+ lines contain the column names of different subsets of
 the data.<a class="anchor" aria-label="anchor" href="#the-next-20-lines-contain-the-column-names-of-different-subsets-of-the-data-"></a>
 </h4>
-<p>These <em>descriptions</em> are indicated by appending
+<p>These subsets are by variable, such as tilt angle, temperature, and
+the like. They are designated as <em>descriptions</em> by appending
 <code>_DESC</code> to the variable name in the form
-<code>&lt;variable&gt;_DESC</code>. This is the reason we couldn’t
-import the CSV the first time – there are a different number of columns
-for each variable, and thus the data was more jagged than
-<code>read.csv</code> expected.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code>&lt;variable&gt;_DESC</code> (Description – DESC. Get it?). This
+is the reason we couldn’t import the CSV the first time – there are a
+different number of columns for each variable, and thus the data was
+more jagged than <code>read.csv</code> expected.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;                 V1                V2    V3              V4</span></span>
 <span><span class="co">#&gt; 2      RECORD TYPE             FIELD FIELD           FIELD</span></span>
 <span><span class="co">#&gt; 3    ATTITUDE_DESC Device Time (UTC)  Time Time Offset (h)</span></span>
 <span><span class="co">#&gt; 4     BATTERY_DESC Device Time (UTC)  Time Time Offset (h)</span></span>
 <span><span class="co">#&gt; 5 CFG_CHANNEL_DESC Device Time (UTC)  Time Time Offset (h)</span></span>
-<span><span class="co">#&gt;                    V5    V6            V7               V8             V9</span></span>
-<span><span class="co">#&gt; 2               FIELD FIELD         FIELD            FIELD          FIELD</span></span>
-<span><span class="co">#&gt; 3 Time Correction (s) Model Serial Number       Tilt (deg)               </span></span>
-<span><span class="co">#&gt; 4 Time Correction (s) Model Serial Number Battery Position   Battery Type</span></span>
-<span><span class="co">#&gt; 5 Time Correction (s) Model Serial Number          Channel Detection Type</span></span>
-<span><span class="co">#&gt;                     V10                 V11                   V12       V13</span></span>
-<span><span class="co">#&gt; 2                 FIELD               FIELD                 FIELD     FIELD</span></span>
-<span><span class="co">#&gt; 3                                                                          </span></span>
-<span><span class="co">#&gt; 4 Battery Serial Number Battery Voltage (V) Battery Remaining (%)          </span></span>
-<span><span class="co">#&gt; 5       Frequency (kHz)       Blanking (ms)                Map ID Coding ID</span></span>
-<span><span class="co">#&gt;     V14   V15   V16   V17   V18   V19   V20   V21   V22   V23   V24   V25</span></span>
-<span><span class="co">#&gt; 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
-<span><span class="co">#&gt; 3                                                                        </span></span>
-<span><span class="co">#&gt; 4                                                                        </span></span>
-<span><span class="co">#&gt; 5                                                                        </span></span>
-<span><span class="co">#&gt;     V26</span></span>
-<span><span class="co">#&gt; 2 FIELD</span></span>
-<span><span class="co">#&gt; 3      </span></span>
-<span><span class="co">#&gt; 4      </span></span>
+<span><span class="co">#&gt;                    V5    V6            V7               V8</span></span>
+<span><span class="co">#&gt; 2               FIELD FIELD         FIELD            FIELD</span></span>
+<span><span class="co">#&gt; 3 Time Correction (s) Model Serial Number       Tilt (deg)</span></span>
+<span><span class="co">#&gt; 4 Time Correction (s) Model Serial Number Battery Position</span></span>
+<span><span class="co">#&gt; 5 Time Correction (s) Model Serial Number          Channel</span></span>
+<span><span class="co">#&gt;               V9                   V10                 V11</span></span>
+<span><span class="co">#&gt; 2          FIELD                 FIELD               FIELD</span></span>
+<span><span class="co">#&gt; 3                                                         </span></span>
+<span><span class="co">#&gt; 4   Battery Type Battery Serial Number Battery Voltage (V)</span></span>
+<span><span class="co">#&gt; 5 Detection Type       Frequency (kHz)       Blanking (ms)</span></span>
+<span><span class="co">#&gt;                     V12       V13   V14   V15   V16   V17   V18</span></span>
+<span><span class="co">#&gt; 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
+<span><span class="co">#&gt; 3                                                              </span></span>
+<span><span class="co">#&gt; 4 Battery Remaining (%)                                        </span></span>
+<span><span class="co">#&gt; 5                Map ID Coding ID                              </span></span>
+<span><span class="co">#&gt;     V19   V20   V21   V22   V23   V24   V25   V26</span></span>
+<span><span class="co">#&gt; 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD</span></span>
+<span><span class="co">#&gt; 3                                                </span></span>
+<span><span class="co">#&gt; 4                                                </span></span>
 <span><span class="co">#&gt; 5</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="the-next-7-rows-contain-receiver-configuration">The next ~7 rows contain receiver configuration<a class="anchor" aria-label="anchor" href="#the-next-7-rows-contain-receiver-configuration"></a>
+</h4>
+<p>After a row designated as <code>DATA_SOURCE_FILE</code>, there are a
+few rows which outline the receiver’s configuration; this file has 6
+total. These are things like the initialization time, Map ID, whether an
+internal transmitter is turned on (and its delay), etc..</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">first_data_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">exported_csv</span><span class="op">$</span><span class="va">V1</span> <span class="op">==</span> <span class="st">'DATA_SOURCE_FILE'</span><span class="op">)</span></span>
+<span><span class="va">exported_csv</span><span class="op">[</span><span class="va">first_data_row</span><span class="op">:</span><span class="op">(</span><span class="va">first_data_row</span> <span class="op">+</span> <span class="fl">6</span><span class="op">)</span>,<span class="op">]</span></span>
+<span><span class="co">#&gt;                  V1                          V2</span></span>
+<span><span class="co">#&gt; 29 DATA_SOURCE_FILE VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt; 30       EVENT_INIT         2019-06-11 02:44:16</span></span>
+<span><span class="co">#&gt; 31        CLOCK_REF         2019-06-11 02:44:16</span></span>
+<span><span class="co">#&gt; 32      CFG_CHANNEL         2019-06-11 02:44:16</span></span>
+<span><span class="co">#&gt; 33  CFG_TRANSMITTER         2019-06-11 02:44:16</span></span>
+<span><span class="co">#&gt; 34  CFG_TRANSMITTER         2019-06-11 02:44:27</span></span>
+<span><span class="co">#&gt; 35  CFG_TRANSMITTER         2019-06-11 02:44:34</span></span>
+<span><span class="co">#&gt;                                      V3</span></span>
+<span><span class="co">#&gt; 29 ffee6ee7-450a-db42-b54c-334b672fddf5</span></span>
+<span><span class="co">#&gt; 30                                     </span></span>
+<span><span class="co">#&gt; 31                                     </span></span>
+<span><span class="co">#&gt; 32                                     </span></span>
+<span><span class="co">#&gt; 33                                     </span></span>
+<span><span class="co">#&gt; 34                                     </span></span>
+<span><span class="co">#&gt; 35                                     </span></span>
+<span><span class="co">#&gt;                                         V4     V5       V6</span></span>
+<span><span class="co">#&gt; 29 com.vemco.file.vrl.0207.ff02.ff02/5.0.1 110026 ORIGINAL</span></span>
+<span><span class="co">#&gt; 30                                                VR2AR-69</span></span>
+<span><span class="co">#&gt; 31                                                VR2AR-69</span></span>
+<span><span class="co">#&gt; 32                                                VR2AR-69</span></span>
+<span><span class="co">#&gt; 33                                                VR2AR-69</span></span>
+<span><span class="co">#&gt; 34                                                VR2AR-69</span></span>
+<span><span class="co">#&gt; 35                                                VR2AR-69</span></span>
+<span><span class="co">#&gt;        V7                  V8             V9            V10</span></span>
+<span><span class="co">#&gt; 29                                                         </span></span>
+<span><span class="co">#&gt; 30 546310 2019-06-11 02:44:11      UTC-04:00          5.0.1</span></span>
+<span><span class="co">#&gt; 31 546310 2019-06-11 02:44:16              0 INITIALIZATION</span></span>
+<span><span class="co">#&gt; 32 546310                   1            PPM             69</span></span>
+<span><span class="co">#&gt; 33 546310                 PPM A69-1601-60774          60774</span></span>
+<span><span class="co">#&gt; 34 546310                 PPM A69-1601-60774          60774</span></span>
+<span><span class="co">#&gt; 35 546310                 PPM A69-1601-60774          60774</span></span>
+<span><span class="co">#&gt;         V11     V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23</span></span>
+<span><span class="co">#&gt; 29                                                             </span></span>
+<span><span class="co">#&gt; 30                                                             </span></span>
+<span><span class="co">#&gt; 31                                                             </span></span>
+<span><span class="co">#&gt; 32      260 MAP-113                                            </span></span>
+<span><span class="co">#&gt; 33 DISABLED     540 660                                        </span></span>
+<span><span class="co">#&gt; 34 DISABLED     540 660                                        </span></span>
+<span><span class="co">#&gt; 35 DISABLED     540 660                                        </span></span>
+<span><span class="co">#&gt;    V24 V25 V26</span></span>
+<span><span class="co">#&gt; 29            </span></span>
+<span><span class="co">#&gt; 30            </span></span>
+<span><span class="co">#&gt; 31            </span></span>
+<span><span class="co">#&gt; 32            </span></span>
+<span><span class="co">#&gt; 33            </span></span>
+<span><span class="co">#&gt; 34            </span></span>
+<span><span class="co">#&gt; 35</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="logged-data">Logged data!<a class="anchor" aria-label="anchor" href="#logged-data"></a>
+</h4>
+<p><em>“‘And now,’ cried Max, ‘let the wild rumpus start!’”</em></p>
+<p>Depending on how long you’ve had your receiver deployed, you could
+have many thousands of rows after this. If you’re logging environmental
+data you’ll have on the order of four rows per minute deployed
+(temperature, depth, tilt, and general diagnostics), as well as one for
+every logged detection.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="op">(</span><span class="va">first_data_row</span> <span class="op">+</span> <span class="fl">7</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">first_data_row</span> <span class="op">+</span> <span class="fl">7</span> <span class="op">+</span> <span class="fl">7</span><span class="op">)</span>,<span class="op">]</span></span>
+<span><span class="co">#&gt;           V1                  V2 V3 V4 V5       V6     V7</span></span>
+<span><span class="co">#&gt; 36 DIAG_FAST 2019-06-11 02:45:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 37      TEMP 2019-06-11 02:45:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 38     DEPTH 2019-06-11 02:45:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 39  ATTITUDE 2019-06-11 02:45:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 40 DIAG_FAST 2019-06-11 02:46:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 41      TEMP 2019-06-11 02:46:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 42     DEPTH 2019-06-11 02:46:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt; 43  ATTITUDE 2019-06-11 02:46:00          VR2AR-69 546310</span></span>
+<span><span class="co">#&gt;        V8  V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21</span></span>
+<span><span class="co">#&gt; 36 17.064 150   2   0                                        </span></span>
+<span><span class="co">#&gt; 37 17.064                                                    </span></span>
+<span><span class="co">#&gt; 38      0                                                    </span></span>
+<span><span class="co">#&gt; 39      2                                                    </span></span>
+<span><span class="co">#&gt; 40 17.129 161   3   0                                        </span></span>
+<span><span class="co">#&gt; 41 17.129                                                    </span></span>
+<span><span class="co">#&gt; 42      0                                                    </span></span>
+<span><span class="co">#&gt; 43      3                                                    </span></span>
+<span><span class="co">#&gt;    V22 V23 V24 V25 V26</span></span>
+<span><span class="co">#&gt; 36                    </span></span>
+<span><span class="co">#&gt; 37                    </span></span>
+<span><span class="co">#&gt; 38                    </span></span>
+<span><span class="co">#&gt; 39                    </span></span>
+<span><span class="co">#&gt; 40                    </span></span>
+<span><span class="co">#&gt; 41                    </span></span>
+<span><span class="co">#&gt; 42                    </span></span>
+<span><span class="co">#&gt; 43</span></span></code></pre></div>
+<p>Diagnostic rows (<code>DIAG</code>) will have the hourly mean of
+<code>TEMP</code>, <code>DEPTH</code>, and <code>ATTITUDE</code> rows,
+as well as detections/pings. If you have fast diagnostics on, rows
+labeled with <code>DIAG_FAST</code> will contain the same per-minute
+data as <code>TEMP</code>/<code>DEPTH</code>/<code>ATTITUDE</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="op">(</span><span class="va">exported_csv</span><span class="op">$</span><span class="va">V1</span> <span class="op">==</span> <span class="st">'DIAG'</span><span class="op">)</span>, <span class="op">]</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></span>
+<span><span class="co">#&gt;      V1                  V2 V3 V4 V5       V6     V7     V8  V9</span></span>
+<span><span class="co">#&gt; 96 DIAG 2019-06-11 03:00:00          VR2AR-69 546310 17.744 150</span></span>
+<span><span class="co">#&gt;    V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24</span></span>
+<span><span class="co">#&gt; 96  87   0   0   0                                            </span></span>
+<span><span class="co">#&gt;    V25 V26</span></span>
+<span><span class="co">#&gt; 96</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="detections-are-logged-to-the-tenth-of-a-millisecond">Detections are logged to the tenth of a millisecond<a class="anchor" aria-label="anchor" href="#detections-are-logged-to-the-tenth-of-a-millisecond"></a>
+</h4>
+<p>That’s <span class="math inline">\(1\text{e-}4\)</span> seconds.
+Whether that’s accurate or just over-precise… I don’t know.</p>
+<p>Detections are indicated by a row labeled with <code>DET</code>,
+followed by the raw logged time, time-corrected time if applicable, and
+information about the transmitter.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">exported_csv</span><span class="op">[</span><span class="op">(</span><span class="va">exported_csv</span><span class="op">$</span><span class="va">V1</span> <span class="op">==</span> <span class="st">'DET'</span><span class="op">)</span>, <span class="op">]</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></span>
+<span><span class="co">#&gt;       V1                       V2 V3 V4 V5       V6     V7 V8</span></span>
+<span><span class="co">#&gt; 2567 DET 2019-06-11 13:03:32.0837          VR2AR-69 546310  1</span></span>
+<span><span class="co">#&gt;       V9            V10   V11 V12 V13 V14 V15 V16 V17 V18 V19</span></span>
+<span><span class="co">#&gt; 2567 PPM A69-1601-57060 57060                                </span></span>
+<span><span class="co">#&gt;      V20 V21 V22 V23 V24 V25 V26</span></span>
+<span><span class="co">#&gt; 2567</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="the-last-three-rows-are-data-associated-with-the-download">The last three rows are data associated with the download<a class="anchor" aria-label="anchor" href="#the-last-three-rows-are-data-associated-with-the-download"></a>
+</h4>
+<p>The internal transmitter configuration, time associated with the
+internal and downloading-computer clocks, and the download, itself, are
+all reported.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">exported_csv</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                    V1                  V2 V3 V4 V5       V6</span></span>
+<span><span class="co">#&gt; 16749            TEMP 2019-06-13 17:30:00          VR2AR-69</span></span>
+<span><span class="co">#&gt; 16750           DEPTH 2019-06-13 17:30:00          VR2AR-69</span></span>
+<span><span class="co">#&gt; 16751        ATTITUDE 2019-06-13 17:30:00          VR2AR-69</span></span>
+<span><span class="co">#&gt; 16752 CFG_TRANSMITTER 2019-06-13 17:30:34          VR2AR-69</span></span>
+<span><span class="co">#&gt; 16753       CLOCK_REF 2019-06-13 17:30:53          VR2AR-69</span></span>
+<span><span class="co">#&gt; 16754   EVENT_OFFLOAD 2019-06-13 17:30:53          VR2AR-69</span></span>
+<span><span class="co">#&gt;           V7                  V8             V9     V10</span></span>
+<span><span class="co">#&gt; 16749 546310               21.21                       </span></span>
+<span><span class="co">#&gt; 16750 546310                   0                       </span></span>
+<span><span class="co">#&gt; 16751 546310                   2                       </span></span>
+<span><span class="co">#&gt; 16752 546310                 PPM A69-1601-60774   60774</span></span>
+<span><span class="co">#&gt; 16753 546310 2019-06-13 17:30:54              1 OFFLOAD</span></span>
+<span><span class="co">#&gt; 16754 546310 2019-06-13 17:30:54      UTC-04:00        </span></span>
+<span><span class="co">#&gt;            V11     V12 V13                         V14 V15 V16</span></span>
+<span><span class="co">#&gt; 16749                                                         </span></span>
+<span><span class="co">#&gt; 16750                                                         </span></span>
+<span><span class="co">#&gt; 16751                                                         </span></span>
+<span><span class="co">#&gt; 16752 DISABLED     540 660                                    </span></span>
+<span><span class="co">#&gt; 16753                                                         </span></span>
+<span><span class="co">#&gt; 16754     1328 99.6235     VR2AR_546310_20190613_1.vrl        </span></span>
+<span><span class="co">#&gt;       V17 V18 V19 V20 V21 V22 V23 V24 V25 V26</span></span>
+<span><span class="co">#&gt; 16749                                        </span></span>
+<span><span class="co">#&gt; 16750                                        </span></span>
+<span><span class="co">#&gt; 16751                                        </span></span>
+<span><span class="co">#&gt; 16752                                        </span></span>
+<span><span class="co">#&gt; 16753                                        </span></span>
+<span><span class="co">#&gt; 16754</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
