@@ -36,6 +36,9 @@ td <- file.path(
 dir.create(
   td
 )
+#> Warning in dir.create(td):
+#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpcpuSUx\vignette' already
+#> exists
 
 download.file(
   url = file.path(
@@ -57,26 +60,47 @@ Now that we have a VRL to play with, let's convert it to a csv. It's pretty quic
 
 
 ```r
-vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
-  outdir = td
-)
-
-list.files(td, pattern = "VR2AR")
-#> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
-```
-`vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
-
-
-```r
-vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+vdat_to_csv(
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
 
 list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv"                          
 #> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-16-02-49-913633].csv"
+#> [3] "VR2AR_546310_20190613_1[20240106-22-02-57-353693].csv"
+#> [4] "VR2AR_546310_20190613_1[20240106-22-05-47-799220].csv"
 ```
+`vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
+
+
+```r
+vdat_to_csv(
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td
+)
+
+list.files(td, pattern = "VR2AR")
+#> [1] "VR2AR_546310_20190613_1.csv"                          
+#> [2] "VR2AR_546310_20190613_1.vrl"                          
+#> [3] "VR2AR_546310_20190613_1[20240106-22-02-57-353693].csv"
+#> [4] "VR2AR_546310_20190613_1[20240106-22-05-47-799220].csv"
+#> [5] "VR2AR_546310_20190613_1[20240106-22-05-47-957470].csv"
+```
+## Converting a VRL to a CSV with time correction
+
+Adding the `time_corrected = TRUE` argument to `vdat_to_csv` corrects for clock drift using `vdat`'s internal algorithm:
+
+
+```r
+vdat_to_csv(
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td,
+  time_corrected = TRUE
+)
+```
+
+
 
 ## Converting a VRL to a CSV folder
 
@@ -95,10 +119,12 @@ list.dirs(td, full.names = F, recursive = F)
 list.files(
   list.dirs(td, full.names = T, recursive = F)
 )
-#>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
-#>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_REF.csv"        "DATA_SOURCE_FILE.csv"
-#>  [7] "DEPTH.csv"            "DET.csv"              "DIAG.csv"            
-#> [10] "DIAG_FAST.csv"        "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   
+#>  [1] "ATTITUDE.csv"         "BATTERY.csv"         
+#>  [3] "CFG_CHANNEL.csv"      "CFG_TRANSMITTER.csv" 
+#>  [5] "CLOCK_REF.csv"        "DATA_SOURCE_FILE.csv"
+#>  [7] "DEPTH.csv"            "DET.csv"             
+#>  [9] "DIAG.csv"             "DIAG_FAST.csv"       
+#> [11] "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   
 #> [13] "HEALTH_VR2AR.csv"     "TEMP.csv"
 ```
 

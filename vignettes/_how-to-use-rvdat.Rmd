@@ -57,7 +57,8 @@ download.file(
 Now that we have a VRL to play with, let's convert it to a csv. It's pretty quick with `vdat_to_csv`.
 
 ```{r, vrl-to-csv}
-vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+vdat_to_csv(
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
 
@@ -66,12 +67,26 @@ list.files(td, pattern = "VR2AR")
 `vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
 
 ```{r, vrl-to-csv2}
-vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+vdat_to_csv(
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
 
 list.files(td, pattern = "VR2AR")
 ```
+## Converting a VRL to a CSV with time correction
+
+Adding the `time_corrected = TRUE` argument to `vdat_to_csv` corrects for clock drift using `vdat`'s internal algorithm:
+
+```{r, vrl2csv-time-correct}
+vdat_to_csv(
+  file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td,
+  time_corrected = TRUE
+)
+```
+
+
 
 ## Converting a VRL to a CSV folder
 

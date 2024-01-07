@@ -3,6 +3,7 @@
 #' @param file location of VRL file(s) to convert to CSV.
 #' @param outdir output directory for the created CSV files. Defaults to the
 #'  current working directory.
+#' @param time_corrected logical. Do you want to apply the default time correction?
 #'
 #' @export
 #' @examples
@@ -10,7 +11,9 @@
 #'
 #' }
 #'
-vdat_to_csv <- function(file, outdir = getwd()) {
+vdat_to_csv <- function(file,
+                        outdir = getwd(),
+                        time_corrected = FALSE) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
   # to_csv(fls[2:3])
   # list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
@@ -23,12 +26,25 @@ vdat_to_csv <- function(file, outdir = getwd()) {
 
   vdat_loc <- check_vdat_location()
 
+  # Build arguments
+  vdat_args <- c(
+    "convert",
+    "--format=csv.fathom",
+    paste0("--output=", outdir)
+  )
+
+  if(time_corrected == TRUE){
+    vdat_args <- c(
+      vdat_args,
+      '--timec=default'
+    )
+  }
+
+
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,
     args = c(
-      "convert",
-      "--format=csv.fathom",
-      paste0("--output=", outdir),
+      vdat_args,
       file
     ),
     error = FALSE
@@ -50,20 +66,35 @@ vdat_to_csv <- function(file, outdir = getwd()) {
 #' @param file location of VRL file(s) to convert to CSV.
 #' @param outdir output directory for the created CSV files. Defaults to the
 #'    current working directory.
+#' @param time_corrected logical. Do you want to apply the default time correction?
 #'
 #' @export
 #' @examplesIf all(skip_on_ci(), skip_on_runiverse())
-vdat_to_folder <- function(file, outdir = getwd()) {
+vdat_to_folder <- function(file,
+                           outdir = getwd(),
+                           time_corrected = FALSE) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
 
   vdat_loc <- check_vdat_location()
 
+  # Build arguments
+  vdat_args <- c(
+    "convert",
+    "--format=csv.fathom.split",
+    paste0("--output=", outdir)
+  )
+
+  if(time_corrected == TRUE){
+    vdat_args <- c(
+      vdat_args,
+      '--timec=default'
+    )
+  }
+
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,
     args = c(
-      "convert",
-      "--format=csv.fathom.split",
-      paste0("--output=", outdir),
+      vdat_args,
       file
     ),
     error = FALSE
