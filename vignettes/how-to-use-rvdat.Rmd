@@ -37,7 +37,7 @@ dir.create(
   td
 )
 #> Warning in dir.create(td):
-#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpcpuSUx\vignette' already
+#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpeecJDT\vignette' already
 #> exists
 
 download.file(
@@ -95,7 +95,11 @@ vdat_to_csv(
 )
 
 list.files(td, pattern = "VR2AR")
-#> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
+#> [1] "VR2AR_546310_20190613_1.csv"                          
+#> [2] "VR2AR_546310_20190613_1.vrl"                          
+#> [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"
+#> [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"
+#> [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"
 ```
 `vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
 
@@ -109,7 +113,10 @@ vdat_to_csv(
 list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv"                          
 #> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-22-10-57-307126].csv"
+#> [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"
+#> [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"
+#> [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"
+#> [6] "VR2AR_546310_20190613_1[20240106-22-28-10-211125].csv"
 ```
 ## Converting a VRL to a CSV with time correction
 
@@ -124,6 +131,19 @@ vdat_to_csv(
 )
 ```
 
+A new column is added with time corrected down to the microsecond.
+
+
+```r
+corrected <- read.csv(
+  list.files(td, pattern = "VR2AR.*\\]\\.csv$", full.names = TRUE)[2],
+  header = FALSE
+)
+
+corrected[46, c(2:3)]
+#>                     V2                         V3
+#> 46 2019-06-11 02:47:00 2019-06-11 02:47:00.000725
+```
 
 
 ## Converting a VRL to a CSV folder

@@ -96,6 +96,16 @@ vdat_to_csv(
 )
 ```
 
+A new column is added with time corrected down to the microsecond.
+
+```{r}
+corrected <- read.csv(
+  list.files(td, pattern = "VR2AR.*\\]\\.csv$", full.names = TRUE)[2],
+  header = FALSE
+)
+
+corrected[46, c(2:3)]
+```
 
 
 ## Converting a VRL to a CSV folder
