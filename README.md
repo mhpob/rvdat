@@ -83,7 +83,7 @@ remotes::install_github("mhpob/rvdat")
   - [ ] JSON
 - [ ] Convert multiple VRLs
 - [x] Output location
-- [ ] Time correction
+- [x] Time correction
 - [ ] Time offset
 - [ ] Detection filter
 - [ ] Sensor values
