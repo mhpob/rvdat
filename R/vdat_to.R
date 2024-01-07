@@ -33,10 +33,10 @@ vdat_to_csv <- function(file,
     paste0("--output=", outdir)
   )
 
-  if(time_corrected == TRUE){
+  if (time_corrected == TRUE) {
     vdat_args <- c(
       vdat_args,
-      '--timec=default'
+      "--timec=default"
     )
   }
 
@@ -84,10 +84,10 @@ vdat_to_folder <- function(file,
     paste0("--output=", outdir)
   )
 
-  if(time_corrected == TRUE){
+  if (time_corrected == TRUE) {
     vdat_args <- c(
       vdat_args,
-      '--timec=default'
+      "--timec=default"
     )
   }
 
