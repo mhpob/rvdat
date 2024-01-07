@@ -103,7 +103,7 @@ everything in a temporary directory just to keep tidy.</p>
 <span>  <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in dir.create(td):</span></span>
-<span><span class="co">#&gt; 'C:\Users\darpa2\AppData\Local\Temp\RtmpcpuSUx\vignette' already</span></span>
+<span><span class="co">#&gt; 'C:\Users\darpa2\AppData\Local\Temp\RtmpeecJDT\vignette' already</span></span>
 <span><span class="co">#&gt; exists</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
@@ -195,7 +195,11 @@ let’s convert it to a csv. It’s pretty quick with
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
+<span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
+<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"</span></span>
+<span><span class="co">#&gt; [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"</span></span>
+<span><span class="co">#&gt; [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"</span></span></code></pre></div>
 <p><code>vdat</code> is very respectful of your data in that it never
 overwrites files that exist in the same directory. It’ll just tack on a
 time stamp to the name of the newly-exported file.</p>
@@ -208,7 +212,10 @@ time stamp to the name of the newly-exported file.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
 <span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
-<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-22-10-57-307126].csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"</span></span>
+<span><span class="co">#&gt; [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"</span></span>
+<span><span class="co">#&gt; [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"</span></span>
+<span><span class="co">#&gt; [6] "VR2AR_546310_20190613_1[20240106-22-28-10-211125].csv"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="converting-a-vrl-to-a-csv-with-time-correction">Converting a VRL to a CSV with time correction<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-with-time-correction"></a>
@@ -222,6 +229,17 @@ time stamp to the name of the newly-exported file.</p>
 <span>  outdir <span class="op">=</span> <span class="va">td</span>,</span>
 <span>  time_corrected <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>A new column is added with time corrected down to the
+microsecond.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR.*\\]\\.csv$"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  header <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">corrected</span><span class="op">[</span><span class="fl">46</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;                     V2                         V3</span></span>
+<span><span class="co">#&gt; 46 2019-06-11 02:47:00 2019-06-11 02:47:00.000725</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="converting-a-vrl-to-a-csv-folder">Converting a VRL to a CSV folder<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-folder"></a>
@@ -232,7 +250,7 @@ available data types in the VDAT file. <code>vdat.exe</code> can split
 these into a folder of files according to data type for you, accessible
 using <code>rvdat</code> via <code>vdat_to_folder</code> or
 <code>vdat_call(c('convert', '--format=csv.fathom.split', 'FILENAME'))</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_folder.html">vdat_to_folder</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
