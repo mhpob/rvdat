@@ -22,7 +22,10 @@ knitr::opts_chunk$set(
 
 The intent of this package is to provide lightweight R wrapper functions around Innovasea's VDAT File Tool for those who are intimidated by the shell (me) or just want to keep everything in one language (R, also me).
 
+`rvdat` is intended to play nicely with the [`matos`](https://matos.obrien.page) and [`otndo`](https://otndo.obrien.page) packages, though full connectivity and documentation on how to do so is a work in progress. Please reach out to me at [mike@obrien.page](mailto:mike@obrien.page) or open an issue on GitHub if you need any help.
+
 For similar implementation that has a few more bells and whistles, check out [`glatos::vdat_convert`](https://github.com/ocean-tracking-network/glatos/blob/dev/R/util-vdat.r) in version >= 0.8.0 of the [glatos package](https://github.com/ocean-tracking-network/glatos).
+
 
 ## Installation
 
