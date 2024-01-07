@@ -59,36 +59,36 @@ exported_csv <- read.csv(
 ```
 
 ```{r, make-data-dictionary, echo=FALSE}
-key <- exported_csv[grepl('_DESC$', exported_csv$V1),]
-key$V1 <- gsub('_DESC$', '', key$V1)
+key <- exported_csv[grepl("_DESC$", exported_csv$V1), ]
+key$V1 <- gsub("_DESC$", "", key$V1)
 
 key <- key |>
   split(~V1, drop = TRUE) |>
-  lapply(function(.) .[, colSums(. != "") != 0]) |> 
+  lapply(function(.) .[, colSums(. != "") != 0]) |>
   lapply(`[`, -1)
 ```
 ```{r, print-data-dictionary, echo=FALSE, results='asis'}
-for(i in seq_along(key)){
+for (i in seq_along(key)) {
   key_ncols <- length(key[[i]])
   md <- paste0(
-    '#### ',
+    "#### ",
     names(key)[i],
-    '\n\n',
+    "\n\n",
     ':::: {style="display: flex;"}\n\n',
-    '::: {}\n\n',
-    ' - ',
+    "::: {}\n\n",
+    " - ",
     paste(
-      key[[i]][1:ceiling(key_ncols/2)],
-      collapse = '\n - '
+      key[[i]][1:ceiling(key_ncols / 2)],
+      collapse = "\n - "
     ),
-    '\n\n:::\n\n',
-    '::: {}\n\n',
-    ' - ',
+    "\n\n:::\n\n",
+    "::: {}\n\n",
+    " - ",
     paste(
-      key[[i]][(ceiling(key_ncols/2) + 1):key_ncols],
-      collapse = '\n - '
+      key[[i]][(ceiling(key_ncols / 2) + 1):key_ncols],
+      collapse = "\n - "
     ),
-    '\n\n:::\n\n::::\n\n'
+    "\n\n:::\n\n::::\n\n"
   )
   cat(md)
 }
@@ -191,8 +191,8 @@ exported_csv[2:5, ]
 After a row designated as `DATA_SOURCE_FILE`, there are a few rows which outline the receiver's configuration; this file has 6 total. These are things like the initialization time, Map ID, whether an internal transmitter is turned on (and its delay), etc..
 
 ```{r}
-first_data_row <- which(exported_csv$V1 == 'DATA_SOURCE_FILE')
-exported_csv[first_data_row:(first_data_row + 6),]
+first_data_row <- which(exported_csv$V1 == "DATA_SOURCE_FILE")
+exported_csv[first_data_row:(first_data_row + 6), ]
 ```
 
 #### Logged data!
@@ -202,13 +202,13 @@ exported_csv[first_data_row:(first_data_row + 6),]
 Depending on how long you've had your receiver deployed, you could have many thousands of rows after this. If you're logging environmental data you'll have on the order of four rows per minute deployed (temperature, depth, tilt, and general diagnostics), as well as one for every logged detection.
 
 ```{r}
-exported_csv[(first_data_row + 7):(first_data_row + 7 + 7),]
+exported_csv[(first_data_row + 7):(first_data_row + 7 + 7), ]
 ```
 
 Diagnostic rows (`DIAG`) will have the hourly mean of `TEMP`, `DEPTH`, and `ATTITUDE` rows, as well as detections/pings. If you have fast diagnostics on, rows labeled with `DIAG_FAST` will contain the same per-minute data as `TEMP`/`DEPTH`/`ATTITUDE`.
 
 ```{r}
-exported_csv[(exported_csv$V1 == 'DIAG'), ][1,]
+exported_csv[(exported_csv$V1 == "DIAG"), ][1, ]
 ```
 
 #### Detections are logged to the tenth of a millisecond
@@ -218,7 +218,7 @@ That's $1\text{e-}4$ seconds. Whether that's accurate or just over-precise... I 
 Detections are indicated by a row labeled with `DET`, followed by the raw logged time, time-corrected time if applicable, and information about the transmitter.
 
 ```{r}
-exported_csv[(exported_csv$V1 == 'DET'), ][1,]
+exported_csv[(exported_csv$V1 == "DET"), ][1, ]
 ```
 #### The last three rows are data associated with the download
 
