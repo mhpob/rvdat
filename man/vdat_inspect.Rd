@@ -4,7 +4,7 @@
 \alias{vdat_inspect}
 \title{Return general VDAT file metadata}
 \usage{
-vdat_inspect(file)
+vdat_inspect(file, ...)
 }
 \arguments{
 \item{file}{file path of VDAT file to inspect.}

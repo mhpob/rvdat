@@ -23,11 +23,10 @@ one command.
 vdat_call()
 
 #
-vdat_call('--help')
+vdat_call("--help")
 
 # Inspect a file; multiple arguments are passed in a character vector
-vdat_call(c('inspect', 'FILENAME'))
-
+vdat_call(c("inspect", "FILENAME"))
 }
 
 }
