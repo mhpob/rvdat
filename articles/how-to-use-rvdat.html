@@ -102,6 +102,9 @@ everything in a temporary directory just to keep tidy.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span></span>
 <span>  <span class="va">td</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in dir.create(td):</span></span>
+<span><span class="co">#&gt; 'C:\Users\darpa2\AppData\Local\Temp\RtmpcpuSUx\vignette' already</span></span>
+<span><span class="co">#&gt; exists</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span></span>
 <span>  url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
@@ -117,12 +120,77 @@ everything in a temporary directory just to keep tidy.</p>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="check-the-files-metadata">Check the file’s metadata<a class="anchor" aria-label="anchor" href="#check-the-files-metadata"></a>
+</h2>
+<p>To take a quick glimpse of the VDAT file’s metadata, we can use
+<code>vdat_inspect</code>. Note that this only works for VDAT files
+(<code>.vrl</code> and family), not any exported CSVs.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_inspect.html">vdat_inspect</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt;                                      VRL                                      </span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; File:      VR2AR_546310_20190613_1.vrl</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Original:  VR2AR_546310_20190613_1.vrl</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Container: VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Created:   2019-06-13T13:30:54</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Data UUID: ffee6ee7-450a-db42-b54c-334b672fddf5</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Rx Model:  VR2AR-69</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Rx Serial: 546310</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; </span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt;                                     Device                                    </span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Decoding Map:      MAP-113</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; Blanking Interval: 260 ms</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; </span></span>
+<span></span>
+<span></span>
+<span><span class="co">#&gt; </span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="converting-a-vrl-to-a-csv">Converting a VRL to a CSV<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv"></a>
 </h2>
-<p>Now that we have a VRL to play with, let’s convert it to a csv. It’s
-pretty quick with <code>vdat_to_csv</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<p>Now that we have a VRL to play with and know something about it,
+let’s convert it to a csv. It’s pretty quick with
+<code>vdat_to_csv</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -131,15 +199,29 @@ pretty quick with <code>vdat_to_csv</code>.</p>
 <p><code>vdat</code> is very respectful of your data in that it never
 overwrites files that exist in the same directory. It’ll just tack on a
 time stamp to the name of the newly-exported file.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
 <span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
-<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-16-02-49-913633].csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240106-22-10-57-307126].csv"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="converting-a-vrl-to-a-csv-with-time-correction">Converting a VRL to a CSV with time correction<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-with-time-correction"></a>
+</h2>
+<p>Adding the <code>time_corrected = TRUE</code> argument to
+<code>vdat_to_csv</code> corrects for clock drift using
+<code>vdat</code>’s internal algorithm:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
+<span>  outdir <span class="op">=</span> <span class="va">td</span>,</span>
+<span>  time_corrected <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="converting-a-vrl-to-a-csv-folder">Converting a VRL to a CSV folder<a class="anchor" aria-label="anchor" href="#converting-a-vrl-to-a-csv-folder"></a>
@@ -150,7 +232,7 @@ available data types in the VDAT file. <code>vdat.exe</code> can split
 these into a folder of files according to data type for you, accessible
 using <code>rvdat</code> via <code>vdat_to_folder</code> or
 <code>vdat_call(c('convert', '--format=csv.fathom.split', 'FILENAME'))</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/vdat_to_folder.html">vdat_to_folder</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">td</span>, <span class="st">"VR2AR_546310_20190613_1.vrl"</span><span class="op">)</span>,</span>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
@@ -162,10 +244,12 @@ using <code>rvdat</code> via <code>vdat_to_folder</code> or
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.dirs</a></span><span class="op">(</span><span class="va">td</span>, full.names <span class="op">=</span> <span class="cn">T</span>, recursive <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     </span></span>
-<span><span class="co">#&gt;  [4] "CFG_TRANSMITTER.csv"  "CLOCK_REF.csv"        "DATA_SOURCE_FILE.csv"</span></span>
-<span><span class="co">#&gt;  [7] "DEPTH.csv"            "DET.csv"              "DIAG.csv"            </span></span>
-<span><span class="co">#&gt; [10] "DIAG_FAST.csv"        "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   </span></span>
+<span><span class="co">#&gt;  [1] "ATTITUDE.csv"         "BATTERY.csv"         </span></span>
+<span><span class="co">#&gt;  [3] "CFG_CHANNEL.csv"      "CFG_TRANSMITTER.csv" </span></span>
+<span><span class="co">#&gt;  [5] "CLOCK_REF.csv"        "DATA_SOURCE_FILE.csv"</span></span>
+<span><span class="co">#&gt;  [7] "DEPTH.csv"            "DET.csv"             </span></span>
+<span><span class="co">#&gt;  [9] "DIAG.csv"             "DIAG_FAST.csv"       </span></span>
+<span><span class="co">#&gt; [11] "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   </span></span>
 <span><span class="co">#&gt; [13] "HEALTH_VR2AR.csv"     "TEMP.csv"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
