@@ -14,6 +14,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
+
+The most recent changes were made on `r Sys.Date()`.
+
 ## Getting started
 
 ```{r setup}
@@ -108,7 +112,7 @@ corrected[46, c(2:3)]
 ```
 
 
-## Converting a VRL to a CSV folder
+## Splitting a VRL into a folder of CSVs
 
 As outlined in `vignette('vdat-data-structure')`, the flat CSV exported via `vdat_to_csv` is a mush-together of all available data types in the VDAT file. `vdat.exe` can split these into a folder of files according to data type for you, accessible using `rvdat` via `vdat_to_folder` or `vdat_call(c('convert', '--format=csv.fathom.split', 'FILENAME'))`.
 

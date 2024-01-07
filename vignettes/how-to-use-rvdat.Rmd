@@ -9,6 +9,10 @@ vignette: >
 
 
 
+This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
+
+The most recent changes were made on 2024-01-07.
+
 ## Getting started
 
 
@@ -36,9 +40,6 @@ td <- file.path(
 dir.create(
   td
 )
-#> Warning in dir.create(td):
-#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpeecJDT\vignette' already
-#> exists
 
 download.file(
   url = file.path(
@@ -63,24 +64,24 @@ To take a quick glimpse of the VDAT file's metadata, we can use `vdat_inspect`. 
 vdat_inspect(
   file.path(td, "VR2AR_546310_20190613_1.vrl")
 )
-#> ==============================================================================
-#>                                      VRL                                      
-#> ==============================================================================
-#> File:      VR2AR_546310_20190613_1.vrl
-#> Original:  VR2AR_546310_20190613_1.vrl
-#> Container: VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)
-#> Created:   2019-06-13T13:30:54
-#> Data UUID: ffee6ee7-450a-db42-b54c-334b672fddf5
-#> Rx Model:  VR2AR-69
-#> Rx Serial: 546310
-#> 
-#> ==============================================================================
-#>                                     Device                                    
-#> ==============================================================================
-#> Decoding Map:      MAP-113
-#> Blanking Interval: 260 ms
-#> 
-#> 
+#> ==============================================================================
+#>                                      VRL                                      
+#> ==============================================================================
+#> File:      VR2AR_546310_20190613_1.vrl
+#> Original:  VR2AR_546310_20190613_1.vrl
+#> Container: VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)
+#> Created:   2019-06-13T13:30:54
+#> Data UUID: ffee6ee7-450a-db42-b54c-334b672fddf5
+#> Rx Model:  VR2AR-69
+#> Rx Serial: 546310
+#> 
+#> ==============================================================================
+#>                                     Device                                    
+#> ==============================================================================
+#> Decoding Map:      MAP-113
+#> Blanking Interval: 260 ms
+#> 
+#> 
 ```
 
 ## Converting a VRL to a CSV
@@ -95,11 +96,7 @@ vdat_to_csv(
 )
 
 list.files(td, pattern = "VR2AR")
-#> [1] "VR2AR_546310_20190613_1.csv"                          
-#> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"
-#> [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"
-#> [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"
+#> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
 ```
 `vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
 
@@ -113,10 +110,7 @@ vdat_to_csv(
 list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv"                          
 #> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240106-22-18-02-461807].csv"
-#> [4] "VR2AR_546310_20190613_1[20240106-22-22-22-309202].csv"
-#> [5] "VR2AR_546310_20190613_1[20240106-22-28-10-049205].csv"
-#> [6] "VR2AR_546310_20190613_1[20240106-22-28-10-211125].csv"
+#> [3] "VR2AR_546310_20190613_1[20240107-12-19-57-923825].csv"
 ```
 ## Converting a VRL to a CSV with time correction
 
@@ -146,7 +140,7 @@ corrected[46, c(2:3)]
 ```
 
 
-## Converting a VRL to a CSV folder
+## Splitting a VRL into a folder of CSVs
 
 As outlined in `vignette('vdat-data-structure')`, the flat CSV exported via `vdat_to_csv` is a mush-together of all available data types in the VDAT file. `vdat.exe` can split these into a folder of files according to data type for you, accessible using `rvdat` via `vdat_to_folder` or `vdat_call(c('convert', '--format=csv.fathom.split', 'FILENAME'))`.
 
