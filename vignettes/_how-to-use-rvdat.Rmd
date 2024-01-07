@@ -52,9 +52,19 @@ download.file(
 )
 ```
 
+## Check the file's metadata
+
+To take a quick glimpse of the VDAT file's metadata, we can use `vdat_inspect`. Note that this only works for VDAT files (`.vrl` and family), not any exported CSVs.
+
+```{r}
+vdat_inspect(
+  file.path(td, "VR2AR_546310_20190613_1.vrl")
+)
+```
+
 ## Converting a VRL to a CSV
 
-Now that we have a VRL to play with, let's convert it to a csv. It's pretty quick with `vdat_to_csv`.
+Now that we have a VRL to play with and know something about it, let's convert it to a csv. It's pretty quick with `vdat_to_csv`.
 
 ```{r, vrl-to-csv}
 vdat_to_csv(
