@@ -1,6 +1,6 @@
 test_that("check_vdat alerts if no vdat.exe", {
   skip_on_ci()
-  skip_on_runiverse()
+  skip_test_on_runiverse()
 
   expect_vector(check_vdat_location())
 
