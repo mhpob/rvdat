@@ -9,6 +9,8 @@
 check_vdat_location <- function() {
   vdat_loc <- Sys.getenv("VDAT_EXE")
 
+  vdat_loc <- Sys.which(vdat_loc)
+
   if (vdat_loc == "") {
     cli::cli_abort(
       c(
