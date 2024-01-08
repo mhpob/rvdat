@@ -4,10 +4,12 @@
 \alias{vdat_call}
 \title{Interface directly with \code{vdat.exe}.}
 \usage{
-vdat_call(what = "--help", ...)
+vdat_call(what = "--help", print = TRUE, ...)
 }
 \arguments{
 \item{what}{arguments passed to \code{vdat.exe}. Defaults to \code{--help}.}
+
+\item{print}{logical. Defaults to TRUE. Print the output to console?}
 
 \item{...}{arguments passed to \code{\link[sys:exec]{sys::exec_internal}}.}
 }

@@ -5,6 +5,7 @@
 #'    one command.
 #'
 #' @param what arguments passed to `vdat.exe`. Defaults to `--help`.
+#' @param print logical. Defaults to TRUE. Print the output to console?
 #' @param ... arguments passed to [`sys::exec_internal`].
 #'
 #' @export
@@ -22,7 +23,9 @@
 #' vdat_call(c("inspect", "FILENAME"))
 #' }
 #'
-vdat_call <- function(what = "--help", ...) {
+vdat_call <- function(what = "--help",
+                      print = TRUE,
+                      ...) {
   vdat_loc <- check_vdat_location()
 
   shell_out <- sys::exec_internal(
@@ -33,14 +36,16 @@ vdat_call <- function(what = "--help", ...) {
   )
 
   if (shell_out$status == 1) {
-    cli::cli_abort(
-      c(
-        "x" = "Call to VDAT failed.",
-        "i" = "Is {what} a valid command?"
-      )
+    error_generic_call(
+      paste(what, collapse = ' ')
     )
   }
 
-  rawToChar(shell_out$stdout) |>
-    cat()
+  class(shell_out) <- 'vdat_resp'
+
+  if(print == TRUE){
+    print(shell_out)
+  }
+
+  invisible(shell_out)
 }

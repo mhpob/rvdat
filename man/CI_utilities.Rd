@@ -11,11 +11,6 @@ skip_on_ci()
 skip_on_runiverse()
 }
 \description{
-Miscellaneous functions for package checking, building, and CI
-}
-\section{Details}{
-
-
 \code{skip_on_ci} and \code{skip_on_runiverse} check the environment for variables
 called "CI" and "MY_UNIVERSE", respectively, and return \code{TRUE} if it does
 not exist. Used to run examples if the package is being built locally and
@@ -26,4 +21,3 @@ built locally, "CI" will be "" and \code{skip_on_ci} will return
 \code{TRUE}. Similarly, if the package is being built on R-Universe, the
 "MY_UNIVERSE" variable will have your universe's name.
 }
-

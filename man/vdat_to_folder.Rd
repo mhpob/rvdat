@@ -4,10 +4,10 @@
 \alias{vdat_to_folder}
 \title{Convert a VRL file to a folder of CSVs by data type}
 \usage{
-vdat_to_folder(file, outdir = getwd(), time_corrected = FALSE)
+vdat_to_folder(vdata_file, outdir = getwd(), time_corrected = FALSE)
 }
 \arguments{
-\item{file}{location of VRL file(s) to convert to CSV.}
+\item{vdata_file}{path of VRL file to convert to CSV.}
 
 \item{outdir}{output directory for the created CSV files. Defaults to the
 current working directory.}

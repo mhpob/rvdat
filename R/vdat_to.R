@@ -1,17 +1,13 @@
 #' Convert VRL file(s) to CSV(s)
 #'
-#' @param file location of VRL file(s) to convert to CSV.
+#' @param vdata_file path of VRL file to convert to CSV.
 #' @param outdir output directory for the created CSV files. Defaults to the
 #'  current working directory.
 #' @param time_corrected logical. Do you want to apply the default time correction?
 #'
 #' @export
-#' @examples
-#' \dontrun{
 #'
-#' }
-#'
-vdat_to_csv <- function(file,
+vdat_to_csv <- function(vdata_file,
                         outdir = getwd(),
                         time_corrected = FALSE) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
@@ -23,13 +19,16 @@ vdat_to_csv <- function(file,
   ## folder of split Fathom CSV files
   # vdat convert --format=csv.fathom.split <input_file>
 
-
-  vdat_loc <- check_vdat_location()
+  # Check that only 1 file has been passed
+  if(length(vdata_file) > 1){
+    error_too_many_files()
+  }
 
   # Build arguments
   vdat_args <- c(
     "convert",
     "--format=csv.fathom",
+    vdata_file,
     paste0("--output=", outdir)
   )
 
@@ -40,21 +39,21 @@ vdat_to_csv <- function(file,
     )
   }
 
-
-  shell_out <- sys::exec_internal(
-    cmd = vdat_loc,
-    args = c(
-      vdat_args,
-      file
-    ),
-    error = FALSE
+  # Call vdat.exe and capture response
+  shell_out <- vdat_call(
+    vdat_args
   )
 
+
   if (shell_out$status == 1) {
-    cli::cli_abort(
+    error_convert(shell_out, vdata_file)
+  } else{
+    cli::cli_bullets(
       c(
-        "x" = "Call to VDAT failed.",
-        "i" = "{?Is/are} the location{?s} of {file} correct?"
+        "v" = "File converted:",
+        " " = "{vdata_file}\n",
+        "i" = "File saved in:\n",
+        " " = "{outdir}"
       )
     )
   }
@@ -63,27 +62,36 @@ vdat_to_csv <- function(file,
 
 #' Convert a VRL file to a folder of CSVs by data type
 #'
-#' @param file location of VRL file(s) to convert to CSV.
+#' @param vdata_file path of VRL file to convert to CSV.
 #' @param outdir output directory for the created CSV files. Defaults to the
 #'    current working directory.
 #' @param time_corrected logical. Do you want to apply the default time correction?
 #'
 #' @export
 #' @examplesIf all(skip_on_ci(), skip_on_runiverse())
-vdat_to_folder <- function(file,
+vdat_to_folder <- function(vdata_file,
                            outdir = getwd(),
                            time_corrected = FALSE) {
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
 
-  vdat_loc <- check_vdat_location()
+  # Check that only 1 file has been passed
+  if(length(vdata_file) > 1){
+    error_too_many_files()
+  }
 
-  # Build arguments
+
+  # Build arguments ----
+  ## Mandatory arguments
   vdat_args <- c(
     "convert",
     "--format=csv.fathom.split",
-    paste0("--output=", outdir)
+    paste0("--output=", outdir),
+    vdata_file
   )
 
+
+  ## Optional arguments
+  ### Time correction
   if (time_corrected == TRUE) {
     vdat_args <- c(
       vdat_args,
@@ -91,20 +99,23 @@ vdat_to_folder <- function(file,
     )
   }
 
-  shell_out <- sys::exec_internal(
-    cmd = vdat_loc,
-    args = c(
-      vdat_args,
-      file
-    ),
-    error = FALSE
+
+  # Execute call to vdat.exe ----
+  shell_out <- vdat_call(
+    what = vdat_args
   )
 
+
+  # Update user ----
   if (shell_out$status == 1) {
-    cli::cli_abort(
+    error_convert(shell_out, vdata_file)
+  }  else{
+    cli::cli_bullets(
       c(
-        "x" = "Call to VDAT failed.",
-        "i" = "{?Is/are} the location{?s} of {file} correct?"
+        "v" = "File converted:",
+        " " = "{vdata_file}\n",
+        "i" = "Directory saved in:\n",
+        " " = "{outdir}"
       )
     )
   }

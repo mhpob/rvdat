@@ -4,10 +4,10 @@
 \alias{vdat_to_csv}
 \title{Convert VRL file(s) to CSV(s)}
 \usage{
-vdat_to_csv(file, outdir = getwd(), time_corrected = FALSE)
+vdat_to_csv(vdata_file, outdir = getwd(), time_corrected = FALSE)
 }
 \arguments{
-\item{file}{location of VRL file(s) to convert to CSV.}
+\item{vdata_file}{path of VRL file to convert to CSV.}
 
 \item{outdir}{output directory for the created CSV files. Defaults to the
 current working directory.}
@@ -16,10 +16,4 @@ current working directory.}
 }
 \description{
 Convert VRL file(s) to CSV(s)
-}
-\examples{
-\dontrun{
-
-}
-
 }

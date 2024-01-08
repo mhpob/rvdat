@@ -4,12 +4,12 @@
 \alias{vdat_inspect}
 \title{Return general VDAT file metadata}
 \usage{
-vdat_inspect(file, ...)
+vdat_inspect(vdata_file, ...)
 }
 \arguments{
-\item{file}{file path of VDAT file to inspect.}
+\item{vdata_file}{file path of VDAT file to inspect.}
 
-\item{...}{arguments passed to \code{\link[sys:exec]{sys::exec_internal}}.}
+\item{...}{arguments passed to \code{\link{vdat_call}}.}
 }
 \description{
 Return general VDAT file metadata

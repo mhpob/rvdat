@@ -5,12 +5,9 @@
 #'
 #' vdat_version()
 vdat_version <- function() {
-  vdat_loc <- check_vdat_location()
 
-  shell_out <- sys::exec_internal(
-    cmd = vdat_loc,
-    args = "--version",
-    error = FALSE
+  shell_out <- vdat_call(
+    what = '--version'
   )
 
   if (shell_out$status == 1) {
@@ -22,6 +19,5 @@ vdat_version <- function() {
     )
   }
 
-  rawToChar(shell_out$stdout) |>
-    cat()
+  invisible(shell_out)
 }
