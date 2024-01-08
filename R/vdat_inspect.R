@@ -20,8 +20,8 @@ vdat_inspect <- function(vdata_file, ...) {
   # Coerce to data frame
   out <- shell_out$stdout |>
     rawToChar() |>
-    strsplit("\\\r\\\n") |>
-    _[[1]]
+    strsplit("\\\r\\\n")
+  out <- out[[1]] # break pipe to pass R CMD on old Ubuntu
 
   out <- out[sapply(out, function(.) grepl(":", .))] |>
     strsplit(":\\s+") |>
