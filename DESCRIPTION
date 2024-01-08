@@ -19,5 +19,7 @@ SystemRequirements: VDAT command line tools
     (https://gitlab.oceantrack.org/otndc/vdat-working-group).
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
