@@ -20,7 +20,7 @@ vdat_to_csv <- function(vdata_file,
   # vdat convert --format=csv.fathom.split <input_file>
 
   # Check that only 1 file has been passed
-  if(length(vdata_file) > 1){
+  if (length(vdata_file) > 1) {
     error_too_many_files()
   }
 
@@ -47,7 +47,7 @@ vdat_to_csv <- function(vdata_file,
 
   if (shell_out$status == 1) {
     error_convert(shell_out, vdata_file)
-  } else{
+  } else {
     cli::cli_bullets(
       c(
         "v" = "File converted:",
@@ -75,7 +75,7 @@ vdat_to_folder <- function(vdata_file,
   # fls <- list.files('c:/users/darpa2/analysis/chesapeake-backbone/embargo/raw/20230912', pattern = 'VR2AR_\\d.*vrl', full.names = T)
 
   # Check that only 1 file has been passed
-  if(length(vdata_file) > 1){
+  if (length(vdata_file) > 1) {
     error_too_many_files()
   }
 
@@ -109,7 +109,7 @@ vdat_to_folder <- function(vdata_file,
   # Update user ----
   if (shell_out$status == 1) {
     error_convert(shell_out, vdata_file)
-  }  else{
+  } else {
     cli::cli_bullets(
       c(
         "v" = "File converted:",

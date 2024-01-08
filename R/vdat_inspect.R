@@ -5,7 +5,6 @@
 #'
 #' @export
 vdat_inspect <- function(vdata_file, ...) {
-
   shell_out <- vdat_call(
     what = c(
       "inspect",
@@ -21,15 +20,15 @@ vdat_inspect <- function(vdata_file, ...) {
   # Coerce to data frame
   out <- shell_out$stdout |>
     rawToChar() |>
-    strsplit('\\\r\\\n') |>
+    strsplit("\\\r\\\n") |>
     _[[1]]
 
-  out <- out[sapply(out, function(.) grepl(':', .))] |>
-    strsplit(':\\s+') |>
+  out <- out[sapply(out, function(.) grepl(":", .))] |>
+    strsplit(":\\s+") |>
     do.call(rbind, args = _) |>
     data.frame()
 
-  names(out) <- c('variable', 'value')
+  names(out) <- c("variable", "value")
 
 
   invisible(out)

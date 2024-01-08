@@ -37,13 +37,13 @@ vdat_call <- function(what = "--help",
 
   if (shell_out$status == 1) {
     error_generic_call(
-      paste(what, collapse = ' ')
+      paste(what, collapse = " ")
     )
   }
 
-  class(shell_out) <- 'vdat_resp'
+  class(shell_out) <- "vdat_resp"
 
-  if(print == TRUE){
+  if (print == TRUE) {
     print(shell_out)
   }
 

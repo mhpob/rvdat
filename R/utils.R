@@ -29,7 +29,7 @@ skip_on_runiverse <- function() {
 #' @keywords internal
 #' @name error_functions
 
-error_generic_call <- function(what){
+error_generic_call <- function(what) {
   cli::cli_abort(
     c(
       "x" = "Call to VDAT failed.",
@@ -38,18 +38,18 @@ error_generic_call <- function(what){
   )
 }
 
-error_too_many_files <- function(){
+error_too_many_files <- function() {
   cli::cli_abort(
     c(
-      'x' = 'Only one file is allowed at a time.',
-      'i' = 'Consider using lapply(vdata_files, vdat_to_csv).'
+      "x" = "Only one file is allowed at a time.",
+      "i" = "Consider using lapply(vdata_files, vdat_to_csv)."
     )
   )
 }
 
 #' @rdname error_functions
 
-error_convert <- function(shell_out, vdata_file){
+error_convert <- function(shell_out, vdata_file) {
   cli::cli_abort(
     c(
       "x" = "Call to VDAT failed:",
@@ -66,7 +66,7 @@ error_convert <- function(shell_out, vdata_file){
 #'
 #' @keywords internal
 
-print.vdat_resp <- function(x, ...){
+print.vdat_resp <- function(x, ...) {
   rawToChar(x$stdout) |>
     cat()
 
