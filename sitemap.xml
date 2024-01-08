@@ -28,7 +28,13 @@
     <loc>https://mhpob.github.io/rvdat/reference/check_vdat_location.html</loc>
   </url>
   <url>
+    <loc>https://mhpob.github.io/rvdat/reference/error_functions.html</loc>
+  </url>
+  <url>
     <loc>https://mhpob.github.io/rvdat/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mhpob.github.io/rvdat/reference/print.vdat_resp.html</loc>
   </url>
   <url>
     <loc>https://mhpob.github.io/rvdat/reference/vdat_call.html</loc>
