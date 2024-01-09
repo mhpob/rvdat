@@ -4,20 +4,16 @@
 \alias{vdat_to_folder}
 \title{Convert a VRL file to a folder of CSVs by data type}
 \usage{
-vdat_to_folder(vdata_file, outdir = getwd(), time_corrected = FALSE)
+vdat_to_folder(...)
 }
 \arguments{
-\item{vdata_file}{path of VRL file to convert to CSV.}
-
-\item{outdir}{output directory for the created CSV files. Defaults to the
-current working directory.}
-
-\item{time_corrected}{logical. Do you want to apply the default time correction?}
+\item{...}{arguments passed to \code{vdat_to_csv}.}
 }
 \description{
-Convert a VRL file to a folder of CSVs by data type
+A wrapper around \code{vdat_to_csv} that just changes \code{folder = FALSE} to
+\code{folder = TRUE}.
 }
 \examples{
-\dontshow{if (all(skip_on_ci(), skip_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (all(skip_example_on_ci(), skip_example_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontshow{\}) # examplesIf}
 }

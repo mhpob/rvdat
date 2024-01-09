@@ -4,7 +4,13 @@
 \alias{vdat_to_csv}
 \title{Convert VRL file(s) to CSV(s)}
 \usage{
-vdat_to_csv(vdata_file, outdir = getwd(), time_corrected = FALSE)
+vdat_to_csv(
+  vdata_file,
+  outdir = getwd(),
+  time_corrected = FALSE,
+  quiet = FALSE,
+  folder = FALSE
+)
 }
 \arguments{
 \item{vdata_file}{path of VRL file to convert to CSV.}
@@ -13,6 +19,10 @@ vdat_to_csv(vdata_file, outdir = getwd(), time_corrected = FALSE)
 current working directory.}
 
 \item{time_corrected}{logical. Do you want to apply the default time correction?}
+
+\item{quiet}{logical, defaults to FALSE. Suppress messages?}
+
+\item{folder}{logical, defaults to FALSE. Convert VDAT to a folder of CSVs?}
 }
 \description{
 Convert VRL file(s) to CSV(s)
