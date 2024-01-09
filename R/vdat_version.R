@@ -1,12 +1,15 @@
 #' Report the version of VDAT identified in [`vdat_here`].
 #'
+#' @param ... arguments passed to `vdat_call`.
+#'
 #' @export
 #' @examplesIf all(skip_example_on_ci(), skip_example_on_runiverse())
 #'
 #' vdat_version()
-vdat_version <- function() {
+vdat_version <- function(...) {
   shell_out <- vdat_call(
-    what = "--version"
+    what = "--version",
+    ...
   )
 
   if (shell_out$status == 1) {

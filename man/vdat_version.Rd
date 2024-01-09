@@ -4,7 +4,10 @@
 \alias{vdat_version}
 \title{Report the version of VDAT identified in \code{\link{vdat_here}}.}
 \usage{
-vdat_version()
+vdat_version(...)
+}
+\arguments{
+\item{...}{arguments passed to \code{vdat_call}.}
 }
 \description{
 Report the version of VDAT identified in \code{\link{vdat_here}}.
