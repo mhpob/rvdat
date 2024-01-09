@@ -39,9 +39,9 @@ vdat_inspect <- function(vdata_file, ...) {
       findInterval(seq_along(metadata), vec = section_headers)[
         # But not the headers, themselves
         -section_headers
-        ]
       ]
-    ] |>
+    ]
+  ] |>
     # Remove the spaces
     gsub('\\s', '', x = _)
 
@@ -51,7 +51,7 @@ vdat_inspect <- function(vdata_file, ...) {
   metadata <- metadata[grepl(":|^\\s{11}[[:alnum:]]", metadata)]
 
   ### Split according to colons followed by multiple spaces.
-  k <- metadata |>
+  metadata <- metadata |>
     strsplit(":\\s+") |>
 
     ### Variables with multiple entries have those entries indented and split
