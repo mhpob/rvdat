@@ -1,5 +1,8 @@
 test_that("vdat_inspect outputs to console", {
 
+  skip_on_ci()
+  skip_test_on_runiverse()
+
   # HR vdat
   expect_output(
     vdat_inspect(

@@ -13,6 +13,10 @@ test_that("fails with no exe", {
 })
 
 test_that('succeed with exe', {
+
+  skip_on_ci()
+  skip_test_on_runiverse()
+
   readRenviron('~/.Renviron')
 
   suppressMessages(
@@ -28,4 +32,3 @@ test_that('succeed with exe', {
 
 
 })
-#success with exe
