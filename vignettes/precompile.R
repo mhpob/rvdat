@@ -19,3 +19,4 @@
 library(knitr)
 knit("vignettes/_how-to-use-rvdat.Rmd", "vignettes/how-to-use-rvdat.Rmd")
 knit("vignettes/_vdat-data-structure.Rmd", "vignettes/vdat-data-structure.Rmd")
+knit("vignettes/_vdat-data-columns.Rmd", "vignettes/vdat-data-columns.Rmd")
