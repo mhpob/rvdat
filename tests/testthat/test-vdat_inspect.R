@@ -7,7 +7,7 @@ test_that("vdat_inspect outputs to console", {
   expect_output(
     vdat_inspect(
       grep(
-        'HR.*\\.vdat$',
+        "HR.*\\.vdat$",
         testfiles,
         value = TRUE
       )
@@ -18,7 +18,7 @@ test_that("vdat_inspect outputs to console", {
   expect_output(
     vdat_inspect(
       grep(
-        'VR2AR.*\\.vrl',
+        "VR2AR.*\\.vrl",
         testfiles,
         value = TRUE
       )
@@ -29,7 +29,7 @@ test_that("vdat_inspect outputs to console", {
   expect_output(
     vdat_inspect(
       grep(
-        'VR2Tx.*\\.vrl',
+        "VR2Tx.*\\.vrl",
         testfiles,
         value = TRUE
       )
@@ -40,7 +40,7 @@ test_that("vdat_inspect outputs to console", {
   expect_output(
     vdat_inspect(
       grep(
-        'VR2W.*\\.vrl',
+        "VR2W.*\\.vrl",
         testfiles,
         value = TRUE
       )
@@ -51,22 +51,20 @@ test_that("vdat_inspect outputs to console", {
   expect_output(
     vdat_inspect(
       grep(
-        'VR2W180.*\\.vrl',
+        "VR2W180.*\\.vrl",
         testfiles,
         value = TRUE
       )
     )
   )
-
 })
 
-test_that('vdat_inspect invisibly returns a data frame', {
-
+test_that("vdat_inspect invisibly returns a data frame", {
   # HR vdat
   hr <- expect_invisible(
     vdat_inspect(
       grep(
-        'HR.*\\.vdat$',
+        "HR.*\\.vdat$",
         testfiles,
         value = TRUE
       ),
@@ -74,13 +72,13 @@ test_that('vdat_inspect invisibly returns a data frame', {
     )
   )
 
-  expect_s3_class(hr, 'data.frame')
+  expect_s3_class(hr, "data.frame")
 
   # VR2AR vrl
   vr2ar <- expect_invisible(
     vdat_inspect(
       grep(
-        'VR2AR.*\\.vrl',
+        "VR2AR.*\\.vrl",
         testfiles,
         value = TRUE
       ),
@@ -88,13 +86,13 @@ test_that('vdat_inspect invisibly returns a data frame', {
     )
   )
 
-  expect_s3_class(vr2ar, 'data.frame')
+  expect_s3_class(vr2ar, "data.frame")
 
   # VR2Tx vrl
   vr2tx <- expect_invisible(
     vdat_inspect(
       grep(
-        'VR2Tx.*\\.vrl',
+        "VR2Tx.*\\.vrl",
         testfiles,
         value = TRUE
       ),
@@ -102,13 +100,13 @@ test_that('vdat_inspect invisibly returns a data frame', {
     )
   )
 
-  expect_s3_class(vr2tx, 'data.frame')
+  expect_s3_class(vr2tx, "data.frame")
 
   # VR2W 69k vrl
   vr2w69 <- expect_invisible(
     vdat_inspect(
       grep(
-        'VR2W.*\\.vrl',
+        "VR2W.*\\.vrl",
         testfiles,
         value = TRUE
       ),
@@ -116,13 +114,13 @@ test_that('vdat_inspect invisibly returns a data frame', {
     )
   )
 
-  expect_s3_class(vr2w69, 'data.frame')
+  expect_s3_class(vr2w69, "data.frame")
 
   # VR2W 180k vrl
   vr2w180 <- expect_invisible(
     vdat_inspect(
       grep(
-        'VR2W180.*\\.vrl',
+        "VR2W180.*\\.vrl",
         testfiles,
         value = TRUE
       ),
@@ -130,5 +128,5 @@ test_that('vdat_inspect invisibly returns a data frame', {
     )
   )
 
-  expect_s3_class(vr2w180, 'data.frame')
+  expect_s3_class(vr2w180, "data.frame")
 })
