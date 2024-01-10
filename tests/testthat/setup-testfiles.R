@@ -13,8 +13,8 @@ dir.create(
 ##  and make their download URLs
 testfiles <- "https://github.com/ocean-tracking-network/glatos/tree/dev/inst/extdata/detection_files_raw" |>
   readLines(warn = FALSE) |>
-  strsplit("path") |>
-  _[[1]] |>
+  strsplit("path")
+testfiles <- testfiles[[1]] |>
   grep("detection_files_raw.*\\.v", x = _, value = T) |>
   strsplit('[:,"]') |>
   lapply(function(.) .[grepl("inst.*\\.v", .)]) |>
