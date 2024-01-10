@@ -1,5 +1,4 @@
 test_that("vdat_version works", {
-
   skip_on_ci()
   skip_test_on_runiverse()
 
