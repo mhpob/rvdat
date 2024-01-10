@@ -87,9 +87,9 @@ remotes::install_github("mhpob/rvdat")
 - [ ] Look for `vdat.exe`
 - [x] Check VDAT is where you say it is
 - Convert VRL to
-  - [x] CSV
-  - [x] folder of CSVs by factor
-  - [ ] JSON
+- [x] CSV
+- [x] folder of CSVs by factor
+- [ ] JSON
 - [ ] Convert multiple VRLs
 - [x] Output location
 - [x] Time correction
@@ -99,8 +99,8 @@ remotes::install_github("mhpob/rvdat")
 - [ ] Logging
 - [x] Inspect content of file
 - [ ] Create template for
-  - [ ] CSV
-  - [ ] JSON
+- [ ] CSV
+- [ ] JSON
 
 ## Using the package
 
@@ -127,19 +127,75 @@ vdat_version()
 Convert a VRL to CSV:
 
 ``` r
-vdat_to_csv("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
+## vdat_to_csv("SOME-VDAT-FILE")
+#> ✔ File converted:
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files/HR2-180 461396
+#>   2021-04-20 173145.vdat
+#> ℹ File saved in:
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
-vdat_to_folder("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
+## vdat_to_folder("SOME-VDAT-FILE")
+#> ✔ File converted:
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files/HR2-180 461396
+#>   2021-04-20 173145.vdat
+#> ℹ Directory saved in:
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files
+## list.files("SOME-VDAT-FILE.csv-fathom-split")
+#>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
+#>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_SET.csv"        "DATA_SOURCE_FILE.csv"
+#>  [7] "DET.csv"              "DET_FILTER.csv"       "DIAG_HR2.csv"        
+#> [10] "EVENT.csv"            "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   
+#> [13] "TEMP.csv"
 ```
 
 Check out the file metadata:
 
 ``` r
-vdat_inspect("VR2AR_XXXXXX_YYYYMMDD_1.vrl")
+## vdat_inspect("SOME-VDAT-FILE")
+#> ==============================================================================
+#>                                      VDAT                                     
+#> ==============================================================================
+#> File:      HR2-180 461396 2021-04-20 173145.vdat
+#> Original:  HR2-180 461396 2021-04-20 173145.vdat
+#> Container: Vemco Data File (com.vemco.file.vdat/1.0.0)
+#> Content:   HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)
+#> Created:   2021-04-20T17:31:45
+#> File UUID: f1a18604-46ea-4985-b57c-24809d37ad46
+#> Data UUID: 1a595886-99ea-4ee9-a996-2e4d92dc01c3
+#> Size:      39370
+#> Blocks:    17
+#> Block Types: 
+#>            VRDP Header (com.vemco.file.vrdp.header/1.1.0)
+#>            RxLog General Summary (com.vemco.protobuf.rxlog.summary.general/1.0.0)
+#>            HR2 Offload Header (com.vemco.device.vrhr2.offload.header/1.0.0)
+#>            HR2 Offload Footer (com.vemco.device.vrhr2.offload.footer/1.0.0)
+#>            HR2 Detection Log Block (com.vemco.device.vrhr2.log.detect/1.0.0)
+#>            HR2 Ping Log Block (com.vemco.device.vrhr2.log.ping/1.0.0)
+#> Codecs: 
+#>            zlib compression (com.vemco.file.vdat.codec.zlib/1.2.11)
+#> 
+#> ==============================================================================
+#>                                      VRDP                                     
+#> ==============================================================================
+#> Creator:   fathom-2.5.0-19700101--release
+#> Source:    HR2-180 (0814)
+#> 
+#> ==============================================================================
+#>                                    Offload                                    
+#> ==============================================================================
+#> Firmware Version: 2.0.1
+#> Receiver Time @ Init: 2021-04-20T17:20:05Z
+#> Client Time @ Init: 2021-04-20T17:20:06Z
+#> Client Time Zone @ Init: -04:00
+#> Receiver Time @ Offload: 2021-04-20T21:31:45Z
+#> Client Time @ Offload: 2021-04-20T21:31:45Z
+#> Client Time Zone @ Offload: -04:00
+#> 
+#> 
 ```
 
 Call VDAT using standard flags:
@@ -228,12 +284,12 @@ If contributing, please use the following general style:
 ``` r
 a_new_wrapper <- function(some_command) {
   vdat_loc <- check_vdat_location()
-
+  
   sys::exec_internal(
     vdat_loc,
     args = some_command
   )
-
+  
   cli::cli_alert_success("Woohoo!!")
 }
 ```
