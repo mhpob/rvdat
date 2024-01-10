@@ -108,9 +108,9 @@ vdat_version()
 
 Convert a VRL to CSV:
 ```{r, label=downdload-files, echo=FALSE}
-td <- file.path(tempdir(), 'readme_files')
+td <- file.path(tempdir(), "readme_files")
 dir.create(td)
-  
+
 download.file(
   URLencode(
     file.path(
@@ -120,7 +120,7 @@ download.file(
   ),
   destfile = file.path(
     td,
-    'HR2-180 461396 2021-04-20 173145.vdat'
+    "HR2-180 461396 2021-04-20 173145.vdat"
   ),
   mode = "wb", quiet = TRUE
 )
@@ -129,20 +129,22 @@ download.file(
 ```{r, eval=-1, echo=1}
 vdat_to_csv("SOME-VDAT-FILE")
 
-vdat_to_csv(list.files(td, pattern = 'HR2.*\\.vdat$', full.names = T),
-            outdir = td)
+vdat_to_csv(list.files(td, pattern = "HR2.*\\.vdat$", full.names = T),
+  outdir = td
+)
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 ```{r, eval=c(-1, -5), echo=c(1, 5)}
 vdat_to_folder("SOME-VDAT-FILE")
 
-vdat_to_folder(list.files(td, pattern = 'HR2.*\\.vdat$', full.names = T),
-               outdir = td)
+vdat_to_folder(list.files(td, pattern = "HR2.*\\.vdat$", full.names = T),
+  outdir = td
+)
 
 list.files("SOME-VDAT-FILE.csv-fathom-split")
 
-list.files(file.path(td,'HR2-180 461396 2021-04-20 173145.csv-fathom-split'))
+list.files(file.path(td, "HR2-180 461396 2021-04-20 173145.csv-fathom-split"))
 ```
 
 Check out the file metadata:
@@ -150,7 +152,7 @@ Check out the file metadata:
 ```{r, eval=-1, echo=1}
 vdat_inspect("SOME-VDAT-FILE")
 
-vdat_inspect(list.files(td, pattern = 'HR2.*\\.vdat$', full.names = T))
+vdat_inspect(list.files(td, pattern = "HR2.*\\.vdat$", full.names = T))
 ```
 
 
@@ -171,12 +173,12 @@ If contributing, please use the following general style:
 ```{r, eval=FALSE}
 a_new_wrapper <- function(some_command) {
   vdat_loc <- check_vdat_location()
-  
+
   sys::exec_internal(
     vdat_loc,
     args = some_command
   )
-  
+
   cli::cli_alert_success("Woohoo!!")
 }
 ```
