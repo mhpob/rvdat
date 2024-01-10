@@ -39,43 +39,57 @@ vdat_to_csv <- function(vdata_file,
     )
   }
 
+  # Log items to build output, if desired
+  if(quiet == FALSE){
+    type <- ifelse(folder, 'Files', 'File')
+
+    filename <- gsub(
+      'vdat|vrl',
+      'csv',
+      basename(vdata_file)
+    )
+
+    out_loc <- file.path(
+      outdir,
+      paste0(
+        filename,
+        ifelse(folder, '-fathom-split', '')
+      )
+    )
+
+    converted_file_exists <- any(grepl(basename(out_loc), list.files(outdir)))
+    if(converted_file_exists){
+      concat_time <- function(time, file){
+        time_shell_out <- format(time,
+                                 '%Y%m%d-%H-%M-%S')
+        time_shell_out <- paste0('[', time_shell_out, '-xxxxxx]')
+
+        gsub('\\.csv', paste0(time_shell_out, '.csv'), file)
+      }
+
+      time_shell_out <- Sys.time()
+    }
+  }
+
+
   # Call vdat.exe and capture response
-  time_shell_out <- Sys.time()
   shell_out <- vdat_call(
     vdat_args
   )
 
+
+  # Handle error
   if (shell_out$status == 1) {
     error_convert(shell_out, vdata_file)
   }
 
+
+  # Print to console
   if(quiet == FALSE){
-    if(folder == TRUE){
-      type <- 'Files'
-      time_shell_out <- format(Sys.time(),
-                               '%Y%m%d-%H-%M-%S')
-      time_shell_out <- paste0('[', time_shell_out, '-xxxxxx]')
-
-
-      out_loc <- file.path(
-        outdir,
-        paste(
-          gsub(
-            '\\.vdat|\\.vrl',
-            paste0(time_shell_out, '.csv'),
-            basename(vdata_file)
-          ),
-          'fathom-split',
-          sep = '-'
-        )
-
-      )
-    }else{
-      type <- 'File'
-      out_loc <- file.path(
-        outdir,
-        gsub('vdat|vrl', 'csv', basename(vdata_file))
-      )
+    if(converted_file_exists){
+      # This is down here to keep the Sys.time call as close as possible to the
+      #   shell exec
+      out_loc <- concat_time(time_shell_out, out_loc)
     }
 
     cli::cli_bullets(
