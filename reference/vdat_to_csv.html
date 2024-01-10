@@ -55,7 +55,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vdat_to_csv</span><span class="op">(</span><span class="va">vdata_file</span>, outdir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>, time_corrected <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vdat_to_csv</span><span class="op">(</span></span>
+<span>  <span class="va">vdata_file</span>,</span>
+<span>  outdir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  time_corrected <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  folder <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -71,6 +77,14 @@ current working directory.</p></dd>
 
 <dt>time_corrected</dt>
 <dd><p>logical. Do you want to apply the default time correction?</p></dd>
+
+
+<dt>quiet</dt>
+<dd><p>logical, defaults to FALSE. Suppress messages?</p></dd>
+
+
+<dt>folder</dt>
+<dd><p>logical, defaults to FALSE. Convert VDAT to a folder of CSVs?</p></dd>
 
 </dl></div>
 
