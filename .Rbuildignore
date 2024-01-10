@@ -11,3 +11,4 @@
 ^vignettes/precompile\.R$
 ^vignettes/_how-to-use-rvdat\.Rmd$
 ^vignettes/_vdat-data-structure\.Rmd$
+^codecov\.yml$
