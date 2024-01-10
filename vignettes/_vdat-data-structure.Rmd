@@ -9,8 +9,8 @@ vignette: >
   
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>"
+  collapse = TRUE,
+  comment = "#>"
 )
 ```
 
@@ -51,7 +51,7 @@ download.file(
 )
 
 vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
-            outdir = td
+  outdir = td
 )
 ```
 ```{r}

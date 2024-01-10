@@ -19,7 +19,7 @@ testfiles <- testfiles[[1]] |>
   strsplit('[:,"]') |>
   lapply(function(.) .[grepl("inst.*\\.v", .)]) |>
   unlist()
-testfiles <- testfiles[!duplicated(gsub('[_ ].*\\.','',basename(testfiles)))]
+testfiles <- testfiles[!duplicated(gsub("[_ ].*\\.", "", basename(testfiles)))]
 testfiles <- testfiles |>
   file.path("https://github.com/ocean-tracking-network/glatos/raw/dev/",
     ... = _
