@@ -14,7 +14,6 @@ vdat_to_csv <- function(vdata_file,
                         time_corrected = FALSE,
                         quiet = FALSE,
                         folder = FALSE) {
-
   # Check that only 1 file has been passed
   if (length(vdata_file) > 1) {
     error_too_many_files()
@@ -22,8 +21,9 @@ vdat_to_csv <- function(vdata_file,
 
   # Build arguments
   format <- ifelse(folder == FALSE,
-                   '--format=csv.fathom',
-                   '--format=csv.fathom.split')
+    "--format=csv.fathom",
+    "--format=csv.fathom.split"
+  )
 
   vdat_args <- c(
     "convert",
@@ -40,12 +40,12 @@ vdat_to_csv <- function(vdata_file,
   }
 
   # Log items to build output, if desired
-  if(quiet == FALSE){
-    type <- ifelse(folder, 'Files', 'File')
+  if (quiet == FALSE) {
+    type <- ifelse(folder, "Files", "File")
 
     filename <- gsub(
-      'vdat|vrl',
-      'csv',
+      "vdat|vrl",
+      "csv",
       basename(vdata_file)
     )
 
@@ -53,18 +53,20 @@ vdat_to_csv <- function(vdata_file,
       outdir,
       paste0(
         filename,
-        ifelse(folder, '-fathom-split', '')
+        ifelse(folder, "-fathom-split", "")
       )
     )
 
     converted_file_exists <- any(grepl(basename(out_loc), list.files(outdir)))
-    if(converted_file_exists){
-      concat_time <- function(time, file){
-        time_shell_out <- format(time,
-                                 '%Y%m%d-%H-%M-%S')
-        time_shell_out <- paste0('[', time_shell_out, '-xxxxxx]')
+    if (converted_file_exists) {
+      concat_time <- function(time, file) {
+        time_shell_out <- format(
+          time,
+          "%Y%m%d-%H-%M-%S"
+        )
+        time_shell_out <- paste0("[", time_shell_out, "-xxxxxx]")
 
-        gsub('\\.csv', paste0(time_shell_out, '.csv'), file)
+        gsub("\\.csv", paste0(time_shell_out, ".csv"), file)
       }
 
       time_shell_out <- Sys.time()
@@ -85,8 +87,8 @@ vdat_to_csv <- function(vdata_file,
 
 
   # Print to console
-  if(quiet == FALSE){
-    if(converted_file_exists){
+  if (quiet == FALSE) {
+    if (converted_file_exists) {
       # This is down here to keep the Sys.time call as close as possible to the
       #   shell exec
       out_loc <- concat_time(time_shell_out, out_loc)

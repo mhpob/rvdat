@@ -11,29 +11,32 @@ dir.create(
 # Use test files from glatos' dev branch
 ## Parse /dev/inst/extdata/detection_files_raw directory, pick vdat files,
 ##  and make their download URLs
-testfiles <- 'https://github.com/ocean-tracking-network/glatos/tree/dev/inst/extdata/detection_files_raw' |>
+testfiles <- "https://github.com/ocean-tracking-network/glatos/tree/dev/inst/extdata/detection_files_raw" |>
   readLines(warn = FALSE) |>
-  strsplit('path') |>
+  strsplit("path") |>
   _[[1]] |>
-  grep('detection_files_raw.*\\.v', x = _, value=T) |>
+  grep("detection_files_raw.*\\.v", x = _, value = T) |>
   strsplit('[:,"]') |>
-  lapply(function(.) .[grepl('inst.*\\.v', .)]) |>
+  lapply(function(.) .[grepl("inst.*\\.v", .)]) |>
   unlist() |>
-  file.path('https://github.com/ocean-tracking-network/glatos/raw/dev/',
-            ... = _) |>
+  file.path("https://github.com/ocean-tracking-network/glatos/raw/dev/",
+    ... = _
+  ) |>
   URLencode()
 
 ## Download files into tempdir
-for(i in seq_along(testfiles)){
+for (i in seq_along(testfiles)) {
   download.file(testfiles[i],
-                destfile = file.path(td,
-                                     URLdecode(
-                                       basename(
-                                         testfiles[i]
-                                       )
-                                     )
-                ),
-                mode = 'wb', quiet = TRUE)
+    destfile = file.path(
+      td,
+      URLdecode(
+        basename(
+          testfiles[i]
+        )
+      )
+    ),
+    mode = "wb", quiet = TRUE
+  )
 }
 
 

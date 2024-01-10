@@ -28,7 +28,7 @@ vdat_inspect <- function(vdata_file, ...) {
   ## Parse section headers
   ### Find section header indices (rows with >= 12 spaces)
   section_headers <- metadata |>
-    grepl('\\s{12,}', x = _) |>
+    grepl("\\s{12,}", x = _) |>
     which()
 
   ### Repeat those indices however many times to match the number of rows
@@ -43,7 +43,7 @@ vdat_inspect <- function(vdata_file, ...) {
     ]
   ] |>
     # Remove the spaces
-    gsub('\\s', '', x = _)
+    gsub("\\s", "", x = _)
 
   ## Parse the metadata
   ### Drop section headers by selecting rows that have a ":" or start with
@@ -53,16 +53,14 @@ vdat_inspect <- function(vdata_file, ...) {
   ### Split according to colons followed by multiple spaces.
   metadata <- metadata |>
     strsplit(":\\s+") |>
-
     ### Variables with multiple entries have those entries indented and split
     ###   into different lines. Split these into two columns according to a
     ###   space that precedes an alphanumeric character
-    lapply(function(.){
+    lapply(function(.) {
       unlist(
-        strsplit(., '\\s{2,}(?=[[:alpha:]])', perl = T)
+        strsplit(., "\\s{2,}(?=[[:alpha:]])", perl = T)
       )
     }) |>
-
     ### Now that every section has two entries, bind them together
     do.call(rbind, args = _) |>
     data.frame()
@@ -82,13 +80,13 @@ vdat_inspect <- function(vdata_file, ...) {
     x[which(isnotblank)][cumsum(isnotblank)]
   }
 
-  metadata$X1 <- locf(metadata$X1, blank = '')
+  metadata$X1 <- locf(metadata$X1, blank = "")
 
   ### Add back section headers
   metadata$section <- section_headers
 
   ### Remove redundant variables
-  metadata <- metadata[metadata$X1 != metadata$X2,]
+  metadata <- metadata[metadata$X1 != metadata$X2, ]
 
   ### Rename
   names(metadata) <- c("variable", "value", "section")
