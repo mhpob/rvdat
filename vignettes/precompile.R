@@ -11,10 +11,12 @@
 # https://github.com/r-lib/pkgdown/issues/1593
 
 # Workflow:
-#   1. Edit the _(.*).Rmd file
-#   2. Click RStudio "knit" button as needed
-#   3. When ready to add changes, run the resepective "knit()" below
-#   4. Commit/push to GitHub
+#   1. Add the _(.*).Rmd file to .Rbuildignore
+#   2. Edit the _(.*).Rmd file
+#   3. Click RStudio "knit" button as needed
+#   4. When ready to add changes, run the respective "knit()" below
+#   5. Commit/push to GitHub
+#   6. Repeat 2-5 as needed
 
 library(knitr)
 knit("vignettes/_how-to-use-rvdat.Rmd", "vignettes/how-to-use-rvdat.Rmd")
