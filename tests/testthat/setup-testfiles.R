@@ -18,7 +18,9 @@ testfiles <- testfiles[[1]] |>
   grep("detection_files_raw.*\\.v", x = _, value = T) |>
   strsplit('[:,"]') |>
   lapply(function(.) .[grepl("inst.*\\.v", .)]) |>
-  unlist() |>
+  unlist()
+testfiles <- testfiles[!duplicated(gsub('[_ ].*\\.','',basename(testfiles)))]
+testfiles <- testfiles |>
   file.path("https://github.com/ocean-tracking-network/glatos/raw/dev/",
     ... = _
   ) |>
