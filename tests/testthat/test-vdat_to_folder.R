@@ -1,5 +1,4 @@
 test_that("vdat_to_folder creates correct messages", {
-
   skip_on_ci()
   skip_test_on_runiverse()
 
@@ -13,13 +12,13 @@ test_that("vdat_to_folder creates correct messages", {
   ## First file's message
   expect_message(
     vdat_to_folder(hr),
-    '\\d\\.csv'
+    "\\d\\.csv"
   )
 
   ## Second file's message
   expect_message(
     vdat_to_folder(hr),
-    '\\]\\.csv'
+    "\\]\\.csv"
   )
 
   # VR2AR vrl
@@ -32,12 +31,12 @@ test_that("vdat_to_folder creates correct messages", {
   ## First
   expect_message(
     vdat_to_folder(vr2ar),
-    '\\d\\.csv'
+    "\\d\\.csv"
   )
   ## Second
   expect_message(
     vdat_to_folder(vr2ar),
-    '\\]\\.csv'
+    "\\]\\.csv"
   )
 
   # VR2Tx vrl
@@ -50,12 +49,12 @@ test_that("vdat_to_folder creates correct messages", {
   ## First
   expect_message(
     vdat_to_folder(vr2tx),
-    '\\d\\.csv'
+    "\\d\\.csv"
   )
   ## Second
   expect_message(
     vdat_to_folder(vr2tx),
-    '\\]\\.csv'
+    "\\]\\.csv"
   )
 
 
@@ -69,12 +68,12 @@ test_that("vdat_to_folder creates correct messages", {
   ## First
   expect_message(
     vdat_to_folder(vr2w69),
-    '\\d\\.csv'
+    "\\d\\.csv"
   )
   ## Second
   expect_message(
     vdat_to_folder(vr2w69),
-    '\\]\\.csv'
+    "\\]\\.csv"
   )
 
 
@@ -88,11 +87,11 @@ test_that("vdat_to_folder creates correct messages", {
   ## First
   expect_message(
     vdat_to_folder(vr2w180),
-    '\\d\\.csv'
+    "\\d\\.csv"
   )
   ## Second
   expect_message(
     vdat_to_folder(vr2w180),
-    '\\]\\.csv'
+    "\\]\\.csv"
   )
 })
