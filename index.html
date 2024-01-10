@@ -121,16 +121,13 @@
 </li>
 <li>
 <input type="checkbox" disabled checked>Check VDAT is where you say it is</li>
-<li>Convert VRL to
-<ul class="task-list">
+<li>Convert VRL to</li>
 <li>
 <input type="checkbox" disabled checked>CSV</li>
 <li>
 <input type="checkbox" disabled checked>folder of CSVs by factor</li>
 <li>
 <input type="checkbox" disabled>JSON</li>
-</ul>
-</li>
 <li>
 <input type="checkbox" disabled>Convert multiple VRLs</li>
 <li>
@@ -148,13 +145,11 @@
 <li>
 <input type="checkbox" disabled checked>Inspect content of file</li>
 <li>
-<input type="checkbox" disabled>Create template for<ul class="task-list">
+<input type="checkbox" disabled>Create template for</li>
 <li>
 <input type="checkbox" disabled>CSV</li>
 <li>
 <input type="checkbox" disabled>JSON</li>
-</ul>
-</li>
 </ul>
 </div>
 <div class="section level2">
@@ -173,13 +168,69 @@
 <span><span class="co">#&gt; vdat-7.0.0-20231107-14c992-release</span></span></code></pre></div>
 <p>Convert a VRL to CSV:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_to_csv.html">vdat_to_csv</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
+<span><span class="co">#&gt; ✔ File converted:</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
+<span><span class="co">#&gt; ℹ File saved in:</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files</span></span></code></pre></div>
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_to_folder.html">vdat_to_folder</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
+<span><span class="co">#&gt; ✔ File converted:</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
+<span><span class="co">#&gt; ℹ Directory saved in:</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files</span></span>
+<span><span class="co">## list.files("SOME-VDAT-FILE.csv-fathom-split")</span></span>
+<span><span class="co">#&gt;  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     </span></span>
+<span><span class="co">#&gt;  [4] "CFG_TRANSMITTER.csv"  "CLOCK_SET.csv"        "DATA_SOURCE_FILE.csv"</span></span>
+<span><span class="co">#&gt;  [7] "DET.csv"              "DET_FILTER.csv"       "DIAG_HR2.csv"        </span></span>
+<span><span class="co">#&gt; [10] "EVENT.csv"            "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   </span></span>
+<span><span class="co">#&gt; [13] "TEMP.csv"</span></span></code></pre></div>
 <p>Check out the file metadata:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_inspect.html">vdat_inspect</a></span><span class="op">(</span><span class="st">"VR2AR_XXXXXX_YYYYMMDD_1.vrl"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## vdat_inspect("SOME-VDAT-FILE")</span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span><span class="co">#&gt;                                      VDAT                                     </span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span><span class="co">#&gt; File:      HR2-180 461396 2021-04-20 173145.vdat</span></span>
+<span><span class="co">#&gt; Original:  HR2-180 461396 2021-04-20 173145.vdat</span></span>
+<span><span class="co">#&gt; Container: Vemco Data File (com.vemco.file.vdat/1.0.0)</span></span>
+<span><span class="co">#&gt; Content:   HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)</span></span>
+<span><span class="co">#&gt; Created:   2021-04-20T17:31:45</span></span>
+<span><span class="co">#&gt; File UUID: f1a18604-46ea-4985-b57c-24809d37ad46</span></span>
+<span><span class="co">#&gt; Data UUID: 1a595886-99ea-4ee9-a996-2e4d92dc01c3</span></span>
+<span><span class="co">#&gt; Size:      39370</span></span>
+<span><span class="co">#&gt; Blocks:    17</span></span>
+<span><span class="co">#&gt; Block Types: </span></span>
+<span><span class="co">#&gt;            VRDP Header (com.vemco.file.vrdp.header/1.1.0)</span></span>
+<span><span class="co">#&gt;            RxLog General Summary (com.vemco.protobuf.rxlog.summary.general/1.0.0)</span></span>
+<span><span class="co">#&gt;            HR2 Offload Header (com.vemco.device.vrhr2.offload.header/1.0.0)</span></span>
+<span><span class="co">#&gt;            HR2 Offload Footer (com.vemco.device.vrhr2.offload.footer/1.0.0)</span></span>
+<span><span class="co">#&gt;            HR2 Detection Log Block (com.vemco.device.vrhr2.log.detect/1.0.0)</span></span>
+<span><span class="co">#&gt;            HR2 Ping Log Block (com.vemco.device.vrhr2.log.ping/1.0.0)</span></span>
+<span><span class="co">#&gt; Codecs: </span></span>
+<span><span class="co">#&gt;            zlib compression (com.vemco.file.vdat.codec.zlib/1.2.11)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span><span class="co">#&gt;                                      VRDP                                     </span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span><span class="co">#&gt; Creator:   fathom-2.5.0-19700101--release</span></span>
+<span><span class="co">#&gt; Source:    HR2-180 (0814)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span><span class="co">#&gt;                                    Offload                                    </span></span>
+<span><span class="co">#&gt; ==============================================================================</span></span>
+<span><span class="co">#&gt; Firmware Version: 2.0.1</span></span>
+<span><span class="co">#&gt; Receiver Time @ Init: 2021-04-20T17:20:05Z</span></span>
+<span><span class="co">#&gt; Client Time @ Init: 2021-04-20T17:20:06Z</span></span>
+<span><span class="co">#&gt; Client Time Zone @ Init: -04:00</span></span>
+<span><span class="co">#&gt; Receiver Time @ Offload: 2021-04-20T21:31:45Z</span></span>
+<span><span class="co">#&gt; Client Time @ Offload: 2021-04-20T21:31:45Z</span></span>
+<span><span class="co">#&gt; Client Time Zone @ Offload: -04:00</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span></code></pre></div>
 <p>Call VDAT using standard flags:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></span>
@@ -261,12 +312,12 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a_new_wrapper</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">some_command</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">vdat_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_vdat_location.html">check_vdat_location</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
+<span>  </span>
 <span>  <span class="fu">sys</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">exec_internal</a></span><span class="op">(</span></span>
 <span>    <span class="va">vdat_loc</span>,</span>
 <span>    args <span class="op">=</span> <span class="va">some_command</span></span>
 <span>  <span class="op">)</span></span>
-<span></span>
+<span>  </span>
 <span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_success</a></span><span class="op">(</span><span class="st">"Woohoo!!"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 </div>
