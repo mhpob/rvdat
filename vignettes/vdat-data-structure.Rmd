@@ -1,0 +1,351 @@
+---
+title: "VDAT data structure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{VDAT data structure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+
+
+
+```r
+library(rvdat)
+```
+
+## Row-by-row data description
+
+I'll start off the same way as in `vignette('how-to-use-rvdat')`:
+
+1.    Locating `vdat.exe` with `vdat_here`
+2.    Downloading the example VRL file from the `glatos` package
+3.    Converting the VRL to a CSV using `vdat_to_csv`
+
+
+```r
+library(rvdat)
+
+td <- file.path(
+  tempdir(),
+  "vignette"
+)
+
+dir.create(
+  td
+)
+
+vdat_here("c:/program files/innovasea/fathom/vdat.exe")
+
+download.file(
+  url = file.path(
+    "https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata",
+    "detection_files_raw/VR2AR_546310_20190613_1.vrl"
+  ),
+  destfile = file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  mode = "wb",
+  quiet = TRUE
+)
+
+vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+            outdir = td
+)
+```
+
+```r
+list.files(td, pattern = "VR2AR")
+#> character(0)
+```
+
+## Exploring the VDAT CSV's data structure
+
+Now for the fun part: what does the csv look like?
+
+
+```r
+exported_csv <- read.csv(
+  file.path(td, "VR2AR_546310_20190613_1.csv")
+)
+#> Warning in file(file, "rt"): cannot open file
+#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpeA3TI6/test_files/VR2AR_546310_20190613_1.csv':
+#> No such file or directory
+#> Error in file(file, "rt"): cannot open the connection
+```
+
+Uh oh! Something weird! `utils::read.csv` guesses how many columns there should be by looking at the first five lines of the data. Here, it took a guess and more columns showed up later. Let's skip that process by telling it that the first row does not contain column names by using `header = FALSE`.
+
+
+```r
+exported_csv <- read.csv(
+  file.path(td, "VR2AR_546310_20190613_1.csv"),
+  header = FALSE
+)
+#> Warning in file(file, "rt"): cannot open file
+#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpeA3TI6/test_files/VR2AR_546310_20190613_1.csv':
+#> No such file or directory
+#> Error in file(file, "rt"): cannot open the connection
+
+head(exported_csv)
+#>                 V1                V2
+#> 1   VEMCO DATA LOG             2.0.0
+#> 2      RECORD TYPE             FIELD
+#> 3    ATTITUDE_DESC Device Time (UTC)
+#> 4     BATTERY_DESC Device Time (UTC)
+#> 5 CFG_CHANNEL_DESC Device Time (UTC)
+#> 6 CFG_STATION_DESC Device Time (UTC)
+#>                                   V3              V4
+#> 1 vdat-7.0.0-20231107-14c992-release                
+#> 2                              FIELD           FIELD
+#> 3                               Time Time Offset (h)
+#> 4                               Time Time Offset (h)
+#> 5                               Time Time Offset (h)
+#> 6                               Time Time Offset (h)
+#>                    V5    V6            V7               V8
+#> 1                                                         
+#> 2               FIELD FIELD         FIELD            FIELD
+#> 3 Time Correction (s) Model Serial Number       Tilt (deg)
+#> 4 Time Correction (s) Model Serial Number Battery Position
+#> 5 Time Correction (s) Model Serial Number          Channel
+#> 6 Time Correction (s) Model Serial Number     Station Name
+#>               V9                   V10                 V11
+#> 1                                                         
+#> 2          FIELD                 FIELD               FIELD
+#> 3                                                         
+#> 4   Battery Type Battery Serial Number Battery Voltage (V)
+#> 5 Detection Type       Frequency (kHz)       Blanking (ms)
+#> 6 Latitude (deg)       Longitude (deg)                    
+#>                     V12       V13   V14   V15   V16   V17   V18
+#> 1                                                              
+#> 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                                              
+#> 4 Battery Remaining (%)                                        
+#> 5                Map ID Coding ID                              
+#> 6                                                              
+#>     V19   V20   V21   V22   V23   V24   V25   V26
+#> 1                                                
+#> 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                                
+#> 4                                                
+#> 5                                                
+#> 6
+```
+
+I suggest that you skim through the data frame with the `View` function. You'll find that it has a few properties:
+
+#### The first row contains metadata about `vdat.exe`, itself.
+
+
+```r
+exported_csv[1, ]
+#>               V1    V2                                 V3 V4 V5 V6
+#> 1 VEMCO DATA LOG 2.0.0 vdat-7.0.0-20231107-14c992-release         
+#>   V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23
+#> 1                                                                 
+#>   V24 V25 V26
+#> 1
+```
+
+While there are 26 columns as a separate row takes that many fields to describe its data structure (see the next section), only the first three are pertinent.
+
+1.    This is a VEMCO data log;
+2.    It is using version 2.0.0 of the schema;
+3.    It was created with some specific vdat version.
+a.   Note that this does, in fact, match the version of `vdat` we are using. This can be found using `rvdat::vdat_version`.
+
+
+```r
+vdat_version()
+#> vdat-7.0.0-20231107-14c992-release
+```
+
+
+#### The next 20+ lines contain the column names of different subsets of the data.
+
+These subsets are by variable, such as tilt angle, temperature, and the like. They are designated as *descriptions* by appending `_DESC` to the variable name in the form `<variable>_DESC` (Description -- DESC. Get it?). This is the reason we couldn't import the CSV the first time -- there are a different number of columns for each variable, and thus the data was more jagged than `read.csv` expected.
+
+
+```r
+exported_csv[2:5, ]
+#>                 V1                V2    V3              V4
+#> 2      RECORD TYPE             FIELD FIELD           FIELD
+#> 3    ATTITUDE_DESC Device Time (UTC)  Time Time Offset (h)
+#> 4     BATTERY_DESC Device Time (UTC)  Time Time Offset (h)
+#> 5 CFG_CHANNEL_DESC Device Time (UTC)  Time Time Offset (h)
+#>                    V5    V6            V7               V8
+#> 2               FIELD FIELD         FIELD            FIELD
+#> 3 Time Correction (s) Model Serial Number       Tilt (deg)
+#> 4 Time Correction (s) Model Serial Number Battery Position
+#> 5 Time Correction (s) Model Serial Number          Channel
+#>               V9                   V10                 V11
+#> 2          FIELD                 FIELD               FIELD
+#> 3                                                         
+#> 4   Battery Type Battery Serial Number Battery Voltage (V)
+#> 5 Detection Type       Frequency (kHz)       Blanking (ms)
+#>                     V12       V13   V14   V15   V16   V17   V18
+#> 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                                              
+#> 4 Battery Remaining (%)                                        
+#> 5                Map ID Coding ID                              
+#>     V19   V20   V21   V22   V23   V24   V25   V26
+#> 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                                
+#> 4                                                
+#> 5
+```
+
+#### The next ~7 rows contain receiver configuration
+
+After a row designated as `DATA_SOURCE_FILE`, there are a few rows which outline the receiver's configuration; this file has 6 total. These are things like the initialization time, Map ID, whether an internal transmitter is turned on (and its delay), etc..
+
+
+```r
+first_data_row <- which(exported_csv$V1 == "DATA_SOURCE_FILE")
+exported_csv[first_data_row:(first_data_row + 6), ]
+#>                  V1                          V2
+#> 29 DATA_SOURCE_FILE VR2AR_546310_20190613_1.vrl
+#> 30       EVENT_INIT         2019-06-11 02:44:16
+#> 31        CLOCK_REF         2019-06-11 02:44:16
+#> 32      CFG_CHANNEL         2019-06-11 02:44:16
+#> 33  CFG_TRANSMITTER         2019-06-11 02:44:16
+#> 34  CFG_TRANSMITTER         2019-06-11 02:44:27
+#> 35  CFG_TRANSMITTER         2019-06-11 02:44:34
+#>                                      V3
+#> 29 ffee6ee7-450a-db42-b54c-334b672fddf5
+#> 30                                     
+#> 31                                     
+#> 32                                     
+#> 33                                     
+#> 34                                     
+#> 35                                     
+#>                                         V4     V5       V6     V7
+#> 29 com.vemco.file.vrl.0207.ff02.ff02/5.0.1 110026 ORIGINAL       
+#> 30                                                VR2AR-69 546310
+#> 31                                                VR2AR-69 546310
+#> 32                                                VR2AR-69 546310
+#> 33                                                VR2AR-69 546310
+#> 34                                                VR2AR-69 546310
+#> 35                                                VR2AR-69 546310
+#>                     V8             V9            V10      V11
+#> 29                                                           
+#> 30 2019-06-11 02:44:11      UTC-04:00          5.0.1         
+#> 31 2019-06-11 02:44:16              0 INITIALIZATION         
+#> 32                   1            PPM             69      260
+#> 33                 PPM A69-1601-60774          60774 DISABLED
+#> 34                 PPM A69-1601-60774          60774 DISABLED
+#> 35                 PPM A69-1601-60774          60774 DISABLED
+#>        V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26
+#> 29                                                                
+#> 30                                                                
+#> 31                                                                
+#> 32 MAP-113                                                        
+#> 33     540 660                                                    
+#> 34     540 660                                                    
+#> 35     540 660
+```
+
+#### Logged data!
+
+*"'And now, ' cried Max, 'let the wild rumpus start!'"*
+
+Depending on how long you've had your receiver deployed, you could have many thousands of rows after this. If you're logging environmental data you'll have on the order of four rows per minute deployed (temperature, depth, tilt, and general diagnostics), as well as one for every logged detection.
+
+
+```r
+exported_csv[(first_data_row + 7):(first_data_row + 7 + 7), ]
+#>           V1                  V2 V3 V4 V5       V6     V7     V8
+#> 36 DIAG_FAST 2019-06-11 02:45:00          VR2AR-69 546310 17.064
+#> 37      TEMP 2019-06-11 02:45:00          VR2AR-69 546310 17.064
+#> 38     DEPTH 2019-06-11 02:45:00          VR2AR-69 546310      0
+#> 39  ATTITUDE 2019-06-11 02:45:00          VR2AR-69 546310      2
+#> 40 DIAG_FAST 2019-06-11 02:46:00          VR2AR-69 546310 17.129
+#> 41      TEMP 2019-06-11 02:46:00          VR2AR-69 546310 17.129
+#> 42     DEPTH 2019-06-11 02:46:00          VR2AR-69 546310      0
+#> 43  ATTITUDE 2019-06-11 02:46:00          VR2AR-69 546310      3
+#>     V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24
+#> 36 150   2   0                                                    
+#> 37                                                                
+#> 38                                                                
+#> 39                                                                
+#> 40 161   3   0                                                    
+#> 41                                                                
+#> 42                                                                
+#> 43                                                                
+#>    V25 V26
+#> 36        
+#> 37        
+#> 38        
+#> 39        
+#> 40        
+#> 41        
+#> 42        
+#> 43
+```
+
+Diagnostic rows (`DIAG`) will have the hourly mean of `TEMP`, `DEPTH`, and `ATTITUDE` rows, as well as detections/pings. If you have fast diagnostics on, rows labeled with `DIAG_FAST` will contain the same per-minute data as `TEMP`/`DEPTH`/`ATTITUDE`.
+
+
+```r
+exported_csv[(exported_csv$V1 == "DIAG"), ][1, ]
+#>      V1                  V2 V3 V4 V5       V6     V7     V8  V9
+#> 96 DIAG 2019-06-11 03:00:00          VR2AR-69 546310 17.744 150
+#>    V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25
+#> 96  87   0   0   0                                                
+#>    V26
+#> 96
+```
+
+#### Detections are logged to the tenth of a millisecond
+
+That's $1\text{e-}4$ seconds. Whether that's accurate or just over-precise... I don't know.
+
+Detections are indicated by a row labeled with `DET`, followed by the raw logged time, time-corrected time if applicable, and information about the transmitter.
+
+
+```r
+exported_csv[(exported_csv$V1 == "DET"), ][1, ]
+#>       V1                       V2 V3 V4 V5       V6     V7 V8  V9
+#> 2567 DET 2019-06-11 13:03:32.0837          VR2AR-69 546310  1 PPM
+#>                 V10   V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21
+#> 2567 A69-1601-57060 57060                                        
+#>      V22 V23 V24 V25 V26
+#> 2567
+```
+#### The last three rows are data associated with the download
+
+The internal transmitter configuration, time associated with the internal and downloading-computer clocks, and the download, itself, are all reported.
+
+
+```r
+tail(exported_csv)
+#>                    V1                  V2 V3 V4 V5       V6     V7
+#> 16749            TEMP 2019-06-13 17:30:00          VR2AR-69 546310
+#> 16750           DEPTH 2019-06-13 17:30:00          VR2AR-69 546310
+#> 16751        ATTITUDE 2019-06-13 17:30:00          VR2AR-69 546310
+#> 16752 CFG_TRANSMITTER 2019-06-13 17:30:34          VR2AR-69 546310
+#> 16753       CLOCK_REF 2019-06-13 17:30:53          VR2AR-69 546310
+#> 16754   EVENT_OFFLOAD 2019-06-13 17:30:53          VR2AR-69 546310
+#>                        V8             V9     V10      V11     V12
+#> 16749               21.21                                        
+#> 16750                   0                                        
+#> 16751                   2                                        
+#> 16752                 PPM A69-1601-60774   60774 DISABLED     540
+#> 16753 2019-06-13 17:30:54              1 OFFLOAD                 
+#> 16754 2019-06-13 17:30:54      UTC-04:00             1328 99.6235
+#>       V13                         V14 V15 V16 V17 V18 V19 V20 V21
+#> 16749                                                            
+#> 16750                                                            
+#> 16751                                                            
+#> 16752 660                                                        
+#> 16753                                                            
+#> 16754     VR2AR_546310_20190613_1.vrl                            
+#>       V22 V23 V24 V25 V26
+#> 16749                    
+#> 16750                    
+#> 16751                    
+#> 16752                    
+#> 16753                    
+#> 16754
+```
+
+
+

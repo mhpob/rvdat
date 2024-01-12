@@ -17,3 +17,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 SystemRequirements: VDAT command line tools
     (https://gitlab.oceantrack.org/otndc/vdat-working-group).
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3

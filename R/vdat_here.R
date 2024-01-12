@@ -4,9 +4,9 @@
 #'    to the current working directory.
 #'
 #' @export
-#' @examplesIf not_building_on_ci()
+#' @examplesIf all(skip_example_on_ci(), skip_example_on_runiverse())
 #'
-#' vdat_here("vdat.exe")
+#' vdat_here("c:/program files/innovasea/fathom/vdat.exe")
 vdat_here <- function(here) {
   Sys.setenv(VDAT_EXE = here)
 

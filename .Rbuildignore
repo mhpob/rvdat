@@ -8,3 +8,8 @@
 ^docs$
 ^pkgdown$
 ^CNAME$
+^vignettes/precompile\.R$
+^vignettes/_how-to-use-rvdat\.Rmd$
+^vignettes/_vdat-data-structure\.Rmd$
+^vignettes/_vdat-data-columns\.Rmd$
+^codecov\.yml$

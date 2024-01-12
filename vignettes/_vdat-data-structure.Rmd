@@ -1,0 +1,155 @@
+---
+title: "VDAT data structure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{VDAT data structure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rvdat)
+```
+
+## Row-by-row data description
+
+I'll start off the same way as in `vignette('how-to-use-rvdat')`:
+
+1.    Locating `vdat.exe` with `vdat_here`
+2.    Downloading the example VRL file from the `glatos` package
+3.    Converting the VRL to a CSV using `vdat_to_csv`
+
+```{r, eval=FALSE}
+library(rvdat)
+
+td <- file.path(
+  tempdir(),
+  "vignette"
+)
+
+dir.create(
+  td
+)
+
+vdat_here("c:/program files/innovasea/fathom/vdat.exe")
+
+download.file(
+  url = file.path(
+    "https://github.com/ocean-tracking-network/glatos/raw/dev/inst/extdata",
+    "detection_files_raw/VR2AR_546310_20190613_1.vrl"
+  ),
+  destfile = file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  mode = "wb",
+  quiet = TRUE
+)
+
+vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
+  outdir = td
+)
+```
+```{r}
+list.files(td, pattern = "VR2AR")
+```
+
+## Exploring the VDAT CSV's data structure
+
+Now for the fun part: what does the csv look like?
+
+```{r, import-err, error=TRUE}
+exported_csv <- read.csv(
+  file.path(td, "VR2AR_546310_20190613_1.csv")
+)
+```
+
+Uh oh! Something weird! `utils::read.csv` guesses how many columns there should be by looking at the first five lines of the data. Here, it took a guess and more columns showed up later. Let's skip that process by telling it that the first row does not contain column names by using `header = FALSE`.
+
+```{r, import-headless}
+exported_csv <- read.csv(
+  file.path(td, "VR2AR_546310_20190613_1.csv"),
+  header = FALSE
+)
+
+head(exported_csv)
+```
+
+I suggest that you skim through the data frame with the `View` function. You'll find that it has a few properties:
+
+#### The first row contains metadata about `vdat.exe`, itself.
+
+```{r, first-row}
+exported_csv[1, ]
+```
+
+While there are 26 columns as a separate row takes that many fields to describe its data structure (see the next section), only the first three are pertinent.
+
+1.    This is a VEMCO data log;
+2.    It is using version 2.0.0 of the schema;
+3.    It was created with some specific vdat version.
+a.   Note that this does, in fact, match the version of `vdat` we are using. This can be found using `rvdat::vdat_version`.
+
+```{r, version}
+vdat_version()
+```
+
+
+#### The next 20+ lines contain the column names of different subsets of the data.
+
+These subsets are by variable, such as tilt angle, temperature, and the like. They are designated as *descriptions* by appending `_DESC` to the variable name in the form `<variable>_DESC` (Description -- DESC. Get it?). This is the reason we couldn't import the CSV the first time -- there are a different number of columns for each variable, and thus the data was more jagged than `read.csv` expected.
+
+```{r, desc-rows}
+exported_csv[2:5, ]
+```
+
+#### The next ~7 rows contain receiver configuration
+
+After a row designated as `DATA_SOURCE_FILE`, there are a few rows which outline the receiver's configuration; this file has 6 total. These are things like the initialization time, Map ID, whether an internal transmitter is turned on (and its delay), etc..
+
+```{r}
+first_data_row <- which(exported_csv$V1 == "DATA_SOURCE_FILE")
+exported_csv[first_data_row:(first_data_row + 6), ]
+```
+
+#### Logged data!
+
+*"'And now, ' cried Max, 'let the wild rumpus start!'"*
+
+Depending on how long you've had your receiver deployed, you could have many thousands of rows after this. If you're logging environmental data you'll have on the order of four rows per minute deployed (temperature, depth, tilt, and general diagnostics), as well as one for every logged detection.
+
+```{r}
+exported_csv[(first_data_row + 7):(first_data_row + 7 + 7), ]
+```
+
+Diagnostic rows (`DIAG`) will have the hourly mean of `TEMP`, `DEPTH`, and `ATTITUDE` rows, as well as detections/pings. If you have fast diagnostics on, rows labeled with `DIAG_FAST` will contain the same per-minute data as `TEMP`/`DEPTH`/`ATTITUDE`.
+
+```{r}
+exported_csv[(exported_csv$V1 == "DIAG"), ][1, ]
+```
+
+#### Detections are logged to the tenth of a millisecond
+
+That's $1\text{e-}4$ seconds. Whether that's accurate or just over-precise... I don't know.
+
+Detections are indicated by a row labeled with `DET`, followed by the raw logged time, time-corrected time if applicable, and information about the transmitter.
+
+```{r}
+exported_csv[(exported_csv$V1 == "DET"), ][1, ]
+```
+#### The last three rows are data associated with the download
+
+The internal transmitter configuration, time associated with the internal and downloading-computer clocks, and the download, itself, are all reported.
+
+```{r}
+tail(exported_csv)
+```
+
+
+```{r, clean-up, echo=FALSE}
+unlink(td, recursive = TRUE)
+```

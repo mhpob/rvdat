@@ -4,13 +4,16 @@
 \alias{vdat_version}
 \title{Report the version of VDAT identified in \code{\link{vdat_here}}.}
 \usage{
-vdat_version()
+vdat_version(...)
+}
+\arguments{
+\item{...}{arguments passed to \code{vdat_call}.}
 }
 \description{
 Report the version of VDAT identified in \code{\link{vdat_here}}.
 }
 \examples{
-\dontshow{if (not_building_on_ci()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (all(skip_example_on_ci(), skip_example_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 vdat_version()
 \dontshow{\}) # examplesIf}

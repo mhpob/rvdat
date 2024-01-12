@@ -1,0 +1,130 @@
+---
+title: "Data within VDAT files"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data within VDAT files}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
+
+The most recent changes were made on `r Sys.Date()`.
+
+```{r setup}
+library(rvdat)
+```
+
+## Data columns
+
+The table below shows each receiver/VDAT type along with, in alphabetical order, each logged data type (attitude, battery, etc.) and their respective column names/data fields in bullets.
+
+```{r, echo=FALSE, message=FALSE}
+source("../tests/testthat/setup-testfiles.R")
+
+for (i in seq_along(testfiles)) {
+  vdat_to_csv(testfiles[i],
+    outdir = td,
+    quiet = TRUE
+  )
+}
+
+exported_csvs <- lapply(
+  list.files(td, pattern = "\\.csv$", full.names = T),
+  read.csv,
+  header = FALSE
+)
+
+names(exported_csvs) <- list.files(td, pattern = "\\.v.*$")
+```
+
+```{r, make-data-dictionary, echo=FALSE}
+make_key <- function(exported_csv) {
+  key <- exported_csv[grepl("_DESC$", exported_csv$V1), ]
+  key$V1 <- gsub("_DESC$", "", key$V1)
+
+  key <- key |>
+    split(~V1, drop = TRUE) |>
+    lapply(function(.) .[, colSums(. != "") != 0]) |>
+    lapply(`[`, -1)
+
+  key
+}
+
+keys <- lapply(
+  exported_csvs,
+  make_key
+)
+
+names(keys) <- gsub("[_ ].*\\.", " ", toupper(names(keys)))
+```
+
+
+```{r, label=table, echo=FALSE}
+data.frame(
+  receiver = gsub(" .*", "", names(keys)),
+  file_type = gsub(".* ", "", names(keys)),
+  n_data_types = unname(sapply(keys, length))
+)
+```
+
+
+
+
+
+
+```{r, print-data-dictionary, echo=FALSE, results='asis'}
+for (receiver_type in seq_along(keys)) {
+  ## Per file
+  n_data_type <- length(keys[[receiver_type]])
+
+  md <- paste0(
+    "### ",
+    names(keys)[receiver_type],
+    ", n = ",
+    n_data_type,
+    "\n\n"
+  )
+  cat(md)
+
+  for (data_type in seq_along(keys[[receiver_type]])) {
+    ## per data type
+    n_data_col <- length(keys[[receiver_type]][[data_type]])
+
+    md <- paste0(
+      "#### ",
+      names(keys[[receiver_type]])[data_type],
+      ", n = ",
+      n_data_col,
+      "\n\n",
+      ':::: {style="display: flex;"}\n\n',
+      "::: {}\n\n",
+      " - ",
+      paste(
+        keys[[receiver_type]][[data_type]][
+          1:ceiling(n_data_col / 2)
+        ],
+        collapse = "\n - "
+      ),
+      "\n\n:::\n\n",
+      "::: {}\n\n",
+      " - ",
+      paste(
+        keys[[receiver_type]][[data_type]][
+          (ceiling(n_data_col / 2) + 1):n_data_col
+        ],
+        collapse = "\n - "
+      ),
+      "\n\n:::\n\n::::\n\n"
+    )
+    cat(md)
+  }
+}
+```
