@@ -14,13 +14,23 @@ locate_vdat <- function(sys = NULL, version = NULL) {
   if(is.null(sys)) {
     sys <- "Linux-x86_64"
   }
+  vdat_name <- "vdat.exe"
+  fs::path_abs(path = paste("../vdat-working-group-master/releases", version,
+                            sys, vdat_name, sep = "/"))
+  # list.files(paste("../vdat-working-group-master/releases", version, sys, sep = "/"),
+  #            recursive = TRUE,
+  #            full.names = TRUE,
+  #            include.dirs = TRUE)
 
-
-  list.files(paste("/vdat-working-group-master/releases", version, sep = "/"),
-             sys,
-             recursive = TRUE,
-             full.names = TRUE,
-             include.dirs = TRUE)
-
-  Sys.glob("vdat.exe")
+  # Sys.glob("vdat.exe")
 }
+list.dirs()
+fs::path_abs(path = paste("../vdat-working-group-master/releases", version,
+                          sys, sep = "/"))
+ls()
+fs::dir_ls(
+  path = c("C:/", "E:/"),
+           type = "directory", , recurse = TRUE)
+
+
+list.dirs(path = "../vdat-working-group-master/releases")
