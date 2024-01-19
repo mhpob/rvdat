@@ -13,7 +13,8 @@
 #' @export
 #' @examplesIf all(skip_example_on_ci(), skip_example_on_runiverse())
 #'
-#' vdat_csv_format()
+#' dat <- read.csv("YOUR_FILE.csv", header = FALSE)
+#' dat <- vdat_csv_format(dat)
 vdat_csv_format <- function(data,
                             event_type = NULL,
                             event_field = NULL,

@@ -31,6 +31,7 @@ Format object returned by \code{vdat_to_csv}
 \examples{
 \dontshow{if (all(skip_example_on_ci(), skip_example_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-vdat_csv_format()
+dat <- read.csv("YOUR_FILE.csv", header = FALSE)
+dat <- vdat_csv_format(dat)
 \dontshow{\}) # examplesIf}
 }
