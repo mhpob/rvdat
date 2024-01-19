@@ -18,10 +18,10 @@ vdat_csv_format <- function(data,
                             event_type = NULL,
                             event_field = NULL,
                             event_desc = FALSE) {
-  if(is.null(event_type)) {
+  if (is.null(event_type)) {
     event_type <- "DET"
   }
-  if(is.null(event_field)) {
+  if (is.null(event_field)) {
     event_field <- "DET_DESC"
   }
 
@@ -37,14 +37,11 @@ vdat_csv_format <- function(data,
 
   colnames(det) <- col_names
 
-  if(event_desc == FALSE) {
-  return(det)
+  if (event_desc == FALSE) {
+    return(det)
   }
 
-  if(event_desc == TRUE) {
+  if (event_desc == TRUE) {
     return(event_description)
   }
-
 }
-
-
