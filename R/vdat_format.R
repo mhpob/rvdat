@@ -14,9 +14,6 @@
 #' @examplesIf all(skip_example_on_ci(), skip_example_on_runiverse())
 #'
 #' vdat_csv_format()
-
-#' @export
-#'
 vdat_csv_format <- function(data,
                             event_type = NULL,
                             event_field = NULL,
