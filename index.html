@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">rvdat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,15 +122,21 @@
 </li>
 <li>
 <input type="checkbox" disabled checked>Check VDAT is where you say it is</li>
-<li>Convert VRL to</li>
+<li>Convert VRL to
+<ul class="task-list">
 <li>
 <input type="checkbox" disabled checked>CSV</li>
 <li>
 <input type="checkbox" disabled checked>folder of CSVs by factor</li>
 <li>
 <input type="checkbox" disabled>JSON</li>
+</ul>
+</li>
 <li>
-<input type="checkbox" disabled>Convert multiple VRLs</li>
+<input type="checkbox" disabled><del>Convert multiple VRLs</del><ul>
+<li>Removed from <code>vdat.exe</code> in spring 2023. Left to user.</li>
+</ul>
+</li>
 <li>
 <input type="checkbox" disabled checked>Output location</li>
 <li>
@@ -138,19 +144,24 @@
 <li>
 <input type="checkbox" disabled>Time offset</li>
 <li>
-<input type="checkbox" disabled>Detection filter (only implemented for HR3)</li>
+<input type="checkbox" disabled>Detection filter<ul>
+<li>only implemented for HR3 VDAT files</li>
+</ul>
+</li>
 <li>
 <input type="checkbox" disabled>Sensor values</li>
 <li>
 <input type="checkbox" disabled>Logging</li>
 <li>
 <input type="checkbox" disabled checked>Inspect content of file</li>
-<li>
-<input type="checkbox" disabled>Create template for</li>
+<li>Create template for
+<ul class="task-list">
 <li>
 <input type="checkbox" disabled>CSV</li>
 <li>
 <input type="checkbox" disabled>JSON</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section level2">
@@ -171,19 +182,19 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp46huTZ/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp46huTZ/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.csv</span></span></code></pre></div>
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp46huTZ/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ Files saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp46huTZ/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.csv-fathom-split</span></span>
 <span><span class="co">## list.files("SOME-VDAT-FILE.csv-fathom-split")</span></span>
 <span><span class="co">#&gt;  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     </span></span>
