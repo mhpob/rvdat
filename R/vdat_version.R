@@ -12,14 +12,17 @@ vdat_version <- function(...) {
     ...
   )
 
-  if (shell_out$status == 1) {
-    cli::cli_abort(
-      c(
-        "x" = "Call to VDAT failed.",
-        "i" = "Is VDAT where you think it is?"
-      )
-    )
-  }
+  # Old check below. As things rung through vdat_call, most issues are caught
+  #   before reaching this stage. Saving just in case.
+  #
+  # if (shell_out$status == 1) {
+  #   cli::cli_abort(
+  #     c(
+  #       "x" = "Call to VDAT failed.",
+  #       "i" = "Is VDAT where you think it is?"
+  #     )
+  #   )
+  # }
 
   invisible(shell_out)
 }
