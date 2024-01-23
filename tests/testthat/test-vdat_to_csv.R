@@ -111,14 +111,24 @@ test_that("creates correct messages", {
 
   # Clean up
   unlink(
-    list.files(td, pattern = '\\.csv$', full.names = TRUE)
+    list.files(td, pattern = "\\.csv$", full.names = TRUE)
   )
 })
 
 
 
 
-test_that('errors if multiple files are provided', {
+test_that("errors if multiple files are provided", {
+  expect_error(
+    vdat_to_csv(
+      grep(
+        "VR2W.*\\.vrl",
+        testfiles,
+        value = TRUE
+      )
+    ),
+    "Only one file is allowed at a time\\."
+  )
 
   expect_error(
     vdat_to_csv(
@@ -128,26 +138,14 @@ test_that('errors if multiple files are provided', {
         value = TRUE
       )
     ),
-    'Only one file is allowed at a time\\.'
+    "Consider using lapply\\(vdata_files, vdat_to_csv\\)\\."
   )
-
-  expect_error(
-    vdat_to_csv(
-      grep(
-        "VR2W.*\\.vrl",
-        testfiles,
-        value = TRUE
-      )
-    ),
-    'Consider using lapply\\(vdata_files, vdat_to_csv\\)\\.'
-  )
-
 })
 
 
 
 
-test_that('warns if filter is provided', {
+test_that("warns if filter is provided", {
   skip_on_ci()
 
   td <- tempdir()
@@ -157,45 +155,55 @@ test_that('warns if filter is provided', {
 
   # HR vdat
   expect_warning(
-    vdat_to_csv(hr, outdir = td,
-                filter = 'abc123'),
+    vdat_to_csv(hr,
+      outdir = td,
+      filter = "abc123"
+    ),
     warn_should_be
   )
 
 
   # VR2AR vrl
   expect_warning(
-    vdat_to_csv(vr2ar, outdir = td,
-                filter = 'abc123'),
+    vdat_to_csv(vr2ar,
+      outdir = td,
+      filter = "abc123"
+    ),
     warn_should_be
   )
 
 
   # VR2Tx vrl
   expect_warning(
-    vdat_to_csv(vr2tx, outdir = td,
-                filter = 'abc123'),
+    vdat_to_csv(vr2tx,
+      outdir = td,
+      filter = "abc123"
+    ),
     warn_should_be
   )
 
 
   # VR2W 69k vrl
   expect_warning(
-    vdat_to_csv(vr2w69, outdir = td,
-                filter = 'abc123'),
+    vdat_to_csv(vr2w69,
+      outdir = td,
+      filter = "abc123"
+    ),
     warn_should_be
   )
 
 
   # VR2W 180k vrl
   expect_warning(
-    vdat_to_csv(vr2w180, outdir = td,
-                filter = 'abc123'),
+    vdat_to_csv(vr2w180,
+      outdir = td,
+      filter = "abc123"
+    ),
     warn_should_be
   )
 
   # Clean up
   unlink(
-    list.files(td, pattern = '\\.csv$', full.names = TRUE)
+    list.files(td, pattern = "\\.csv$", full.names = TRUE)
   )
 })
