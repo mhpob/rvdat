@@ -80,7 +80,7 @@ remotes::install_github("mhpob/rvdat")
 -   [X] Output location
 -   [X] Time correction
 -   [ ] Time offset
--   [ ] Detection filter
+-   [ ] Detection filter (only implemented for HR3)
 -   [ ] Sensor values
 -   [ ] Logging
 -   [X] Inspect content of file
