@@ -1,6 +1,6 @@
 Package: rvdat
 Title: Lightweight access to VDAT shell commands
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: c(
     person("Michael", "O'Brien", , "mike@obrien.page", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1420-6395"))
