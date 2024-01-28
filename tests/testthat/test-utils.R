@@ -1,7 +1,7 @@
 test_that("example CI skipper works on CI.", {
   skip_if_not(
     testthat:::on_ci(),
-    'Not on CI.'
+    'Not on CI'
   )
 
   #should return F if on CI, T if local/RUniverse
@@ -11,10 +11,7 @@ test_that("example CI skipper works on CI.", {
 })
 
 test_that("example CI skipper works when not on CI.", {
-  skip_if(
-    testthat:::on_ci(),
-    'On CI.'
-  )
+  skip_on_ci()
 
   #should return F if on CI, T if local/RUniverse
   expect_true(
@@ -26,9 +23,9 @@ test_that("example CI skipper works when not on CI.", {
 
 
 test_that("example RUniverse skipper works on RUniverse.", {
-  skip_if_not(
+  skip_if(
     is.na(Sys.getenv("MY_UNIVERSE", unset = NA)),
-    "Not on RUniverse."
+    "Not on RUniverse"
   )
 
   # should return F if on RU, T if local/CI
@@ -38,10 +35,7 @@ test_that("example RUniverse skipper works on RUniverse.", {
 })
 
 test_that("example RUniverse skipper works when not on RUniverse.", {
-  skip_if(
-    is.na(Sys.getenv("MY_UNIVERSE", unset = NA)),
-    "On RUniverse."
-  )
+  skip_test_on_runiverse()
 
   # should return F if on RU, T if local/CI
   expect_true(
