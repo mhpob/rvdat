@@ -4,7 +4,7 @@ test_that("example CI skipper works on CI.", {
     'Not on CI'
   )
 
-  #should return F if on CI, T if local/RUniverse
+  # should return F if on CI, T if local/RUniverse
   expect_false(
     skip_example_on_ci()
   )
@@ -13,7 +13,7 @@ test_that("example CI skipper works on CI.", {
 test_that("example CI skipper works when not on CI.", {
   skip_on_ci()
 
-  #should return F if on CI, T if local/RUniverse
+  # should return F if on CI, T if local/RUniverse
   expect_true(
     skip_example_on_ci()
   )
