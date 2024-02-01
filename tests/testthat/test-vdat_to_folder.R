@@ -60,7 +60,7 @@ test_that("vdat_to_folder creates correct messages", {
 
   # VR2W 69k vrl
   vr2w69 <- grep(
-    "VR2W.*\\.vrl",
+    "VR2W_.*\\.vrl",
     testfiles,
     value = TRUE
   )

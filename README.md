@@ -87,20 +87,22 @@ remotes::install_github("mhpob/rvdat")
 - [ ] Look for `vdat.exe`
 - [x] Check VDAT is where you say it is
 - Convert VRL to
-- [x] CSV
-- [x] folder of CSVs by factor
-- [ ] JSON
-- [ ] Convert multiple VRLs
+  - [x] CSV
+  - [x] folder of CSVs by factor
+  - [ ] JSON
+- [ ] ~~Convert multiple VRLs~~
+  - Removed from `vdat.exe` in spring 2023. Left to user.
 - [x] Output location
 - [x] Time correction
 - [ ] Time offset
 - [ ] Detection filter
+  - only implemented for HR3 VDAT files
 - [ ] Sensor values
 - [ ] Logging
 - [x] Inspect content of file
-- [ ] Create template for
-- [ ] CSV
-- [ ] JSON
+- Create template for
+  - [ ] CSV
+  - [ ] JSON
 
 ## Using the package
 
@@ -129,10 +131,11 @@ Convert a VRL to CSV:
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
+#>   2021-04-20 173145.csv
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
@@ -140,10 +143,11 @@ Convert a VRL to a folder of CSVs split by data type:
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
-#> ℹ Directory saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpI5VNgp/readme_files
+#> ℹ Files saved in:
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
+#>   2021-04-20 173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
 #>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_SET.csv"        "DATA_SOURCE_FILE.csv"
@@ -284,12 +288,12 @@ If contributing, please use the following general style:
 ``` r
 a_new_wrapper <- function(some_command) {
   vdat_loc <- check_vdat_location()
-  
+
   sys::exec_internal(
     vdat_loc,
     args = some_command
   )
-  
+
   cli::cli_alert_success("Woohoo!!")
 }
 ```

@@ -6,6 +6,9 @@
 #' @param time_corrected logical. Do you want to apply the default time correction?
 #' @param quiet logical, defaults to FALSE. Suppress messages?
 #' @param folder logical, defaults to FALSE. Convert VDAT to a folder of CSVs?
+#' @param filter character, defaults to NULL and is currently ignored with a
+#'  warning. When implemented, filtering via vdat.exe will only be available for
+#'  HR3 receivers.
 #'
 #' @export
 #'
@@ -13,10 +16,17 @@ vdat_to_csv <- function(vdata_file,
                         outdir = getwd(),
                         time_corrected = FALSE,
                         quiet = FALSE,
-                        folder = FALSE) {
+                        folder = FALSE,
+                        filter = NULL) {
   # Check that only 1 file has been passed
   if (length(vdata_file) > 1) {
     error_too_many_files()
+  }
+
+  if (!is.null(filter)) {
+    warning(
+      'The "filter" argument is currently unsupported and has been ignored.'
+    )
   }
 
   # Build arguments

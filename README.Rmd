@@ -73,20 +73,22 @@ remotes::install_github("mhpob/rvdat")
 -   [ ] Look for `vdat.exe`
 -   [X] Check VDAT is where you say it is
 -   Convert VRL to
--   [X] CSV
--   [X] folder of CSVs by factor
--   [ ] JSON
--   [ ] Convert multiple VRLs
+    -   [X] CSV
+    -   [X] folder of CSVs by factor
+    -   [ ] JSON
+-   [ ] ~~Convert multiple VRLs~~
+    -   Removed from `vdat.exe` in spring 2023. Left to user.
 -   [X] Output location
 -   [X] Time correction
 -   [ ] Time offset
 -   [ ] Detection filter
+    -   only implemented for HR3 VDAT files
 -   [ ] Sensor values
 -   [ ] Logging
 -   [X] Inspect content of file
--   [ ] Create template for
--   [ ] CSV
--   [ ] JSON
+-   Create template for
+    -   [ ] CSV
+    -   [ ] JSON
 
 
 ## Using the package

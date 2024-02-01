@@ -9,7 +9,8 @@ vdat_to_csv(
   outdir = getwd(),
   time_corrected = FALSE,
   quiet = FALSE,
-  folder = FALSE
+  folder = FALSE,
+  filter = NULL
 )
 }
 \arguments{
@@ -23,6 +24,10 @@ current working directory.}
 \item{quiet}{logical, defaults to FALSE. Suppress messages?}
 
 \item{folder}{logical, defaults to FALSE. Convert VDAT to a folder of CSVs?}
+
+\item{filter}{character, defaults to NULL and is currently ignored with a
+warning. When implemented, filtering via vdat.exe will only be available for
+HR3 receivers.}
 }
 \description{
 Convert VRL file(s) to CSV(s)
