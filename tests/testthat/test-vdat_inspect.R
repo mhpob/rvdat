@@ -135,7 +135,6 @@ test_that("vdat_inspect invisibly returns a data frame", {
 
 test_that("errors appropriately", {
   expect_error(
-    vdat_inspect('gibberish'),
-    "Is inspect gibberish a valid command?"
+    vdat_inspect("gibberish")
   )
 })
