@@ -1,7 +1,7 @@
 test_that("example CI skipper works on CI.", {
   skip_if_not(
     testthat:::on_ci(),
-    'Not on CI'
+    "Not on CI"
   )
 
   # should return F if on CI, T if local/RUniverse
