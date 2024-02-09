@@ -132,3 +132,10 @@ test_that("vdat_inspect invisibly returns a data frame", {
 
   expect_s3_class(vr2w180, "data.frame")
 })
+
+test_that("errors appropriately", {
+  expect_error(
+    vdat_inspect('gibberish'),
+    "Is inspect gibberish a valid command?"
+  )
+})
