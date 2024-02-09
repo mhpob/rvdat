@@ -12,3 +12,5 @@ coverage:
         target: auto
         threshold: 1%
         informational: true
+
+# need to run Sys.setenv(NOT_CRAN = "true") in R to eval locally
