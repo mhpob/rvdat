@@ -1,5 +1,5 @@
 test_that("vdat_call gives expected results", {
-  skip_test_on_runiverse()
+  skip_on_cran()
   skip_on_ci()
 
   expect_output(
@@ -16,14 +16,14 @@ test_that("vdat_call gives expected results", {
 })
 
 test_that("Basic commands work", {
-  skip_test_on_runiverse()
+  skip_on_cran()
   skip_on_ci()
 
   expect_equal(vdat_call(print = FALSE)$status, 0)
 })
 
 test_that("Bad commands don't work", {
-  skip_test_on_runiverse()
+  skip_on_cran()
   skip_on_ci()
 
   expect_error(vdat_call("help"))

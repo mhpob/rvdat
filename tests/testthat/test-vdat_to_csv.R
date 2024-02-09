@@ -40,7 +40,7 @@ vr2w180 <- grep(
 
 test_that("creates correct messages", {
   skip_on_ci()
-  skip_test_on_runiverse()
+  skip_on_cran()
 
   td <- tempdir()
 
@@ -148,7 +148,7 @@ test_that("errors if multiple files are provided", {
 
 test_that("warns if filter is provided", {
   skip_on_ci()
-  skip_test_on_runiverse()
+  skip_on_cran()
 
   td <- tempdir()
 

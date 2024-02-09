@@ -13,7 +13,7 @@ test_that("fails with no exe", {
 
 test_that("succeed with exe", {
   skip_on_ci()
-  skip_test_on_runiverse()
+  skip_on_cran()
 
   readRenviron("~/.Renviron")
 

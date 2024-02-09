@@ -1,6 +1,6 @@
 test_that("vdat_inspect outputs to console", {
   skip_on_ci()
-  skip_test_on_runiverse()
+  skip_on_cran()
 
   # HR vdat
   expect_output(
@@ -60,7 +60,7 @@ test_that("vdat_inspect outputs to console", {
 
 test_that("vdat_inspect invisibly returns a data frame", {
   skip_on_ci()
-  skip_test_on_runiverse()
+  skip_on_cran()
 
   # HR vdat
   hr <- expect_invisible(

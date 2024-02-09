@@ -35,7 +35,7 @@ test_that("example RUniverse skipper works on RUniverse.", {
 })
 
 test_that("example RUniverse skipper works when not on RUniverse.", {
-  skip_test_on_runiverse()
+  skip_on_cran()
 
   # should return F if on RU, T if local/CI
   expect_true(
