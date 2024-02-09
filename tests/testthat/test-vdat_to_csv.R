@@ -223,8 +223,6 @@ test_that("time is corrected", {
     )
   }
 
-  td <- tempdir()
-
 
 
 
@@ -347,13 +345,5 @@ test_that("time is corrected", {
     ),
     as.numeric(strptime(corrected$V3, format = "%Y-%m-%d %H:%M:%OS")),
     tolerance = 1e-6
-  )
-
-
-
-
-  # Clean up
-  unlink(
-    list.files(td, pattern = "\\.csv$", full.names = TRUE)
   )
 })
