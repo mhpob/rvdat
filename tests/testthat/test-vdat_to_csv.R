@@ -158,8 +158,8 @@ test_that("warns if filter is provided", {
   # HR vdat
   expect_warning(
     vdat_to_csv(hr,
-      outdir = td,
-      filter = "abc123"
+                outdir = td,
+                filter = "abc123"
     ),
     warn_should_be
   )
@@ -168,8 +168,8 @@ test_that("warns if filter is provided", {
   # VR2AR vrl
   expect_warning(
     vdat_to_csv(vr2ar,
-      outdir = td,
-      filter = "abc123"
+                outdir = td,
+                filter = "abc123"
     ),
     warn_should_be
   )
@@ -178,8 +178,8 @@ test_that("warns if filter is provided", {
   # VR2Tx vrl
   expect_warning(
     vdat_to_csv(vr2tx,
-      outdir = td,
-      filter = "abc123"
+                outdir = td,
+                filter = "abc123"
     ),
     warn_should_be
   )
@@ -188,8 +188,8 @@ test_that("warns if filter is provided", {
   # VR2W 69k vrl
   expect_warning(
     vdat_to_csv(vr2w69,
-      outdir = td,
-      filter = "abc123"
+                outdir = td,
+                filter = "abc123"
     ),
     warn_should_be
   )
@@ -198,11 +198,157 @@ test_that("warns if filter is provided", {
   # VR2W 180k vrl
   expect_warning(
     vdat_to_csv(vr2w180,
-      outdir = td,
-      filter = "abc123"
+                outdir = td,
+                filter = "abc123"
     ),
     warn_should_be
   )
+
+  # Clean up
+  unlink(
+    list.files(td, pattern = "\\.csv$", full.names = TRUE)
+  )
+})
+
+test_that("time is corrected", {
+  skip_on_ci()
+  skip_on_cran()
+
+
+  read_in <- function(x) {
+    x <- gsub('(vrl|vdat)$', 'csv', x)
+    read.csv(x, header = FALSE,
+             skip = 100)
+  }
+
+  td <- tempdir()
+
+
+
+
+  # HR VDAT ####
+  vdat_to_csv(hr, outdir = td, time_corrected = FALSE)
+  corrected <- read_in(hr)
+
+  # Make sure time offset column (V3) has values
+  expect_false(
+    is.logical(corrected$V3)
+  )
+  expect_type(
+    corrected$V3, "character"
+  )
+
+  # Make sure time offset column (V3) is approximately equal to record time (V2)
+  #   plus the offset (V5)
+  expect_equal(
+    as.numeric(
+      strptime(corrected$V2, format = "%Y-%m-%d %H:%M:%OS") + corrected$V5
+    ),
+    as.numeric(strptime(corrected$V3, format = "%Y-%m-%d %H:%M:%OS")),
+    tolerance = 1e-6
+  )
+
+
+
+
+  # VR2AR vrl ####
+  vdat_to_csv(vr2ar, outdir = td,time_corrected = TRUE)
+  corrected <- read_in(vr2ar)
+
+  # Make sure time offset column (V3) has values
+  expect_false(
+    is.logical(corrected$V3)
+  )
+  expect_type(
+    corrected$V3, "character"
+  )
+
+  # Make sure time offset column (V3) is approximately equal to record time (V2)
+  #   plus the offset (V5)
+  expect_equal(
+    as.numeric(
+      strptime(corrected$V2, format = "%Y-%m-%d %H:%M:%OS") + corrected$V5
+    ),
+    as.numeric(strptime(corrected$V3, format = "%Y-%m-%d %H:%M:%OS")),
+    tolerance = 1e-6
+  )
+
+
+
+  # VR2Tx vrl ####
+  vdat_to_csv(vr2tx, outdir = td,time_corrected = TRUE)
+  corrected <- read_in(vr2tx)
+
+  # Make sure time offset column (V3) has values
+  expect_false(
+    is.logical(corrected$V3)
+  )
+  expect_type(
+    corrected$V3, "character"
+  )
+
+  # Make sure time offset column (V3) is approximately equal to record time (V2)
+  #   plus the offset (V5)
+  expect_equal(
+    as.numeric(
+      strptime(corrected$V2, format = "%Y-%m-%d %H:%M:%OS") + corrected$V5
+    ),
+    as.numeric(strptime(corrected$V3, format = "%Y-%m-%d %H:%M:%OS")),
+    tolerance = 1e-6
+  )
+
+
+
+
+  # VR2W 69k vrl ####
+  vdat_to_csv(vr2w69, outdir = td,time_corrected = TRUE)
+  corrected <- read_in(vr2w69)
+
+  # Make sure time offset column (V3) has values
+  expect_false(
+    is.logical(corrected$V3)
+  )
+  expect_type(
+    corrected$V3, "character"
+  )
+
+  # Make sure time offset column (V3) is approximately equal to record time (V2)
+  #   plus the offset (V5)
+  expect_equal(
+    as.numeric(
+      strptime(corrected$V2, format = "%Y-%m-%d %H:%M:%OS") + corrected$V5
+    ),
+    as.numeric(strptime(corrected$V3, format = "%Y-%m-%d %H:%M:%OS")),
+    tolerance = 1e-6
+  )
+
+
+
+
+  # VR2W 180k vrl ####
+  vdat_to_csv(vr2w180, outdir = td,time_corrected = TRUE)
+  corrected <- read_in(vr2w180)
+
+  # Make sure time offset column (V3) has values
+  expect_false(
+    is.logical(corrected$V3)
+  )
+  expect_type(
+    corrected$V3, "character"
+  )
+
+  # Make sure time offset column (V3) is approximately equal to record time (V2)
+  #   plus the offset (V5)
+  expect_equal(
+    as.numeric(
+      strptime(corrected$V2, format = "%Y-%m-%d %H:%M:%OS") + corrected$V5
+    ),
+    as.numeric(strptime(corrected$V3, format = "%Y-%m-%d %H:%M:%OS")),
+    tolerance = 1e-6
+  )
+
+
+
 
   # Clean up
   unlink(
