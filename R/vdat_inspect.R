@@ -66,21 +66,15 @@ vdat_inspect <- function(vdata_file, ...) {
     data.frame()
 
   ### Fill in blanks using last observation carried forward
-  ###   Function taken from:
+  ###   Function adapted (trimmed down) from:
   ###   https://stackoverflow.com/questions/10554741/fill-in-data-frame-with-values-from-rows-above
 
-  locf <- function(x, blank = is.na) {
-    # Find the values
-    if (is.function(blank)) {
-      isnotblank <- !blank(x)
-    } else {
-      isnotblank <- x != blank
-    }
-    # Fill down
+  locf <- function(x) {
+    isnotblank <- x != ""
     x[which(isnotblank)][cumsum(isnotblank)]
   }
 
-  metadata$X1 <- locf(metadata$X1, blank = "")
+  metadata$X1 <- locf(metadata$X1)
 
   ### Add back section headers
   metadata$section <- section_headers
