@@ -227,7 +227,7 @@ test_that("time is corrected", {
 
 
   # HR VDAT ####
-  vdat_to_csv(hr, outdir = td, time_corrected = FALSE)
+  vdat_to_csv(hr, outdir = td, time_corrected = TRUE)
   corrected <- read_in(hr)
 
   # Make sure time offset column (V3) has values
