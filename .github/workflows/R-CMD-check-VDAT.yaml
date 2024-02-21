@@ -1,0 +1,53 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: ci-windows
+
+name: R-CMD-check-VDAT
+
+jobs:
+  R-CMD-check-VDAT:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macos-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          # - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          # - {os: ubuntu-latest,   r: 'oldrel-1'}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up VDAT on Windows
+        env:
+          GL_PAT: ${{ secrets.GITLAB_TOKEN }}
+        if: ${{ matrix.config.os }} == 'windows-latest'
+        run: |
+          echo "VDAT_EXE=D:\\a\\rvdat\\rvdat\\vdat.exe" >> $env:GITHUB_ENV
+          curl -o vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FWindows%2Dx86%5F64%2Fvdat%2Eexe/raw?ref=master"
+          vdat.exe --help
+
+      - name: Set up VDAT on Linux
+        if: ${{ matrix.config.os }} == 'ubuntu-latest'
+        run: |
+          echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
+          curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FLinux%2Dx86%5F64%2Fvdat/raw?ref=master"
+          chmod +x vdat
+          ./vdat --help
+
+      - name: Set up VDAT on macOS
+        if: ${{ matrix.config.os }} == 'macos-latest'
+        run: |
+          echo "VDAT_EXE=/Users/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
+          curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FmacOS%2Dx86%5F64%2Fvdat/raw?ref=master"
+          chmod +x vdat
+          ./vdat --help
