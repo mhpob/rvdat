@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
           curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FLinux%2Dx86%5F64%2Fvdat/raw?ref=master"
-          chmod +x vdat
+          chmod +x ./vdat
           ./vdat --help
 
       - name: Set up VDAT on macOS
@@ -50,5 +50,5 @@ jobs:
         run: |
           echo "VDAT_EXE=/Users/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
           curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FmacOS%2Dx86%5F64%2Fvdat/raw?ref=master"
-          chmod +x vdat
+          chmod +x ./vdat
           ./vdat --help
