@@ -9,11 +9,15 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       GITLAB_PAT: ${{ secrets.GITLAB_TOKEN }}
-      VDAT_EXE: "D:\\a\\rvdat\\rvdat\\vdat.exe"
+      # VDAT_EXE: "D:\\a\\rvdat\\rvdat\\vdat.exe"
  # /Users/runner/work/rvdat/rvdat/vdat = mac /home/runner/work/rvdat/rvdat
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: set env var
+        run: |
+          echo "VDAT_EXE='D:\\a\\rvdat\\rvdat\\vdat.exe'" >> $env.GITHUB_ENV
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -34,7 +38,7 @@ jobs:
         run: |
           vdat.exe --help
 
-      - name: List vdat
+      - name: Run a test
         run: |
           Rscript -e "testthat::test_file('tests/testthat/test-vdat_call.R', package = 'rvdat')"
 
