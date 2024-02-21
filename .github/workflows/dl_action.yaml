@@ -37,5 +37,12 @@ jobs:
 
       - name: Run vdat
         run: |
-          Rscript -e 'rvdat::vdat_here(file.path(getwd(), "vdat.exe"))'
+          Rscript -e 'rvdat::vdat_here(Sys.which('vdat.exe'))'
+
+      - name: List vdat
+        run: |
+          Rscript -e 'Sys.getenv("VDAT_EXE")'
+
+      - name: Call vdat
+        run: |
           Rscript -e 'rvdat::vdat_call()'
