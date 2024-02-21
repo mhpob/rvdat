@@ -30,14 +30,15 @@ jobs:
       - name: Set up VDAT on Windows
         env:
           GL_PAT: ${{ secrets.GITLAB_TOKEN }}
-        if: ${{ matrix.config.os }} == 'windows-latest'
+        if: runner.os == 'Windows'
+        shell: cmd
         run: |
           echo "VDAT_EXE=D:\\a\\rvdat\\rvdat\\vdat.exe" >> $env:GITHUB_ENV
           curl -o vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FWindows%2Dx86%5F64%2Fvdat%2Eexe/raw?ref=master"
           vdat.exe --help
 
       - name: Set up VDAT on Linux
-        if: ${{ matrix.config.os }} == 'ubuntu-latest'
+        if: runner.os == 'Linux'
         run: |
           echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
           curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FLinux%2Dx86%5F64%2Fvdat/raw?ref=master"
@@ -45,7 +46,7 @@ jobs:
           ./vdat --help
 
       - name: Set up VDAT on macOS
-        if: ${{ matrix.config.os }} == 'macos-latest'
+        if: runner.os == 'macOS'
         run: |
           echo "VDAT_EXE=/Users/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
           curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FmacOS%2Dx86%5F64%2Fvdat/raw?ref=master"
