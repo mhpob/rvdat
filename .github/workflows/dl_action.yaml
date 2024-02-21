@@ -9,6 +9,8 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       GITLAB_PAT: ${{ secrets.GITLAB_TOKEN }}
+      VDAT_EXE: "D:\\a\\rvdat\\rvdat\\vdat.exe"
+ # /Users/runner/work/rvdat/rvdat/vdat = mac /home/runner/work/rvdat/rvdat
 
     steps:
       - uses: actions/checkout@v4
@@ -31,22 +33,11 @@ jobs:
         run: |
           vdat.exe --help
 
-      - name: cosdfs
-        run: |
-          echo "VDAT_EXE='D:\\a\\rvdat\\rvdat\\vdat.exe'" >> $GITHUB_ENV
-
-      - name: Find vdat
-        run: |
-          Rscript -e "Sys.which('vdat.exe')"
-
-      - name: Run vdat
-        run: |
-          Rscript -e "rvdat::vdat_here(Sys.which('vdat.exe'))"
-
       - name: List vdat
         run: |
           Rscript -e "Sys.getenv('VDAT_EXE')"
 
       - name: Call vdat
         run: |
-          Rscript -e 'rvdat::vdat_call()'
+          Rscript -e "rvdat::vdat_call()"
+
