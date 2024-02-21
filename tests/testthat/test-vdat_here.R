@@ -14,7 +14,9 @@ test_that("fails with no exe", {
 test_that("succeed with exe", {
   skip_on_cran()
 
-  readRenviron("~/.Renviron")
+  cat("\n\n", Sys.getenv("VDAT_EXE"), "\n\n")
+
+  if (file.exists("~/.Renviron")) readRenviron("~/.Renviron")
 
   suppressMessages(
     expect_no_error(
