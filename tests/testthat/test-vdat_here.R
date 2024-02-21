@@ -20,7 +20,7 @@ test_that("fails with no exe", {
 test_that("succeed with exe", {
   skip_on_cran()
 
-  if (file.exists("~/.Renviron")) readRenviron("~/.Renviron")
+  # if (file.exists("~/.Renviron")) readRenviron("~/.Renviron")
 
   suppressMessages(
     expect_no_error(
@@ -31,5 +31,7 @@ test_that("succeed with exe", {
   message_out <- expect_message(
     vdat_here(Sys.getenv("VDAT_EXE"))
   )
+  cat("\n\n", message_out$message, "\n\n")
+  cat("\n\n", Sys.getenv("VDAT_EXE"), "\n\n")
   expect_true(grepl(Sys.getenv("VDAT_EXE"), message_out$message))
 })
