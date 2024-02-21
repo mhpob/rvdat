@@ -1,4 +1,7 @@
 test_that("fails with no exe", {
+  # Log initial env. var.
+  vdat_env <- Sys.getenv("VDAT_EXE")
+
   err <- expect_error(
     vdat_here("abc_123")
   )
@@ -9,12 +12,13 @@ test_that("fails with no exe", {
 
   expect_type(err, "list")
   expect_s3_class(err, c("rlang_error", "error", "condition"))
+
+  # Restore env. var.
+  Sys.setenv(VDAT_EXE = vdat_env)
 })
 
 test_that("succeed with exe", {
   skip_on_cran()
-
-  cat("\n\n", Sys.getenv("VDAT_EXE"), "\n\n")
 
   if (file.exists("~/.Renviron")) readRenviron("~/.Renviron")
 
