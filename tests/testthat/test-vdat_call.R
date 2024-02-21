@@ -1,4 +1,3 @@
-cat("\n\n", Sys.getenv("VDAT_EXE"), "\n\n\n")
 test_that("vdat_call gives expected results", {
   skip_on_cran()
 

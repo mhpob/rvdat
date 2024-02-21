@@ -1,5 +1,4 @@
 test_that("vdat_inspect outputs to console", {
-  skip_on_ci()
   skip_on_cran()
 
   # HR vdat
@@ -59,7 +58,6 @@ test_that("vdat_inspect outputs to console", {
 })
 
 test_that("vdat_inspect invisibly returns a data frame", {
-  skip_on_ci()
   skip_on_cran()
 
   # HR vdat
