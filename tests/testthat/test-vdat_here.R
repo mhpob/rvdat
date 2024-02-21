@@ -33,5 +33,5 @@ test_that("succeed with exe", {
   )
   cat("\n\n", message_out$message, "\n\n")
   cat("\n\n", Sys.getenv("VDAT_EXE"), "\n\n")
-  expect_true(grepl(Sys.getenv("VDAT_EXE"), message_out$message))
+  expect_true(grepl(trimws(Sys.getenv("VDAT_EXE")), message_out$message))
 })
