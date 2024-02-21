@@ -16,7 +16,7 @@ jobs:
       - name: VDAT location on Linux
         if: runner.os == 'Linux'
         run: |
-          echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat.exe" >> $GITHUB_ENV
+          echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
 
       - name: Pull vdat
         run: |
