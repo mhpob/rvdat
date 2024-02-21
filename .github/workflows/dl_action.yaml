@@ -8,7 +8,6 @@ jobs:
     runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      GITLAB_PAT: ${{ secrets.GITLAB_TOKEN }}
       # VDAT_EXE: "D:\\a\\rvdat\\rvdat\\vdat.exe"
  # /Users/runner/work/rvdat/rvdat/vdat = mac /home/runner/work/rvdat/rvdat
 
@@ -41,8 +40,10 @@ jobs:
             local::.
 
       - name: Pull vdat.exe
+        env:
+          GL_PAT: ${{ secrets.GITLAB_TOKEN }}
         run: |
-          curl -o vdat.exe --request GET --header $env:GITLAB_PAT "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
+          curl -o vdat.exe --request GET --header $env:GL_PAT "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
 
       - name: Test vdat
         shell: cmd
