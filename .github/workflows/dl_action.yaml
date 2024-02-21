@@ -1,6 +1,6 @@
 on:
-  # push:
-  #   branches: ci-windows
+  push:
+    paths: "dl_action.yaml"
   workflow_dispatch:
 
 jobs:
@@ -29,29 +29,29 @@ jobs:
         run: |
           echo "VDAT_EXE=/Users/runner/work/rvdat/rvdat/vdat.exe" >> $GITHUB_ENV
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
+#      - uses: r-lib/actions/setup-r@v2
+#        with:
+#          use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages:
-            any::testthat
-            local::.
+#      - uses: r-lib/actions/setup-r-dependencies@v2
+#        with:
+#          packages:
+#            any::testthat
+#            local::.
 
       - name: Pull vdat.exe
         env:
           GL_PAT: ${{ secrets.GITLAB_TOKEN }}
         run: |
-          curl -o vdat.exe --request GET --header $env:GL_PAT "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
+          curl -o vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
 
       - name: Test vdat
         shell: cmd
         run: |
           vdat.exe --help
 
-      - name: Run a test
-        run: |
-          Rscript -e "testthat::test_file('tests/testthat/test-vdat_call.R', package = 'rvdat')"
+#       - name: Run a test
+      #   run: |
+      #     Rscript -e "testthat::test_file('tests/testthat/test-vdat_call.R', package = 'rvdat')"
 
 
