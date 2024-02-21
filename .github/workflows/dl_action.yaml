@@ -24,10 +24,14 @@ jobs:
 
       - name: Pull vdat.exe
         run: |
-          curl -o vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GITLAB_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat-working-group/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
+          curl -o vdat.exe --request GET --header $env:GITLAB_PAT "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat-working-group/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
 
-      - name: Note vdat location
-        run: Rscript -e 'rvdat::vdat_here(file.path(getwd(), "vdat.exe"))'
+      - name: Test vdat
+        shell: cmd
+        run: |
+          vdat.exe --help
 
-      - name: Run help
-        run: Rscript -e 'rvdat::vdat_call()'
+      - name: Run vdat
+        run: |
+          Rscript -e 'rvdat::vdat_here(file.path(getwd(), "vdat.exe"))'
+          Rscript -e 'rvdat::vdat_call()'
