@@ -18,10 +18,13 @@ jobs:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            local::.
 
       - name: Pull vdat.exe
         run: |
-          curl -o vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GITLAB_TOKEN" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat-working-group/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
+          curl -o vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GITLAB_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat-working-group/repository/files/releases%2Fvdat-7.0.0-20231107%2FWindows-x86_64%2Fvdat%2Eexe/raw?ref=master"
 
       - name: Note vdat location
         run: Rscript -e 'rvdat::vdat_here(file.path(getwd(), "vdat.exe"))'
