@@ -1,6 +1,6 @@
 on:
   push:
-    paths: "dl_action.yaml"
+    branches: main
   workflow_dispatch:
 
 jobs:
