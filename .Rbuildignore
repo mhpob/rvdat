@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^vdat\.exe$
+^vdat$
 ^\.github$
 ^LICENSE\.md$
 ^_pkgdown\.yml$
