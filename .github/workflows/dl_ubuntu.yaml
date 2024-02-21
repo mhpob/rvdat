@@ -17,13 +17,10 @@ jobs:
         run: |
           echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat" >> $GITHUB_ENV
 
-      - name: Pull vdat
+      - name: Pull vdat and test
         env:
           GL_PAT: ${{ secrets.GITLAB_TOKEN }}
         run: |
           curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FLinux%2Dx86%5F64%2Fvdat/raw?ref=master"
           chmod +x vdat
-
-      - name: Test vdat
-        run: |
          ./vdat --help
