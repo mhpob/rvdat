@@ -1,6 +1,9 @@
 on:
   push:
-    branches: ci-windows
+    branches:
+      - ci-windows
+    paths:
+      - .github/workflows/dl_windows.yaml
   workflow_dispatch:
 
 jobs:
