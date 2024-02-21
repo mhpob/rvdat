@@ -24,3 +24,18 @@ jobs:
           curl -o vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FLinux%2Dx86%5F64%2Fvdat/raw?ref=master"
           chmod +x vdat
           ./vdat --help
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::testthat
+            local::.
+
+      - name: Run a test
+        run: |
+          Rscript -e "testthat::test_file('tests/testthat/test-vdat_call.R', package = 'rvdat')"
+

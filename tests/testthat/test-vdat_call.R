@@ -1,7 +1,7 @@
 cat("\n\n", Sys.getenv("VDAT_EXE"), "\n\n\n")
 test_that("vdat_call gives expected results", {
   skip_on_cran()
-  skip_on_os(c("mac", "linux", "solaris"))
+  skip_on_os(c("mac", "solaris"))
 
   expect_output(
     vdat_call_result <- vdat_call(),
@@ -18,14 +18,14 @@ test_that("vdat_call gives expected results", {
 
 test_that("Basic commands work", {
   skip_on_cran()
-  skip_on_os(c("mac", "linux", "solaris"))
+  skip_on_os(c("mac", "solaris"))
 
   expect_equal(vdat_call(print = FALSE)$status, 0)
 })
 
 test_that("Bad commands don't work", {
   skip_on_cran()
-  skip_on_os(c("mac", "linux", "solaris"))
+  skip_on_os(c("mac", "solaris"))
 
   expect_error(vdat_call("help"))
   expect_error(vdat_call("--convert"))
