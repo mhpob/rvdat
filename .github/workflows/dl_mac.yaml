@@ -1,6 +1,6 @@
 on:
-  push:
-    branches: ci-windows
+  # push:
+  #   branches: ci-windows
   workflow_dispatch:
 
 jobs:
