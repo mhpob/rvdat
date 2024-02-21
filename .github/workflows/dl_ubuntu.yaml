@@ -30,6 +30,7 @@ jobs:
 
       - run: |
           ls ..
+          pwd
 
       # - uses: r-lib/actions/setup-r@v2
       #   with:
