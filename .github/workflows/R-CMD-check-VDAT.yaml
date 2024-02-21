@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches: ci-windows
-    paths: .github/workflows/R-CMD-check-VDAT.yaml
+#    paths: .github/workflows/R-CMD-check-VDAT.yaml
 
 name: R-CMD-check-VDAT
 
