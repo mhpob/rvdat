@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: ci-windows
+  workflow_dispatch:
+
+jobs:
+  rvdat-dl:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GITLAB_PAT: ${{ secrets.GITLAB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: VDAT location on Linux
+        if: runner.os == 'Linux'
+        run: |
+          echo "VDAT_EXE=/home/runner/work/rvdat/rvdat/vdat.exe" >> $GITHUB_ENV
+
+      - name: Pull vdat
+        run: |
+          curl -o vdat --request GET --header $GITLAB_PAT "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat-working-group/repository/files/releases%2Fvdat-7.0.0-20231107%2FLinux-x86_64%2Fvdat/raw?ref=master"
+
+      - name: Test vdat
+        run: |
+          vdat --help
