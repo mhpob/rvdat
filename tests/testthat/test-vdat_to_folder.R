@@ -1,5 +1,4 @@
 test_that("vdat_to_folder creates correct messages", {
-  skip_on_ci()
   skip_on_cran()
 
   # HR vdat
