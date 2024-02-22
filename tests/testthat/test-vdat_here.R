@@ -30,13 +30,13 @@ test_that("succeed with exe", {
 
   message_out <- expect_message(
     vdat_here(
-      normalizePath(Sys.getenv("VDAT_EXE"), winslash = '/')
+      normalizePath(Sys.getenv("VDAT_EXE"), winslash = "/")
     )
   )
 
   expect_true(
     grepl(
-      normalizePath(Sys.getenv("VDAT_EXE"), winslash = '/'),
+      normalizePath(Sys.getenv("VDAT_EXE"), winslash = "/"),
       message_out$message
     )
   )
