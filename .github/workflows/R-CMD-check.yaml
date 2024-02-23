@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: main
 
-name: R-CMD-check-VDAT
+name: R-CMD-check
 
 jobs:
   R-CMD-check-VDAT:
