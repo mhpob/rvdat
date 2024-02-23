@@ -8,7 +8,7 @@ on:
 name: R-CMD-check
 
 jobs:
-  R-CMD-check-VDAT:
+  R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -26,33 +26,14 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
-      GL_PAT: ${{ secrets.GITLAB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up VDAT on Windows
-        if: runner.os == 'Windows'
-        run: |
-          echo "VDAT_EXE=D:\a\rvdat\vdat.exe" >> $env:GITHUB_ENV
-          curl -o ..\vdat.exe --request GET --header "PRIVATE-TOKEN: $env:GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FWindows%2Dx86%5F64%2Fvdat%2Eexe/raw?ref=master"
-          ..\vdat.exe --help
-
-      - name: Set up VDAT on Linux
-        if: runner.os == 'Linux'
-        run: |
-          echo "VDAT_EXE=/home/runner/work/rvdat/vdat" >> $GITHUB_ENV
-          curl -o ../vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FLinux%2Dx86%5F64%2Fvdat/raw?ref=master"
-          chmod +x ../vdat
-          ../vdat --help
-
-      - name: Set up VDAT on macOS
-        if: runner.os == 'macOS'
-        run: |
-          echo "VDAT_EXE=/Users/runner/work/rvdat/vdat" >> $GITHUB_ENV
-          curl -o ../vdat --request GET --header "PRIVATE-TOKEN: $GL_PAT" "https://gitlab.oceantrack.org/api/v4/projects/otndc%2Fvdat%2Dworking%2Dgroup/repository/files/releases%2Fvdat%2D7%2E0%2E0%2D20231107%2FmacOS%2Dx86%5F64%2Fvdat/raw?ref=master"
-          chmod +x ../vdat
-          ../vdat --help
+      - name: Setup VDAT
+        uses: mhpob/actions/setup-vdat@v1
+        with:
+          gitlab-auth: ${{ secrets.GITLAB_TOKEN }}
 
       - uses: r-lib/actions/setup-pandoc@v2
 
