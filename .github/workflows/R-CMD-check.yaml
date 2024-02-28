@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup VDAT
-        uses: mhpob/actions/setup-vdat@v1
+        uses: mhpob/setup-vdat-action@v1
         with:
           gitlab-auth: ${{ secrets.GITLAB_TOKEN }}
 
