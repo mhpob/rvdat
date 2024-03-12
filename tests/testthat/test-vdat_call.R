@@ -35,5 +35,4 @@ test_that("Errors can be passed to higher-level functions", {
   )
 
   expect_equal(err$status, 1)
-
 })

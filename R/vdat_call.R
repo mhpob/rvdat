@@ -37,7 +37,7 @@ vdat_call <- function(what = "--help",
   )
 
   if (shell_out$status == 1) {
-    if(pass_error == FALSE) {
+    if (pass_error == FALSE) {
       error_generic_call(
         paste(what, collapse = " "),
         rawToChar(shell_out$stderr)
