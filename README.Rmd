@@ -80,7 +80,8 @@ remotes::install_github("mhpob/rvdat")
     -   Removed from `vdat.exe` in spring 2023. Left to user.
 -   [X] Output location
 -   [X] Time correction
--   [ ] Time offset
+-   [ ] ~~Time offset~~
+    -   Won't add; subtracts a number of hours from the time without being DST-aware.
 -   [ ] Detection filter
     -   only implemented for HR3 VDAT files
 -   [ ] Sensor values

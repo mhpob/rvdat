@@ -94,7 +94,9 @@ remotes::install_github("mhpob/rvdat")
   - Removed from `vdat.exe` in spring 2023. Left to user.
 - [x] Output location
 - [x] Time correction
-- [ ] Time offset
+- [ ] ~~Time offset~~
+  - Won’t add; subtracts a number of hours from the time without being
+    DST-aware.
 - [ ] Detection filter
   - only implemented for HR3 VDAT files
 - [ ] Sensor values
@@ -131,10 +133,10 @@ Convert a VRL to CSV:
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv
 ```
 
@@ -143,10 +145,10 @@ Convert a VRL to a folder of CSVs split by data type:
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
