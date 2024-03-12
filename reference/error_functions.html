@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rvdat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,13 +57,22 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">error_generic_call</span><span class="op">(</span><span class="va">what</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">error_generic_call</span><span class="op">(</span><span class="va">what</span>, <span class="va">error</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">error_convert</span><span class="op">(</span><span class="va">shell_out</span>, <span class="va">vdata_file</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">error_file_location</span><span class="op">(</span><span class="va">vdata_file</span>, <span class="va">error</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">error_too_many_files</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+    <dl><dt>error</dt>
+<dd><p>Character. Error from exec_internal(), passed through <code>rawToChar</code></p></dd>
 
-  </main></div>
+</dl></div>
+
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
