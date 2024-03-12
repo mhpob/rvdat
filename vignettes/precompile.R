@@ -19,6 +19,15 @@
 #   6. Repeat 2-5 as needed
 
 library(knitr)
+
+# Need to change workind directory to get the figure paths correct.
+#   see Note section in ?knitr::knit
+orig_wd <- getwd()
+setwd(file.path(orig_wd, "vignettes"))
+
 knit("vignettes/_how-to-use-rvdat.Rmd", "vignettes/how-to-use-rvdat.Rmd")
 knit("vignettes/_vdat-data-structure.Rmd", "vignettes/vdat-data-structure.Rmd")
 knit("vignettes/_vdat-data-columns.Rmd", "vignettes/vdat-data-columns.Rmd")
+knit("_matos-rvdat.Rmd", "matos-rvdat.Rmd")
+
+setwd(orig_wd)
