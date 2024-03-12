@@ -13,4 +13,5 @@
 ^vignettes/_how-to-use-rvdat\.Rmd$
 ^vignettes/_vdat-data-structure\.Rmd$
 ^vignettes/_vdat-data-columns\.Rmd$
+^vignettes/_matos-rvdat\.Rmd$
 ^codecov\.yml$
