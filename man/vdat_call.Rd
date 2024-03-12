@@ -4,7 +4,7 @@
 \alias{vdat_call}
 \title{Interface directly with \code{vdat.exe}.}
 \usage{
-vdat_call(what = "--help", print = TRUE, ...)
+vdat_call(what = "--help", print = TRUE, pass_error = FALSE, ...)
 }
 \arguments{
 \item{what}{arguments passed to \code{vdat.exe}. Defaults to \code{--help}.}

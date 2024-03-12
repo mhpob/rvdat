@@ -3,12 +3,18 @@
 \name{error_functions}
 \alias{error_functions}
 \alias{error_generic_call}
-\alias{error_convert}
+\alias{error_file_location}
+\alias{error_too_many_files}
 \title{Error functions}
 \usage{
-error_generic_call(what)
+error_generic_call(what, error)
 
-error_convert(shell_out, vdata_file)
+error_file_location(vdata_file, error)
+
+error_too_many_files()
+}
+\arguments{
+\item{error}{Character. Error from exec_internal(), passed through \code{rawToChar}}
 }
 \description{
 Error functions

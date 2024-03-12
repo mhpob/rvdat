@@ -26,17 +26,34 @@ skip_example_on_runiverse <- function() {
 
 #' Error functions
 #'
+#' @param error Character. Error from exec_internal(), passed through `rawToChar`
+#'
 #' @keywords internal
 #' @name error_functions
 
 error_generic_call <- function(what, error) {
   cli::cli_abort(
     c(
-      "x" = "Call to VDAT failed with error: {cli::col_red(error)}",
+      "x" = "Call to VDAT failed with error:",
+      " " = "{cli::col_red(error)}",
       "i" = "Is {what} a valid command?"
     )
   )
 }
+
+#' @rdname error_functions
+
+error_file_location <- function(vdata_file, error) {
+  cli::cli_abort(
+    c(
+      "x" = "Call to VDAT failed with error:",
+      " " = "{cli::col_red(error)}",
+      "i" = "Is the location of {vdata_file} correct?"
+    )
+  )
+}
+
+#' @rdname error_functions
 
 error_too_many_files <- function() {
   cli::cli_abort(
@@ -46,19 +63,6 @@ error_too_many_files <- function() {
     )
   )
 }
-
-#' @rdname error_functions
-
-error_convert <- function(shell_out, vdata_file) {
-  cli::cli_abort(
-    c(
-      "x" = "Call to VDAT failed:",
-      " " = "{rawToChar(shell_out$stderr)}",
-      "i" = "Is the location of {vdata_file} correct?"
-    )
-  )
-}
-
 
 #' Methods
 #'

@@ -68,23 +68,25 @@ test_that("errors error", {
 
 
   expect_error(
-    error_convert(
-      shell_out = list(stderr = charToRaw("some_shell_error")),
-      vdata_file = "some_bad_vdat_file"
+    error_file_location(
+      vdata_file = "some_bad_vdat_file",
+      error = "some_shell_error"
     ),
-    "Call to VDAT failed:"
+    "Call to VDAT failed with error"
   )
+
   expect_error(
-    error_convert(
-      shell_out = list(stderr = charToRaw("some_shell_error")),
-      vdata_file = "some_bad_vdat_file"
+    error_file_location(
+      vdata_file = "some_bad_vdat_file",
+      error = "some_shell_error"
     ),
     "some_shell_error"
   )
+
   expect_error(
-    error_convert(
-      shell_out = list(stderr = charToRaw("some_shell_error")),
-      vdata_file = "some_bad_vdat_file"
+    error_file_location(
+      vdata_file = "some_bad_vdat_file",
+      error = "some_shell_error"
     ),
     "Is the location of some_bad_vdat_file correct\\?"
   )

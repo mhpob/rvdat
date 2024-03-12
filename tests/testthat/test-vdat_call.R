@@ -26,3 +26,14 @@ test_that("Bad commands don't work", {
   expect_error(vdat_call("help"))
   expect_error(vdat_call("--convert"))
 })
+
+test_that("Errors can be passed to higher-level functions", {
+  skip_on_cran()
+
+  expect_no_error(
+    err <- vdat_call("gibberish", pass_error = TRUE)
+  )
+
+  expect_equal(err$status, 1)
+
+})

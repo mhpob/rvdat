@@ -10,11 +10,12 @@ vdat_inspect <- function(vdata_file, ...) {
       "inspect",
       vdata_file
     ),
+    pass_error = TRUE,
     ...
   )
 
   if (shell_out$status == 1) {
-    error_convert(shell_out, vdata_file)
+    error_file_location(vdata_file, rawToChar(shell_out$stderr))
   }
 
   # Convert output into data frame

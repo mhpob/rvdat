@@ -86,13 +86,14 @@ vdat_to_csv <- function(vdata_file,
 
   # Call vdat.exe and capture response
   shell_out <- vdat_call(
-    vdat_args
+    vdat_args,
+    pass_error = TRUE
   )
 
 
   # Handle error
   if (shell_out$status == 1) {
-    error_convert(shell_out, vdata_file)
+    error_file_location(vdata_file, rawToChar(shell_out$stderr))
   }
 
 

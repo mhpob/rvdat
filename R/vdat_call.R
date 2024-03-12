@@ -25,6 +25,7 @@
 #'
 vdat_call <- function(what = "--help",
                       print = TRUE,
+                      pass_error = FALSE,
                       ...) {
   vdat_loc <- check_vdat_location()
 
@@ -36,10 +37,12 @@ vdat_call <- function(what = "--help",
   )
 
   if (shell_out$status == 1) {
-    error_generic_call(
-      paste(what, collapse = " "),
-      sys::as_text(shell_out$stderr)
-    )
+    if(pass_error == FALSE) {
+      error_generic_call(
+        paste(what, collapse = " "),
+        rawToChar(shell_out$stderr)
+      )
+    }
   }
 
   class(shell_out) <- "vdat_resp"
