@@ -3,6 +3,7 @@
 export(skip_example_on_ci)
 export(skip_example_on_runiverse)
 export(vdat_call)
+export(vdat_csv_format)
 export(vdat_here)
 export(vdat_inspect)
 export(vdat_to_csv)
