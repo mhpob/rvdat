@@ -29,10 +29,10 @@ skip_example_on_runiverse <- function() {
 #' @keywords internal
 #' @name error_functions
 
-error_generic_call <- function(what) {
+error_generic_call <- function(what, error) {
   cli::cli_abort(
     c(
-      "x" = "Call to VDAT failed.",
+      "x" = "Call to VDAT failed with error: {cli::col_red(error)}",
       "i" = "Is {what} a valid command?"
     )
   )

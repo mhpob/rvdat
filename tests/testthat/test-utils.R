@@ -47,11 +47,12 @@ test_that("example RUniverse skipper works when not on RUniverse.", {
 
 test_that("errors error", {
   expect_error(
-    error_generic_call("abc"),
-    "Call to VDAT failed\\."
+    error_generic_call("abc", "error message"),
+    "Call to VDAT failed.*error message"
   )
+
   expect_error(
-    error_generic_call("abc"),
+    error_generic_call("abc", "error message"),
     "Is abc a valid command\\?"
   )
 
