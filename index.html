@@ -135,7 +135,12 @@
 </li>
 <li><label><input type="checkbox" checked>Output location</label></li>
 <li><label><input type="checkbox" checked>Time correction</label></li>
-<li><label><input type="checkbox">Time offset</label></li>
+<li>
+<label><input type="checkbox"><del>Time offset</del></label>
+<ul>
+<li>Won’t add; subtracts a number of hours from the time without being DST-aware.</li>
+</ul>
+</li>
 <li>
 <label><input type="checkbox">Detection filter</label>
 <ul>
@@ -171,19 +176,19 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.csv</span></span></code></pre></div>
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ Files saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpS4Okg5/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpURLmd5/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.csv-fathom-split</span></span>
 <span><span class="co">## list.files("SOME-VDAT-FILE.csv-fathom-split")</span></span>
 <span><span class="co">#&gt;  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     </span></span>
