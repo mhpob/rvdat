@@ -11,6 +11,9 @@ vdat_call(what = "--help", print = TRUE, pass_error = FALSE, ...)
 
 \item{print}{logical. Defaults to TRUE. Print the output to console?}
 
+\item{pass_error}{logical. Defaults to FALSE. Capture and pass any error
+through to the user?}
+
 \item{...}{arguments passed to \code{\link[sys:exec]{sys::exec_internal}}.}
 }
 \description{

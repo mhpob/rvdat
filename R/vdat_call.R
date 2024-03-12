@@ -6,6 +6,8 @@
 #'
 #' @param what arguments passed to `vdat.exe`. Defaults to `--help`.
 #' @param print logical. Defaults to TRUE. Print the output to console?
+#' @param pass_error logical. Defaults to FALSE. Capture and pass any error
+#'    through to the user?
 #' @param ... arguments passed to [`sys::exec_internal`].
 #'
 #' @export
