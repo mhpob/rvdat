@@ -52,10 +52,16 @@
     <loc>https://mhpob.github.io/rvdat/reference/vdat_inspect.html</loc>
   </url>
   <url>
+    <loc>https://mhpob.github.io/rvdat/reference/vdat_to.html</loc>
+  </url>
+  <url>
     <loc>https://mhpob.github.io/rvdat/reference/vdat_to_csv.html</loc>
   </url>
   <url>
     <loc>https://mhpob.github.io/rvdat/reference/vdat_to_folder.html</loc>
+  </url>
+  <url>
+    <loc>https://mhpob.github.io/rvdat/reference/vdat_to_json.html</loc>
   </url>
   <url>
     <loc>https://mhpob.github.io/rvdat/reference/vdat_version.html</loc>
