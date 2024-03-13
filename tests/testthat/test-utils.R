@@ -58,12 +58,16 @@ test_that("errors error", {
 
 
   expect_error(
-    error_too_many_files(),
+    error_too_many_files("csv"),
     "Only one file is allowed at a time\\."
   )
   expect_error(
     error_too_many_files("csv"),
     "Consider using lapply\\(vdata_files, vdat_to_csv\\)\\."
+  )
+  expect_error(
+    error_too_many_files("json"),
+    "Only one file is allowed at a time\\."
   )
   expect_error(
     error_too_many_files("json"),
