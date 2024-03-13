@@ -10,13 +10,13 @@ vdat_to <- function(output_format = c("csv", "json"),
                     quiet = FALSE,
                     folder = FALSE,
                     filter = NULL){
-  # Check that only 1 file has been passed
-  if (length(vdata_file) > 1) {
-    error_too_many_files()
-  }
-
   # Check output format
   output_format <- match.arg(output_format)
+
+  # Check that only 1 file has been passed
+  if (length(vdata_file) > 1) {
+    error_too_many_files(output_format)
+  }
 
   # Warn that we're not currently filtering
   if (!is.null(filter)) {

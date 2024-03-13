@@ -55,11 +55,11 @@ error_file_location <- function(vdata_file, error) {
 
 #' @rdname error_functions
 
-error_too_many_files <- function() {
+error_too_many_files <- function(output_format) {
   cli::cli_abort(
     c(
       "x" = "Only one file is allowed at a time.",
-      "i" = "Consider using lapply(vdata_files, vdat_to_csv)."
+      "i" = "Consider using lapply(vdata_files, {paste0('vdat_to_', output_format)})."
     )
   )
 }
