@@ -1,28 +1,24 @@
-#' Convert VRL file(s) to CSV(s)
+#' Internal `vdat convert` caller
 #'
-#' @param vdata_file path of VRL file to convert to CSV.
-#' @param outdir output directory for the created CSV files. Defaults to the
-#'  current working directory.
-#' @param time_corrected logical. Do you want to apply the default time correction?
-#' @param quiet logical, defaults to FALSE. Suppress messages?
-#' @param folder logical, defaults to FALSE. Convert VDAT to a folder of CSVs?
-#' @param filter character, defaults to NULL and is currently ignored with a
-#'  warning. When implemented, filtering via vdat.exe will only be available for
-#'  HR3 receivers.
-#'
-#' @export
-#'
-vdat_to_csv <- function(vdata_file,
-                        outdir = getwd(),
-                        time_corrected = FALSE,
-                        quiet = FALSE,
-                        folder = FALSE,
-                        filter = NULL) {
+#' @inheritParams vdat_to_csv
+#' @param output_format What is the desired output format? One of "csv" or "json".
+#'    Default is "csv".
+vdat_to <- function(output_format = c("csv", "json"),
+                    vdata_file,
+                    outdir = getwd(),
+                    time_corrected = FALSE,
+                    quiet = FALSE,
+                    folder = FALSE,
+                    filter = NULL){
   # Check that only 1 file has been passed
   if (length(vdata_file) > 1) {
     error_too_many_files()
   }
 
+  # Check output format
+  output_format <- match.arg(output_format)
+
+  # Warn that we're not currently filtering
   if (!is.null(filter)) {
     warning(
       'The "filter" argument is currently unsupported and has been ignored.'
@@ -30,11 +26,19 @@ vdat_to_csv <- function(vdata_file,
   }
 
   # Build arguments
-  format <- ifelse(folder == FALSE,
-    "--format=csv.fathom",
-    "--format=csv.fathom.split"
-  )
+  ## Output format
+  if (output_format == "csv") {
+    format <- ifelse(
+      folder == FALSE,
+      "--format=csv.fathom",
+      "--format=csv.fathom.split"
+    )
+  }
+  if (output_format == "json") {
+    format <- "--format=json.rxlog"
+  }
 
+  ## Convert function arguments
   vdat_args <- c(
     "convert",
     format,
@@ -42,6 +46,7 @@ vdat_to_csv <- function(vdata_file,
     paste0("--output=", outdir)
   )
 
+  ## Time correction
   if (time_corrected == TRUE) {
     vdat_args <- c(
       vdat_args,
@@ -55,7 +60,7 @@ vdat_to_csv <- function(vdata_file,
 
     filename <- gsub(
       "vdat|vrl",
-      "csv",
+      output_format,
       basename(vdata_file)
     )
 
@@ -76,7 +81,7 @@ vdat_to_csv <- function(vdata_file,
         )
         time_shell_out <- paste0("[", time_shell_out, "-xxxxxx]")
 
-        gsub("\\.csv", paste0(time_shell_out, ".csv"), file)
+        gsub("\\.(csv|json)", paste0(time_shell_out, ".", output_format), file)
       }
 
       time_shell_out <- Sys.time()
@@ -114,18 +119,4 @@ vdat_to_csv <- function(vdata_file,
       )
     )
   }
-}
-
-
-#' Convert a VRL file to a folder of CSVs by data type
-#'
-#' A wrapper around `vdat_to_csv` that just changes `folder = FALSE` to
-#'  `folder = TRUE`.
-#'
-#' @param ... arguments passed to `vdat_to_csv`.
-#'
-#' @export
-#' @examplesIf all(skip_example_on_ci(), skip_example_on_runiverse())
-vdat_to_folder <- function(...) {
-  vdat_to_csv(..., folder = TRUE)
 }
