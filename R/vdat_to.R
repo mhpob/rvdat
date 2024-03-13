@@ -9,7 +9,7 @@ vdat_to <- function(output_format = c("csv", "json"),
                     time_corrected = FALSE,
                     quiet = FALSE,
                     folder = FALSE,
-                    filter = NULL){
+                    filter = NULL) {
   # Check output format
   output_format <- match.arg(output_format)
 

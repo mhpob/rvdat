@@ -165,8 +165,8 @@ test_that("warns if filter is provided", {
   # HR vdat
   expect_warning(
     vdat_to_json(hr,
-                outdir = td,
-                filter = "abc123"
+      outdir = td,
+      filter = "abc123"
     ),
     warn_should_be
   )
@@ -175,8 +175,8 @@ test_that("warns if filter is provided", {
   # VR2AR vrl
   expect_warning(
     vdat_to_json(vr2ar,
-                outdir = td,
-                filter = "abc123"
+      outdir = td,
+      filter = "abc123"
     ),
     warn_should_be
   )
@@ -185,8 +185,8 @@ test_that("warns if filter is provided", {
   # VR2Tx vrl
   expect_warning(
     vdat_to_json(vr2tx,
-                outdir = td,
-                filter = "abc123"
+      outdir = td,
+      filter = "abc123"
     ),
     warn_should_be
   )
@@ -195,8 +195,8 @@ test_that("warns if filter is provided", {
   # VR2W 69k vrl
   expect_warning(
     vdat_to_json(vr2w69,
-                outdir = td,
-                filter = "abc123"
+      outdir = td,
+      filter = "abc123"
     ),
     warn_should_be
   )
@@ -205,8 +205,8 @@ test_that("warns if filter is provided", {
   # VR2W 180k vrl
   expect_warning(
     vdat_to_json(vr2w180,
-                outdir = td,
-                filter = "abc123"
+      outdir = td,
+      filter = "abc123"
     ),
     warn_should_be
   )

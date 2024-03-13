@@ -11,7 +11,7 @@ vdat_to_json <- function(vdata_file,
                          outdir = getwd(),
                          time_corrected = FALSE,
                          quiet = FALSE,
-                         filter = NULL){
+                         filter = NULL) {
   vdat_to(
     output_format = "json",
     vdata_file = vdata_file,
