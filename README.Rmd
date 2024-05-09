@@ -74,9 +74,6 @@ remotes::install_github("mhpob/rvdat")
 
 -   [ ] Sensor values
 -   [ ] Logging
--   Create template for
-    -   [ ] CSV
-    -   [ ] JSON
 -   [ ] Look for `vdat.exe`
 
 ### Completed
@@ -89,6 +86,7 @@ remotes::install_github("mhpob/rvdat")
 -   [X] Output location
 -   [X] Time correction
 -   [X] Inspect content of file
+-   [X] Create CSV template
 
 ### Won't add (for now)
 
@@ -98,6 +96,9 @@ remotes::install_github("mhpob/rvdat")
     -   Removed from `vdat.exe` in spring 2023. Left to user.
 -   [ ] ~~Time offset~~
     -   Won't add; subtracts a number of hours from the time without being DST-aware.
+-   [ ] ~~JSON template~~
+    -   The `json.rxlog` and `vfwp` formats noted in the help documentation return
+        as invalid.
 
 
 ## Using the package
