@@ -170,7 +170,7 @@ vdat_inspect(list.files(td, pattern = "HR2.*\\.vdat$", full.names = T))
 See the fields associated with different data types:
 
 ```{r}
-vdat_template(format = 'csv.fathom')
+vdat_template(format = "csv.fathom")
 ```
 
 
