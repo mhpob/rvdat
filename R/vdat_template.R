@@ -27,7 +27,7 @@ vdat_template <- function(
   template <- unlist(
     strsplit(
       template,
-      "\r\n"
+      "\r?\n"
     )
   )
   template <- strsplit(template, ",")[-c(1:2)]
