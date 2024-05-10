@@ -143,10 +143,10 @@ Convert a VRL to CSV:
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpIdz6ds/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpIdz6ds/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv
 ```
 
@@ -155,10 +155,10 @@ Convert a VRL to a folder of CSVs split by data type:
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpIdz6ds/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpIdz6ds/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
@@ -212,6 +212,298 @@ Check out the file metadata:
 #> Client Time Zone @ Offload: -04:00
 #> 
 #> 
+```
+
+See the fields associated with different data types:
+
+``` r
+vdat_template(format = 'csv.fathom')
+#> $ATTITUDE_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Tilt (deg)"         
+#> 
+#> $BATTERY_DESC
+#>  [1] "Device Time (UTC)"     "Time"                  "Time Offset (h)"      
+#>  [4] "Time Correction (s)"   "Model"                 "Serial Number"        
+#>  [7] "Battery Position"      "Battery Type"          "Battery Serial Number"
+#> [10] "Battery Voltage (V)"   "Battery Remaining (%)"
+#> 
+#> $CFG_CHANNEL_DESC
+#>  [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#>  [4] "Time Correction (s)" "Model"               "Serial Number"      
+#>  [7] "Channel"             "Detection Type"      "Frequency (kHz)"    
+#> [10] "Blanking (ms)"       "Map ID"              "Coding ID"          
+#> 
+#> $CFG_RECEIVER_HR3_DESC
+#>  [1] "Device Time (UTC)"                  "Time"                              
+#>  [3] "Time Offset (h)"                    "Time Correction (s)"               
+#>  [5] "Model"                              "Serial Number"                     
+#>  [7] "Mode"                               "HR Bitscore Threshold"             
+#>  [9] "HR Detection Combining Timeout (s)" "HTI Threshold Factor"              
+#> [11] "HTI Threshold Minimum"              "HTI Filter"                        
+#> 
+#> $CFG_STATION_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Station Name"        "Latitude (deg)"      "Longitude (deg)"    
+#> 
+#> $CFG_STUDY_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Description"        
+#> 
+#> $CFG_TRANSMITTER_DESC
+#>  [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#>  [4] "Time Correction (s)" "Model"               "Serial Number"      
+#>  [7] "Transmission Type"   "Full ID"             "ID"                 
+#> [10] "Power Level"         "Min Delay (s)"       "Max Delay (s)"      
+#> 
+#> $CLOCK_REF_DESC
+#> [1] "Device Time (UTC)"       "Time"                   
+#> [3] "Time Offset (h)"         "Time Correction (s)"    
+#> [5] "Model"                   "Serial Number"          
+#> [7] "External Time (UTC)"     "External Difference (s)"
+#> [9] "Source"                 
+#> 
+#> $CLOCK_SET_DESC
+#> [1] "Device Time (UTC)"       "Time"                   
+#> [3] "Time Offset (h)"         "Time Correction (s)"    
+#> [5] "Model"                   "Serial Number"          
+#> [7] "Prior Device Time (UTC)" "Prior Difference (s)"   
+#> [9] "Source"                 
+#> 
+#> $DATA_ERROR_DESC
+#> [1] "Type"        "Error"       "Page"        "Offset"      "Description"
+#> 
+#> $DATA_SOURCE_FILE_DESC
+#> [1] "File Name" "UUID"      "Type"      "Size"      "State"    
+#> 
+#> $DEPTH_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Depth (m)"          
+#> 
+#> $DEPTH_STATS_DESC
+#>  [1] "Device Time (UTC)"       "Time"                   
+#>  [3] "Time Offset (h)"         "Time Correction (s)"    
+#>  [5] "Model"                   "Serial Number"          
+#>  [7] "Depth Min (m)"           "Depth Max (m)"          
+#>  [9] "Depth Mean (m)"          "Sample Count"           
+#> [11] "Accumulation Period (s)"
+#> 
+#> $DET_DESC
+#>  [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#>  [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#>  [7] "Channel"              "Detection Type"       "Full ID"             
+#> [10] "ID"                   "Raw Data"             "Transmitter Serial"  
+#> [13] "Signal Strength (dB)" "Noise (dB)"           "Gain (dB)"           
+#> [16] "Quality Score"        "Station Name"         "Latitude"            
+#> [19] "Longitude"            "GPS HDOP"            
+#> 
+#> $DET_HTI_DESC
+#>  [1] "Device Time (UTC)"     "Time Correction (s)"   "Model"                
+#>  [4] "Serial Number"         "Peak Amplitude"        "Noise"                
+#>  [7] "Threshold"             "PW -3dB (ms)"          "PW -6dB (ms)"         
+#> [10] "PW -12dB (ms)"         "Frequency Offset (Hz)"
+#> 
+#> $DET_FILTER_DESC
+#> [1] "Filter Name"         "Details"             "Rejected Detections"
+#> 
+#> $DET_SENS_DESC
+#>  [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#>  [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#>  [7] "Channel"              "Detection Type"       "Full ID"             
+#> [10] "ID"                   "Raw Data"             "Transmitter Serial"  
+#> [13] "Signal Strength (dB)" "Noise (dB)"           "Gain (dB)"           
+#> [16] "Quality Score"        "Station Name"         "Latitude"            
+#> [19] "Longitude"            "GPS HDOP"             "Transmitter Type"    
+#> [22] "Sensor Function"      "Sensor Value"         "Sensor Unit"         
+#> [25] "Sensor Precision"     "Definition Source"   
+#> 
+#> $DIAG_DESC
+#>  [1] "Device Time (UTC)"           "Time"                       
+#>  [3] "Time Offset (h)"             "Time Correction (s)"        
+#>  [5] "Model"                       "Serial Number"              
+#>  [7] "Ambient Temperature (deg C)" "Noise Mean (mV)"            
+#>  [9] "Tilt (deg)"                  "Depth (m)"                  
+#> [11] "PPM Pings"                   "PPM Detections"             
+#> 
+#> $DIAG_FAST_DESC
+#>  [1] "Device Time (UTC)"           "Time"                       
+#>  [3] "Time Offset (h)"             "Time Correction (s)"        
+#>  [5] "Model"                       "Serial Number"              
+#>  [7] "Ambient Temperature (deg C)" "Noise (mV)"                 
+#>  [9] "Tilt (deg)"                  "Depth (m)"                  
+#> 
+#> $DIAG_HR2_DESC
+#>  [1] "Device Time (UTC)"      "Time"                   "Time Offset (h)"       
+#>  [4] "Time Correction (s)"    "Model"                  "Serial Number"         
+#>  [7] "Tilt (deg)"             "HR Noise (dB)"          "HR Accepted Detections"
+#> [10] "HR Rejected Detections" "PPM Pings (D1)"         "PPM Detections (D1)"   
+#> [13] "PPM Pings (D2)"         "PPM Detections (D2)"    "PPM Noise (dB)"        
+#> 
+#> $DIAG_HR3_DESC
+#>  [1] "Device Time (UTC)"      "Time"                   "Time Offset (h)"       
+#>  [4] "Time Correction (s)"    "Model"                  "Serial Number"         
+#>  [7] "Tilt (deg)"             "HR Noise (dB)"          "HR Accepted Detections"
+#> [10] "HR Rejected Detections" "PPM Pings (D1)"         "PPM Detections (D1)"   
+#> [13] "PPM Pings (D2)"         "PPM Detections (D2)"    "PPM Noise (dB)"        
+#> [16] "HTI Detections"         "HTI Noise (dB)"        
+#> 
+#> $DIAG_VR2W_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Pings"               "Detections"         
+#> 
+#> $DIAG_VR2W_INTERIM_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Pings"               "Detections"         
+#> 
+#> $DIAG_VR2AR_DESC
+#>  [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#>  [4] "Time Correction (s)" "Model"               "Serial Number"      
+#>  [7] "Pings"               "Detections"          "Noise (mV)"         
+#> [10] "Tilt (deg)"         
+#> 
+#> $DIAG_VR2AR_INTERIM_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Pings"               "Detections"         
+#> 
+#> $DIAG_VR2TX_DESC
+#>  [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#>  [4] "Time Correction (s)" "Model"               "Serial Number"      
+#>  [7] "Pings"               "Detections"          "Noise (mV)"         
+#> [10] "Tilt (deg)"         
+#> 
+#> $DIAG_VR2TX_INTERIM_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Pings"               "Detections"         
+#> 
+#> $DIAG_VR4_DESC
+#>  [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#>  [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#>  [7] "Pings (69 kHz)"       "Detections (69 kHz)"  "Pings (180 kHz)"     
+#> [10] "Detections (180 kHz)" "Tilt (deg)"          
+#> 
+#> $EVENT_DESC
+#>  [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#>  [4] "Time Correction (s)" "Model"               "Serial Number"      
+#>  [7] "Type"                "Subtype"             "Description"        
+#> [10] "Values"              ""                    ""                   
+#> [13] ""                    ""                    ""                   
+#> [16] ""                    "Latitude"            "Longitude"          
+#> [19] "GPS HDOP"           
+#> 
+#> $EVENT_FAULT_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Fault Importance"    "Fault Code"          "Fault Description"  
+#> 
+#> $EVENT_INIT_DESC
+#> [1] "Device Time (UTC)"       "Time"                   
+#> [3] "Time Offset (h)"         "Time Correction (s)"    
+#> [5] "Model"                   "Serial Number"          
+#> [7] "Prior Device Time (UTC)" "External Time Zone"     
+#> [9] "Firmware Version"       
+#> 
+#> $EVENT_OFFLOAD_DESC
+#>  [1] "Device Time (UTC)"             "Time"                         
+#>  [3] "Time Offset (h)"               "Time Correction (s)"          
+#>  [5] "Model"                         "Serial Number"                
+#>  [7] "External Time (UTC)"           "External Time Zone"           
+#>  [9] "HR Total Accepted Detections"  "PPM Total Accepted Detections"
+#> [11] "Memory Remaining (%)"          "Battery Remaining (%)"        
+#> [13] "Original File"                
+#> 
+#> $HEALTH_HR2_DESC
+#> [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#> [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#> [7] "Line Voltage (V)"     "Memory Remaining (%)" "RTC Time"            
+#> 
+#> $HEALTH_HR3_DESC
+#> [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#> [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#> [7] "Line Voltage (V)"     "Memory Remaining (%)" "RTC Time"            
+#> 
+#> $HEALTH_VR2AR_DESC
+#> [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#> [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#> [7] "Memory Remaining (%)" "RTC Time"            
+#> 
+#> $HEALTH_VR2TX_DESC
+#> [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#> [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#> [7] "Memory Remaining (%)" "RTC Time"            
+#> 
+#> $HEALTH_VR2W_DESC
+#> [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#> [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#> [7] "Memory Remaining (%)" "RTC Time"            
+#> 
+#> $HEALTH_VR4_DESC
+#> [1] "Device Time (UTC)"     "Time"                  "Time Offset (h)"      
+#> [4] "Time Correction (s)"   "Model"                 "Serial Number"        
+#> [7] "Memory Remaining (%)"  "Relative Humidity (%)" "RTC Time"             
+#> 
+#> $NOISE_DESC
+#>  [1] "Device Time (UTC)"     "Time"                  "Time Offset (h)"      
+#>  [4] "Time Correction (s)"   "Model"                 "Serial Number"        
+#>  [7] "Channel 1 noise (TBD)" "Channel 2 noise (TBD)" "Channel 3 noise (TBD)"
+#> [10] "Channel 4 noise (TBD)"
+#> 
+#> $NOISE_STATS_VR2AR_DESC
+#>  [1] "Device Time (UTC)"       "Time"                   
+#>  [3] "Time Offset (h)"         "Time Correction (s)"    
+#>  [5] "Model"                   "Serial Number"          
+#>  [7] "Noise Min (mV)"          "Noise Max (mV)"         
+#>  [9] "Noise Mean (mV)"         "Sample Count"           
+#> [11] "Accumulation Period (s)"
+#> 
+#> $NOISE_STATS_VR2TX_DESC
+#>  [1] "Device Time (UTC)"       "Time"                   
+#>  [3] "Time Offset (h)"         "Time Correction (s)"    
+#>  [5] "Model"                   "Serial Number"          
+#>  [7] "Noise Min (mV)"          "Noise Max (mV)"         
+#>  [9] "Noise Mean (mV)"         "Sample Count"           
+#> [11] "Accumulation Period (s)"
+#> 
+#> $PING_DESC
+#>  [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#>  [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#>  [7] "Channel"              "Frequency (kHz)"      "Blanking (ms)"       
+#> [10] "Signal Strength (dB)" "Noise (dB)"           "Gain (dB)"           
+#> [13] ""                     ""                     ""                    
+#> [16] ""                     "Latitude"             "Longitude"           
+#> [19] "GPS HDOP"            
+#> 
+#> $TEMP_DESC
+#> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
+#> [4] "Time Correction (s)" "Model"               "Serial Number"      
+#> [7] "Ambient (deg C)"     "Internal (deg C)"   
+#> 
+#> $TEMP_STATS_DESC
+#>  [1] "Device Time (UTC)"       "Time"                   
+#>  [3] "Time Offset (h)"         "Time Correction (s)"    
+#>  [5] "Model"                   "Serial Number"          
+#>  [7] "Ambient Min (deg C)"     "Ambient Max (deg C)"    
+#>  [9] "Ambient Mean (deg C)"    "Sample Count"           
+#> [11] "Accumulation Period (s)"
+#> 
+#> $XPND_EVENT_DESC
+#>  [1] "Device Time (UTC)"       "Time"                   
+#>  [3] "Time Offset (h)"         "Time Correction (s)"    
+#>  [5] "Model"                   "Serial Number"          
+#>  [7] "Type"                    "Subtype"                
+#>  [9] "Description"             "Values"                 
+#> [11] "Responder Model"         "Responder Serial Number"
+#> [13] "Responder Range (m)"     "Transmit Power (dB)"    
+#> [15] "Receive Signal (dB)"     "Receive Gain (dB)"      
+#> [17] "Latitude"                "Longitude"              
+#> [19] "GPS HDOP"
 ```
 
 Call VDAT using standard flags:
