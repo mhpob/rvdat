@@ -6,6 +6,8 @@ test_that("error if not csv", {
 })
 
 test_that("partial matching works", {
+  skip_on_cran()
+
   expect_equal(
     vdat_template(),
     vdat_template(format = "csv")
@@ -13,12 +15,16 @@ test_that("partial matching works", {
 })
 
 test_that("print works", {
+  skip_on_cran()
+
   expect_output(
     vdat_template(print = TRUE)
   )
 })
 
 test_that("correct types", {
+  skip_on_cran()
+
   template <- vdat_template()
 
   expect_type(template, "list")

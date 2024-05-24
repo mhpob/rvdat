@@ -146,6 +146,8 @@ test_that("errors if multiple files are provided", {
 
 
 test_that("errors if file can't be found", {
+  skip_on_cran()
+
   expect_error(
     vdat_to_csv("mising_file"),
     "Is the location of mising_file correct"
