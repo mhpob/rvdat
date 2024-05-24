@@ -15,3 +15,4 @@
 ^vignettes/_vdat-data-columns\.Rmd$
 ^vignettes/_matos-rvdat\.Rmd$
 ^codecov\.yml$
+^codemeta\.json$
