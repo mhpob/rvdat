@@ -97,8 +97,7 @@ remotes::install_github("mhpob/rvdat")
 -   [ ] ~~Time offset~~
     -   Won't add; subtracts a number of hours from the time without being DST-aware.
 -   [ ] ~~JSON template~~
-    -   The `json.rxlog` and `vfwp` formats noted in the help documentation return
-        as invalid.
+    -   The `json.rxlog` and `vfwp` formats noted in the help documentation were for internal testing and not intended to be exposed. (See [this issue](https://github.com/mhpob/rvdat/issues/15#issuecomment-2214421397))
 
 
 ## Using the package

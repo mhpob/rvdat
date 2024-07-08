@@ -114,7 +114,8 @@ remotes::install_github("mhpob/rvdat")
     DST-aware.
 - [ ] ~~JSON template~~
   - The `json.rxlog` and `vfwp` formats noted in the help documentation
-    return as invalid.
+    were for internal testing and not intended to be exposed. (See [this
+    issue](https://github.com/mhpob/rvdat/issues/15#issuecomment-2214421397))
 
 ## Using the package
 
@@ -143,10 +144,10 @@ Convert a VRL to CSV:
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv
 ```
 
@@ -155,10 +156,10 @@ Convert a VRL to a folder of CSVs split by data type:
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpgnQiad/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
@@ -217,7 +218,7 @@ Check out the file metadata:
 See the fields associated with different data types:
 
 ``` r
-vdat_template(format = 'csv.fathom')
+vdat_template(format = "csv.fathom")
 #> $ATTITUDE_DESC
 #> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
 #> [4] "Time Correction (s)" "Model"               "Serial Number"      

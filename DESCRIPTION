@@ -10,7 +10,7 @@ License: AGPL (>= 3)
 URL: https://rvdat.obrien.page, https://github.com/mhpob/rvdat
 BugReports: https://github.com/mhpob/rvdat/issues
 SystemRequirements: VDAT command line tools
-    (https://gitlab.oceantrack.org/otndc/vdat-working-group).
+    (https://support.fishtracking.innovasea.com/s/downloads).
 Imports: 
     cli,
     sys
