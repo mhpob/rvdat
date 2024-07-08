@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">rvdat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9100</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.900</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -176,31 +176,31 @@
 <p>What version?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_version.html">vdat_version</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; vdat-7.0.0-20231107-14c992-release</span></span></code></pre></div>
+<span><span class="co">#&gt; vdat-9.13.2-20240607-7a2e9d-release</span></span></code></pre></div>
 <p>Convert a VRL to CSV:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.csv</span></span></code></pre></div>
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ Files saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396</span></span>
 <span><span class="co">#&gt;   2021-04-20 173145.csv-fathom-split</span></span>
 <span><span class="co">## list.files("SOME-VDAT-FILE.csv-fathom-split")</span></span>
 <span><span class="co">#&gt;  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     </span></span>
-<span><span class="co">#&gt;  [4] "CFG_TRANSMITTER.csv"  "CLOCK_SET.csv"        "DATA_SOURCE_FILE.csv"</span></span>
-<span><span class="co">#&gt;  [7] "DET.csv"              "DET_FILTER.csv"       "DIAG_HR2.csv"        </span></span>
-<span><span class="co">#&gt; [10] "EVENT.csv"            "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   </span></span>
-<span><span class="co">#&gt; [13] "TEMP.csv"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [4] "CFG_TRANSMITTER.csv"  "CLOCK_REF.csv"        "CLOCK_SET.csv"       </span></span>
+<span><span class="co">#&gt;  [7] "DATA_SOURCE_FILE.csv" "DET.csv"              "DET_FILTER.csv"      </span></span>
+<span><span class="co">#&gt; [10] "DIAG_HR2.csv"         "EVENT.csv"            "EVENT_INIT.csv"      </span></span>
+<span><span class="co">#&gt; [13] "EVENT_OFFLOAD.csv"    "TEMP.csv"</span></span></code></pre></div>
 <p>Check out the file metadata:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_inspect("SOME-VDAT-FILE")</span></span>
@@ -478,11 +478,10 @@
 <span><span class="co">#&gt; [4] "Time Correction (s)"   "Model"                 "Serial Number"        </span></span>
 <span><span class="co">#&gt; [7] "Memory Remaining (%)"  "Relative Humidity (%)" "RTC Time"             </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $NOISE_DESC</span></span>
-<span><span class="co">#&gt;  [1] "Device Time (UTC)"     "Time"                  "Time Offset (h)"      </span></span>
-<span><span class="co">#&gt;  [4] "Time Correction (s)"   "Model"                 "Serial Number"        </span></span>
-<span><span class="co">#&gt;  [7] "Channel 1 noise (TBD)" "Channel 2 noise (TBD)" "Channel 3 noise (TBD)"</span></span>
-<span><span class="co">#&gt; [10] "Channel 4 noise (TBD)"</span></span>
+<span><span class="co">#&gt; $HEALTH_NEXTRAK_DESC</span></span>
+<span><span class="co">#&gt; [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     </span></span>
+<span><span class="co">#&gt; [4] "Time Correction (s)"  "Model"                "Serial Number"       </span></span>
+<span><span class="co">#&gt; [7] "Memory Remaining (%)"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $NOISE_STATS_VR2AR_DESC</span></span>
 <span><span class="co">#&gt;  [1] "Device Time (UTC)"       "Time"                   </span></span>
@@ -520,86 +519,24 @@
 <span><span class="co">#&gt;  [5] "Model"                   "Serial Number"          </span></span>
 <span><span class="co">#&gt;  [7] "Ambient Min (deg C)"     "Ambient Max (deg C)"    </span></span>
 <span><span class="co">#&gt;  [9] "Ambient Mean (deg C)"    "Sample Count"           </span></span>
-<span><span class="co">#&gt; [11] "Accumulation Period (s)"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $XPND_EVENT_DESC</span></span>
-<span><span class="co">#&gt;  [1] "Device Time (UTC)"       "Time"                   </span></span>
-<span><span class="co">#&gt;  [3] "Time Offset (h)"         "Time Correction (s)"    </span></span>
-<span><span class="co">#&gt;  [5] "Model"                   "Serial Number"          </span></span>
-<span><span class="co">#&gt;  [7] "Type"                    "Subtype"                </span></span>
-<span><span class="co">#&gt;  [9] "Description"             "Values"                 </span></span>
-<span><span class="co">#&gt; [11] "Responder Model"         "Responder Serial Number"</span></span>
-<span><span class="co">#&gt; [13] "Responder Range (m)"     "Transmit Power (dB)"    </span></span>
-<span><span class="co">#&gt; [15] "Receive Signal (dB)"     "Receive Gain (dB)"      </span></span>
-<span><span class="co">#&gt; [17] "Latitude"                "Longitude"              </span></span>
-<span><span class="co">#&gt; [19] "GPS HDOP"</span></span></code></pre></div>
+<span><span class="co">#&gt; [11] "Accumulation Period (s)"</span></span></code></pre></div>
 <p>Call VDAT using standard flags:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; VDAT File Tool</span></span>
-<span><span class="co">#&gt; Usage:</span></span>
-<span><span class="co">#&gt;   vdat [OPTION...] [COMMAND [ARG]...]...</span></span>
+<span><span class="co">#&gt; Usage: C:\PROGRA~1\INNOVA~1\Fathom\vdat.exe [OPTIONS] [SUBCOMMAND]</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Common options:</span></span>
-<span><span class="co">#&gt;       --format FORMAT  Output file format (e.g. csv.fathom, csv.fathom.split,</span></span>
-<span><span class="co">#&gt;                        json.rxlog)</span></span>
-<span><span class="co">#&gt;       --output PATH    Output file or directory path</span></span>
+<span><span class="co">#&gt; Options:</span></span>
+<span><span class="co">#&gt;   -h,--help                   Show help and summary of commands, or detailed</span></span>
+<span><span class="co">#&gt;                               help for selected command (and exit)</span></span>
+<span><span class="co">#&gt;   --help-all                  Show help for all commands (and exit)</span></span>
+<span><span class="co">#&gt;   -v,--version                Print application version (and exit)</span></span>
+<span><span class="co">#&gt;   --app-id                    Print application identity (and exit)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Conversion Options options:</span></span>
-<span><span class="co">#&gt;       --timec OPTION            Enable time correction (e.g. --timec=default)</span></span>
-<span><span class="co">#&gt;       --detection-filter FILTER</span></span>
-<span><span class="co">#&gt;                                 Detection filtering algorithm ???</span></span>
-<span><span class="co">#&gt;       --tagdb FILEPATH          Path of local tag database to be used for</span></span>
-<span><span class="co">#&gt;                                 sensor value conversion.</span></span>
-<span><span class="co">#&gt;       --offset-hours HOURS      Offset times by a number of hours. Typically</span></span>
-<span><span class="co">#&gt;                                 used to change time zone.</span></span>
-<span><span class="co">#&gt;       --segment-hours HOURS     Maximum data timespan (in hours) to include</span></span>
-<span><span class="co">#&gt;                                 in each output file</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  General options:</span></span>
-<span><span class="co">#&gt;   -h, --help      Print application help (and exit)</span></span>
-<span><span class="co">#&gt;   -v, --version   Print application version (and exit)</span></span>
-<span><span class="co">#&gt;       --app-id    Print application identity (and exit)</span></span>
-<span><span class="co">#&gt;       --debug     Enable debug mode</span></span>
-<span><span class="co">#&gt;   -p, --progress  Output realtime progress to the console</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Logging options:</span></span>
-<span><span class="co">#&gt;       --log [=PATH(=C:\Users\darpa2\AppData\Local\Innovasea\VRPC\vdat)]</span></span>
-<span><span class="co">#&gt;                                 Enable file logging. Explicit path is</span></span>
-<span><span class="co">#&gt;                                 optional.</span></span>
-<span><span class="co">#&gt;       --log-level LEVEL         Set filter threshold for file logging [0</span></span>
-<span><span class="co">#&gt;                                 (most verbose), 1000 (least verbose)]</span></span>
-<span><span class="co">#&gt;       --trace                   Send all logging to console (no filtering)</span></span>
-<span><span class="co">#&gt;       --trace-debug             Send logging to console with debug-level</span></span>
-<span><span class="co">#&gt;                                 filtering (200)</span></span>
-<span><span class="co">#&gt;       --trace-info              Send logging to console with info-level</span></span>
-<span><span class="co">#&gt;                                 filtering (300)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Commands:</span></span>
-<span><span class="co">#&gt;   convert   Convert file to the given file format</span></span>
-<span><span class="co">#&gt;             .  Usage:    vdat convert --format=&lt;FORMAT&gt; &lt;INPUT_FILEPATH&gt;</span></span>
-<span><span class="co">#&gt;             .</span></span>
-<span><span class="co">#&gt;             .  Optional: --output=&lt;FILE_OR_DIRECTORY_PATH&gt;</span></span>
-<span><span class="co">#&gt;             .            --timec=default</span></span>
-<span><span class="co">#&gt;             .            --detection-filter=&lt;FILTER&gt;</span></span>
-<span><span class="co">#&gt;             .            --tagdb=&lt;FILEPATH&gt;</span></span>
-<span><span class="co">#&gt;             .            --offset-hours=&lt;HOURS&gt;</span></span>
-<span><span class="co">#&gt;             .            --segment-hours=&lt;HOURS&gt;</span></span>
-<span><span class="co">#&gt;             .</span></span>
-<span><span class="co">#&gt;             .  Example:  vdat convert --format=csv.fathom &lt;INPUT_FILEPATH&gt;</span></span>
-<span><span class="co">#&gt;             .            vdat convert --format=json.rxlog &lt;INPUT_FILEPATH&gt;</span></span>
-<span><span class="co">#&gt;             </span></span>
-<span><span class="co">#&gt;   inspect   Describe the content of an existing file</span></span>
-<span><span class="co">#&gt;             .  Usage:    vdat inspect &lt;INPUT_FILEPATH&gt;</span></span>
-<span><span class="co">#&gt;             </span></span>
-<span><span class="co">#&gt;   template  Generate template for a given file format</span></span>
-<span><span class="co">#&gt;             .  Usage:    vdat template --format=&lt;FORMAT&gt;</span></span>
-<span><span class="co">#&gt;             .</span></span>
-<span><span class="co">#&gt;             .  Optional: --output=&lt;OUTPUT_FILEPATH&gt;</span></span>
-<span><span class="co">#&gt;             .</span></span>
-<span><span class="co">#&gt;             .  Example:  vdat template --format=vfwp</span></span>
-<span><span class="co">#&gt;             </span></span>
-<span><span class="co">#&gt; </span></span></code></pre></div>
+<span><span class="co">#&gt; Subcommands:</span></span>
+<span><span class="co">#&gt;   convert                     Convert file to the given file format</span></span>
+<span><span class="co">#&gt;   inspect                     Describe the content of an existing file</span></span>
+<span><span class="co">#&gt;   template                    Generate template for a given file format</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="development-notes">Development notes<a class="anchor" aria-label="anchor" href="#development-notes"></a>

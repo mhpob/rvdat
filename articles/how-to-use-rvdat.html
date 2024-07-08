@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rvdat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9100</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.900</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
     
 <p>This vignette is a working draft. There will be lots of changes as
 <code>rvdat</code> gets fleshed out, so please check back often!</p>
-<p>The most recent changes were made on 2024-01-10.</p>
+<p>The most recent changes were made on 2024-07-08.</p>
 <div class="section level2">
 <h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h2>
@@ -181,20 +181,13 @@ you’d like to keep it around.</p>
 <span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">inspect_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    variable</span></span>
-<span><span class="co">#&gt; 1      File</span></span>
-<span><span class="co">#&gt; 2  Original</span></span>
-<span><span class="co">#&gt; 3 Container</span></span>
-<span><span class="co">#&gt; 4   Created</span></span>
-<span><span class="co">#&gt; 5 Data UUID</span></span>
-<span><span class="co">#&gt; 6  Rx Model</span></span>
-<span><span class="co">#&gt;                                                      value</span></span>
-<span><span class="co">#&gt; 1                              VR2AR_546310_20190613_1.vrl</span></span>
-<span><span class="co">#&gt; 2                              VR2AR_546310_20190613_1.vrl</span></span>
-<span><span class="co">#&gt; 3 VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)</span></span>
-<span><span class="co">#&gt; 4                                      2019-06-13T13:30:54</span></span>
-<span><span class="co">#&gt; 5                     ffee6ee7-450a-db42-b54c-334b672fddf5</span></span>
-<span><span class="co">#&gt; 6                                                 VR2AR-69</span></span>
+<span><span class="co">#&gt;    variable                                                    value</span></span>
+<span><span class="co">#&gt; 1      File                              VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt; 2  Original                              VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt; 3 Container VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)</span></span>
+<span><span class="co">#&gt; 4   Created                                      2019-06-13T13:30:54</span></span>
+<span><span class="co">#&gt; 5 Data UUID                     ffee6ee7-450a-db42-b54c-334b672fddf5</span></span>
+<span><span class="co">#&gt; 6  Rx Model                                                 VR2AR-69</span></span>
 <span><span class="co">#&gt;   section</span></span>
 <span><span class="co">#&gt; 1     VRL</span></span>
 <span><span class="co">#&gt; 2     VRL</span></span>
@@ -215,9 +208,9 @@ let’s convert it to a csv. It’s pretty quick with
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.csv</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.csv</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"</span></span></code></pre></div>
@@ -230,14 +223,14 @@ time stamp to the name of the newly-exported file.</p>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1[20240110-11-00-35-xxxxxx].csv</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1[20240708-12-50-27-xxxxxx].csv</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">td</span>, pattern <span class="op">=</span> <span class="st">"VR2AR"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv"                          </span></span>
 <span><span class="co">#&gt; [2] "VR2AR_546310_20190613_1.vrl"                          </span></span>
-<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240110-11-00-35-794936].csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [3] "VR2AR_546310_20190613_1[20240708-12-50-28-002297].csv"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="converting-a-vdat-file-to-a-csv-with-time-correction">Converting a VDAT file to a CSV with time correction<a class="anchor" aria-label="anchor" href="#converting-a-vdat-file-to-a-csv-with-time-correction"></a>
@@ -252,9 +245,9 @@ time stamp to the name of the newly-exported file.</p>
 <span>  time_corrected <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1[20240110-11-00-36-xxxxxx].csv</span></span></code></pre></div>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1[20240708-12-50-28-xxxxxx].csv</span></span></code></pre></div>
 <p>A new column is added with time corrected down to the
 microsecond.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -291,9 +284,9 @@ convenience wrapper around…</li>
 <span>  outdir <span class="op">=</span> <span class="va">td</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl</span></span>
 <span><span class="co">#&gt; ℹ Files saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.csv-fathom-split</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.csv-fathom-split</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.dirs</a></span><span class="op">(</span><span class="va">td</span>, full.names <span class="op">=</span> <span class="cn">F</span>, recursive <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "VR2AR_546310_20190613_1.csv-fathom-split"</span></span>
@@ -451,20 +444,13 @@ HR-180 <code>VDAT</code> file:</p>
 <span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hr_output</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    variable</span></span>
-<span><span class="co">#&gt; 1      File</span></span>
-<span><span class="co">#&gt; 2  Original</span></span>
-<span><span class="co">#&gt; 3 Container</span></span>
-<span><span class="co">#&gt; 4   Content</span></span>
-<span><span class="co">#&gt; 5   Created</span></span>
-<span><span class="co">#&gt; 6 File UUID</span></span>
-<span><span class="co">#&gt;                                                      value</span></span>
-<span><span class="co">#&gt; 1                    HR2-180 461396 2021-04-20 173145.vdat</span></span>
-<span><span class="co">#&gt; 2                    HR2-180 461396 2021-04-20 173145.vdat</span></span>
-<span><span class="co">#&gt; 3              Vemco Data File (com.vemco.file.vdat/1.0.0)</span></span>
-<span><span class="co">#&gt; 4 HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)</span></span>
-<span><span class="co">#&gt; 5                                      2021-04-20T17:31:45</span></span>
-<span><span class="co">#&gt; 6                     f1a18604-46ea-4985-b57c-24809d37ad46</span></span>
+<span><span class="co">#&gt;    variable                                                    value</span></span>
+<span><span class="co">#&gt; 1      File                    HR2-180 461396 2021-04-20 173145.vdat</span></span>
+<span><span class="co">#&gt; 2  Original                    HR2-180 461396 2021-04-20 173145.vdat</span></span>
+<span><span class="co">#&gt; 3 Container              Vemco Data File (com.vemco.file.vdat/1.0.0)</span></span>
+<span><span class="co">#&gt; 4   Content HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)</span></span>
+<span><span class="co">#&gt; 5   Created                                      2021-04-20T17:31:45</span></span>
+<span><span class="co">#&gt; 6 File UUID                     f1a18604-46ea-4985-b57c-24809d37ad46</span></span>
 <span><span class="co">#&gt;   section</span></span>
 <span><span class="co">#&gt; 1    VDAT</span></span>
 <span><span class="co">#&gt; 2    VDAT</span></span>
