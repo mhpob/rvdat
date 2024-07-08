@@ -86,14 +86,18 @@ vdat_to <- function(output_format = c("csv", "json"),
 
       time_shell_out <- Sys.time()
     }
+
+    shell_out <- vdat_call(
+      vdat_args,
+      pass_error = TRUE
+    )
+  } else {
+    shell_out <- vdat_call(
+      vdat_args,
+      pass_error = TRUE,
+      print = FALSE
+    )
   }
-
-
-  # Call vdat.exe and capture response
-  shell_out <- vdat_call(
-    vdat_args,
-    pass_error = TRUE
-  )
 
 
   # Handle error

@@ -23,6 +23,11 @@ library(rvdat)
 The table below shows each receiver/VDAT type along with, in alphabetical order, each logged data type (attitude, battery, etc.) and their respective column names/data fields in bullets.
 
 
+
+
+
+
+
 ```
 #>   receiver file_type n_data_types
 #> 1  HR2-180      VDAT           26

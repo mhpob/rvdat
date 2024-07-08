@@ -26,17 +26,16 @@ library(rvdat)
 
 The table below shows each receiver/VDAT type along with, in alphabetical order, each logged data type (attitude, battery, etc.) and their respective column names/data fields in bullets.
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE}
 source("../tests/testthat/setup-testfiles.R")
 
-suppressMessages(
-  for (i in seq_along(testfiles)) {
+for (i in seq_along(testfiles)) {
     vdat_to_csv(testfiles[i],
                 outdir = td,
                 quiet = TRUE
     )
-  }
-)
+}
+
 
 exported_csvs <- lapply(
   list.files(td, pattern = "\\.csv$", full.names = T),
@@ -47,7 +46,7 @@ exported_csvs <- lapply(
 names(exported_csvs) <- list.files(td, pattern = "\\.v.*$")
 ```
 
-```{r, make-data-dictionary, echo=FALSE, message=FALSE}
+```{r, make-data-dictionary, echo=FALSE}
 make_key <- function(exported_csv) {
   key <- exported_csv[grepl("_DESC$", exported_csv$V1), ]
   key$V1 <- gsub("_DESC$", "", key$V1)
