@@ -30,10 +30,10 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 source("../tests/testthat/setup-testfiles.R")
 
 for (i in seq_along(testfiles)) {
-    vdat_to_csv(testfiles[i],
-      outdir = td,
-      quiet = TRUE
-    )
+  vdat_to_csv(testfiles[i],
+    outdir = td,
+    quiet = TRUE
+  )
 }
 
 
