@@ -2,7 +2,7 @@
 title: "Data within VDAT files"
 output: rmarkdown::html_vignette
 vignette: >
-%\VignetteIndexEntry{Data within VDAT files}
+  %\VignetteIndexEntry{Data within VDAT files}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
