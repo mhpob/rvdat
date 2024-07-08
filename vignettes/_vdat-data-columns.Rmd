@@ -9,8 +9,8 @@ vignette: >
   
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>"
+  collapse = TRUE,
+  comment = "#>"
 )
 ```
 
@@ -32,8 +32,8 @@ source("../tests/testthat/setup-testfiles.R")
 suppressMessages(
   for (i in seq_along(testfiles)) {
     vdat_to_csv(testfiles[i],
-                outdir = td,
-                quiet = TRUE
+      outdir = td,
+      quiet = TRUE
     )
   }
 )
@@ -51,12 +51,12 @@ names(exported_csvs) <- list.files(td, pattern = "\\.v.*$")
 make_key <- function(exported_csv) {
   key <- exported_csv[grepl("_DESC$", exported_csv$V1), ]
   key$V1 <- gsub("_DESC$", "", key$V1)
-  
+
   key <- key |>
     split(~V1, drop = TRUE) |>
     lapply(function(.) .[, colSums(. != "") != 0]) |>
     lapply(`[`, -1)
-  
+
   key
 }
 
@@ -86,7 +86,7 @@ data.frame(
 for (receiver_type in seq_along(keys)) {
   ## Per file
   n_data_type <- length(keys[[receiver_type]])
-  
+
   md <- paste0(
     "### ",
     names(keys)[receiver_type],
@@ -95,11 +95,11 @@ for (receiver_type in seq_along(keys)) {
     "\n\n"
   )
   cat(md)
-  
+
   for (data_type in seq_along(keys[[receiver_type]])) {
     ## per data type
     n_data_col <- length(keys[[receiver_type]][[data_type]])
-    
+
     md <- paste0(
       "#### ",
       names(keys[[receiver_type]])[data_type],
