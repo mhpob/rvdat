@@ -11,7 +11,7 @@ vignette: >
 
 This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
 
-The most recent changes were made on 2024-01-10.
+The most recent changes were made on 2024-07-08.
 
 
 ```r
@@ -23,6 +23,9 @@ library(rvdat)
 The table below shows each receiver/VDAT type along with, in alphabetical order, each logged data type (attitude, battery, etc.) and their respective column names/data fields in bullets.
 
 
+```
+#> 0.0% - Converting File7.6% - Converting File9.2% - Converting File10.7% - Converting File12.2% - Converting File13.7% - Converting File15.3% - Converting File16.8% - Converting File18.3% - Converting File19.8% - Converting File21.4% - Converting File22.9% - Converting File24.4% - Converting File26.0% - Converting File27.5% - Converting File29.0% - Converting File30.5% - Converting File32.1% - Converting File33.6% - Converting File35.1% - Converting File36.6% - Converting File38.2% - Converting File39.7% - Converting File41.2% - Converting File42.7% - Converting File44.3% - Converting File45.8% - Converting File47.3% - Converting File48.9% - Converting File50.4% - Converting File51.9% - Converting File53.4% - Converting File55.0% - Converting File56.5% - Converting File58.0% - Converting File59.5% - Converting File61.1% - Converting File62.6% - Converting File64.1% - Converting File65.6% - Converting File67.2% - Converting File68.7% - Converting File70.2% - Converting File71.8% - Converting File73.3% - Converting File74.8% - Converting File76.3% - Converting File77.9% - Converting File79.4% - Converting File80.9% - Converting File82.4% - Converting File84.0% - Converting File85.5% - Converting File87.0% - Converting File88.5% - Converting File90.1% - Converting File91.6% - Converting File93.1% - Converting File94.7% - Converting File96.2% - Converting File97.7% - Converting File100.0% - Converting File                        
+```
 
 
 

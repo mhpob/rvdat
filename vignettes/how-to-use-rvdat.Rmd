@@ -11,7 +11,7 @@ vignette: >
 
 This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
 
-The most recent changes were made on 2024-01-10.
+The most recent changes were made on 2024-07-08.
 
 ## Getting started
 
@@ -86,20 +86,13 @@ inspect_df <- vdat_inspect(
 #> 
 
 head(inspect_df)
-#>    variable
-#> 1      File
-#> 2  Original
-#> 3 Container
-#> 4   Created
-#> 5 Data UUID
-#> 6  Rx Model
-#>                                                      value
-#> 1                              VR2AR_546310_20190613_1.vrl
-#> 2                              VR2AR_546310_20190613_1.vrl
-#> 3 VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)
-#> 4                                      2019-06-13T13:30:54
-#> 5                     ffee6ee7-450a-db42-b54c-334b672fddf5
-#> 6                                                 VR2AR-69
+#>    variable                                                    value
+#> 1      File                              VR2AR_546310_20190613_1.vrl
+#> 2  Original                              VR2AR_546310_20190613_1.vrl
+#> 3 Container VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)
+#> 4   Created                                      2019-06-13T13:30:54
+#> 5 Data UUID                     ffee6ee7-450a-db42-b54c-334b672fddf5
+#> 6  Rx Model                                                 VR2AR-69
 #>   section
 #> 1     VRL
 #> 2     VRL
@@ -120,9 +113,9 @@ vdat_to_csv(
   outdir = td
 )
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.csv
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.csv
 
 list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
@@ -136,14 +129,14 @@ vdat_to_csv(
   outdir = td
 )
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1[20240110-11-00-35-xxxxxx].csv
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1[20240708-12-50-27-xxxxxx].csv
 
 list.files(td, pattern = "VR2AR")
 #> [1] "VR2AR_546310_20190613_1.csv"                          
 #> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20240110-11-00-35-794936].csv"
+#> [3] "VR2AR_546310_20190613_1[20240708-12-50-28-002297].csv"
 ```
 ## Converting a VDAT file to a CSV with time correction
 
@@ -157,9 +150,9 @@ vdat_to_csv(
   time_corrected = TRUE
 )
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1[20240110-11-00-36-xxxxxx].csv
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1[20240708-12-50-28-xxxxxx].csv
 ```
 
 A new column is added with time corrected down to the microsecond.
@@ -192,9 +185,9 @@ vdat_to_folder(
   outdir = td
 )
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.vrl
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.vrl
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp42s2YZ/vignette/VR2AR_546310_20190613_1.csv-fathom-split
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpuIFd1a/vignette/VR2AR_546310_20190613_1.csv-fathom-split
 
 list.dirs(td, full.names = F, recursive = F)
 #> [1] "VR2AR_546310_20190613_1.csv-fathom-split"
@@ -273,20 +266,13 @@ hr_output <- vdat_inspect(file.path(td, "HR2-180 461396 2021-04-20 173145.vdat")
 #> 
 #> 
 head(hr_output)
-#>    variable
-#> 1      File
-#> 2  Original
-#> 3 Container
-#> 4   Content
-#> 5   Created
-#> 6 File UUID
-#>                                                      value
-#> 1                    HR2-180 461396 2021-04-20 173145.vdat
-#> 2                    HR2-180 461396 2021-04-20 173145.vdat
-#> 3              Vemco Data File (com.vemco.file.vdat/1.0.0)
-#> 4 HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)
-#> 5                                      2021-04-20T17:31:45
-#> 6                     f1a18604-46ea-4985-b57c-24809d37ad46
+#>    variable                                                    value
+#> 1      File                    HR2-180 461396 2021-04-20 173145.vdat
+#> 2  Original                    HR2-180 461396 2021-04-20 173145.vdat
+#> 3 Container              Vemco Data File (com.vemco.file.vdat/1.0.0)
+#> 4   Content HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)
+#> 5   Created                                      2021-04-20T17:31:45
+#> 6 File UUID                     f1a18604-46ea-4985-b57c-24809d37ad46
 #>   section
 #> 1    VDAT
 #> 2    VDAT

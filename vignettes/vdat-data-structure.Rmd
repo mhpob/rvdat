@@ -48,13 +48,13 @@ download.file(
 )
 
 vdat_to_csv(file.path(td, "VR2AR_546310_20190613_1.vrl"),
-            outdir = td
+  outdir = td
 )
 ```
 
 ```r
 list.files(td, pattern = "VR2AR")
-#> character(0)
+#> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
 ```
 
 ## Exploring the VDAT CSV's data structure
@@ -66,10 +66,7 @@ Now for the fun part: what does the csv look like?
 exported_csv <- read.csv(
   file.path(td, "VR2AR_546310_20190613_1.csv")
 )
-#> Warning in file(file, "rt"): cannot open file
-#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpeA3TI6/test_files/VR2AR_546310_20190613_1.csv':
-#> No such file or directory
-#> Error in file(file, "rt"): cannot open the connection
+#> Error in read.table(file = file, header = header, sep = sep, quote = quote, : more columns than column names
 ```
 
 Uh oh! Something weird! `utils::read.csv` guesses how many columns there should be by looking at the first five lines of the data. Here, it took a guess and more columns showed up later. Let's skip that process by telling it that the first row does not contain column names by using `header = FALSE`.
@@ -80,10 +77,6 @@ exported_csv <- read.csv(
   file.path(td, "VR2AR_546310_20190613_1.csv"),
   header = FALSE
 )
-#> Warning in file(file, "rt"): cannot open file
-#> 'C:\Users\darpa2\AppData\Local\Temp\RtmpeA3TI6/test_files/VR2AR_546310_20190613_1.csv':
-#> No such file or directory
-#> Error in file(file, "rt"): cannot open the connection
 
 head(exported_csv)
 #>                 V1                V2
@@ -93,13 +86,13 @@ head(exported_csv)
 #> 4     BATTERY_DESC Device Time (UTC)
 #> 5 CFG_CHANNEL_DESC Device Time (UTC)
 #> 6 CFG_STATION_DESC Device Time (UTC)
-#>                                   V3              V4
-#> 1 vdat-7.0.0-20231107-14c992-release                
-#> 2                              FIELD           FIELD
-#> 3                               Time Time Offset (h)
-#> 4                               Time Time Offset (h)
-#> 5                               Time Time Offset (h)
-#> 6                               Time Time Offset (h)
+#>                                    V3              V4
+#> 1 vdat-9.13.2-20240607-7a2e9d-release                
+#> 2                               FIELD           FIELD
+#> 3                                Time Time Offset (h)
+#> 4                                Time Time Offset (h)
+#> 5                                Time Time Offset (h)
+#> 6                                Time Time Offset (h)
 #>                    V5    V6            V7               V8
 #> 1                                                         
 #> 2               FIELD FIELD         FIELD            FIELD
@@ -114,19 +107,19 @@ head(exported_csv)
 #> 4   Battery Type Battery Serial Number Battery Voltage (V)
 #> 5 Detection Type       Frequency (kHz)       Blanking (ms)
 #> 6 Latitude (deg)       Longitude (deg)                    
-#>                     V12       V13   V14   V15   V16   V17   V18
-#> 1                                                              
-#> 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD
-#> 3                                                              
-#> 4 Battery Remaining (%)                                        
-#> 5                Map ID Coding ID                              
-#> 6                                                              
-#>     V19   V20   V21   V22   V23   V24   V25   V26
-#> 1                                                
-#> 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD
-#> 3                                                
-#> 4                                                
-#> 5                                                
+#>                     V12       V13   V14   V15   V16   V17   V18   V19
+#> 1                                                                    
+#> 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                                                    
+#> 4 Battery Remaining (%)                                              
+#> 5                Map ID Coding ID                                    
+#> 6                                                                    
+#>     V20   V21   V22   V23   V24   V25   V26
+#> 1                                          
+#> 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                          
+#> 4                                          
+#> 5                                          
 #> 6
 ```
 
@@ -137,8 +130,8 @@ I suggest that you skim through the data frame with the `View` function. You'll 
 
 ```r
 exported_csv[1, ]
-#>               V1    V2                                 V3 V4 V5 V6
-#> 1 VEMCO DATA LOG 2.0.0 vdat-7.0.0-20231107-14c992-release         
+#>               V1    V2                                  V3 V4 V5 V6
+#> 1 VEMCO DATA LOG 2.0.0 vdat-9.13.2-20240607-7a2e9d-release         
 #>   V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23
 #> 1                                                                 
 #>   V24 V25 V26
@@ -155,7 +148,7 @@ a.   Note that this does, in fact, match the version of `vdat` we are using. Thi
 
 ```r
 vdat_version()
-#> vdat-7.0.0-20231107-14c992-release
+#> vdat-9.13.2-20240607-7a2e9d-release
 ```
 
 
@@ -181,15 +174,15 @@ exported_csv[2:5, ]
 #> 3                                                         
 #> 4   Battery Type Battery Serial Number Battery Voltage (V)
 #> 5 Detection Type       Frequency (kHz)       Blanking (ms)
-#>                     V12       V13   V14   V15   V16   V17   V18
-#> 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD
-#> 3                                                              
-#> 4 Battery Remaining (%)                                        
-#> 5                Map ID Coding ID                              
-#>     V19   V20   V21   V22   V23   V24   V25   V26
-#> 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD FIELD
-#> 3                                                
-#> 4                                                
+#>                     V12       V13   V14   V15   V16   V17   V18   V19
+#> 2                 FIELD     FIELD FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                                                    
+#> 4 Battery Remaining (%)                                              
+#> 5                Map ID Coding ID                                    
+#>     V20   V21   V22   V23   V24   V25   V26
+#> 2 FIELD FIELD FIELD FIELD FIELD FIELD FIELD
+#> 3                                          
+#> 4                                          
 #> 5
 ```
 
@@ -225,22 +218,22 @@ exported_csv[first_data_row:(first_data_row + 6), ]
 #> 33                                                VR2AR-69 546310
 #> 34                                                VR2AR-69 546310
 #> 35                                                VR2AR-69 546310
-#>                     V8             V9            V10      V11
-#> 29                                                           
-#> 30 2019-06-11 02:44:11      UTC-04:00          5.0.1         
-#> 31 2019-06-11 02:44:16              0 INITIALIZATION         
-#> 32                   1            PPM             69      260
-#> 33                 PPM A69-1601-60774          60774 DISABLED
-#> 34                 PPM A69-1601-60774          60774 DISABLED
-#> 35                 PPM A69-1601-60774          60774 DISABLED
-#>        V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26
-#> 29                                                                
-#> 30                                                                
-#> 31                                                                
-#> 32 MAP-113                                                        
-#> 33     540 660                                                    
-#> 34     540 660                                                    
-#> 35     540 660
+#>                     V8             V9            V10      V11     V12
+#> 29                                                                   
+#> 30 2019-06-11 02:44:11      UTC-04:00          5.0.1                 
+#> 31 2019-06-11 02:44:16              0 INITIALIZATION                 
+#> 32                   1            PPM             69      260 MAP-113
+#> 33                 PPM A69-1601-60774          60774 DISABLED     540
+#> 34                 PPM A69-1601-60774          60774 DISABLED     540
+#> 35                 PPM A69-1601-60774          60774 DISABLED     540
+#>    V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26
+#> 29                                                        
+#> 30                                                        
+#> 31                                                        
+#> 32                                                        
+#> 33 660                                                    
+#> 34 660                                                    
+#> 35 660
 ```
 
 #### Logged data!
@@ -252,32 +245,32 @@ Depending on how long you've had your receiver deployed, you could have many tho
 
 ```r
 exported_csv[(first_data_row + 7):(first_data_row + 7 + 7), ]
-#>           V1                  V2 V3 V4 V5       V6     V7     V8
-#> 36 DIAG_FAST 2019-06-11 02:45:00          VR2AR-69 546310 17.064
-#> 37      TEMP 2019-06-11 02:45:00          VR2AR-69 546310 17.064
-#> 38     DEPTH 2019-06-11 02:45:00          VR2AR-69 546310      0
-#> 39  ATTITUDE 2019-06-11 02:45:00          VR2AR-69 546310      2
-#> 40 DIAG_FAST 2019-06-11 02:46:00          VR2AR-69 546310 17.129
-#> 41      TEMP 2019-06-11 02:46:00          VR2AR-69 546310 17.129
-#> 42     DEPTH 2019-06-11 02:46:00          VR2AR-69 546310      0
-#> 43  ATTITUDE 2019-06-11 02:46:00          VR2AR-69 546310      3
-#>     V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24
-#> 36 150   2   0                                                    
+#>           V1                  V2 V3 V4 V5       V6     V7     V8  V9
+#> 36 DIAG_FAST 2019-06-11 02:45:00          VR2AR-69 546310 17.064 150
+#> 37      TEMP 2019-06-11 02:45:00          VR2AR-69 546310 17.064    
+#> 38     DEPTH 2019-06-11 02:45:00          VR2AR-69 546310      0    
+#> 39  ATTITUDE 2019-06-11 02:45:00          VR2AR-69 546310      2    
+#> 40 DIAG_FAST 2019-06-11 02:46:00          VR2AR-69 546310 17.129 161
+#> 41      TEMP 2019-06-11 02:46:00          VR2AR-69 546310 17.129    
+#> 42     DEPTH 2019-06-11 02:46:00          VR2AR-69 546310      0    
+#> 43  ATTITUDE 2019-06-11 02:46:00          VR2AR-69 546310      3    
+#>    V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25
+#> 36   2   0                                                        
 #> 37                                                                
 #> 38                                                                
 #> 39                                                                
-#> 40 161   3   0                                                    
+#> 40   3   0                                                        
 #> 41                                                                
 #> 42                                                                
 #> 43                                                                
-#>    V25 V26
-#> 36        
-#> 37        
-#> 38        
-#> 39        
-#> 40        
-#> 41        
-#> 42        
+#>    V26
+#> 36    
+#> 37    
+#> 38    
+#> 39    
+#> 40    
+#> 41    
+#> 42    
 #> 43
 ```
 
@@ -286,12 +279,10 @@ Diagnostic rows (`DIAG`) will have the hourly mean of `TEMP`, `DEPTH`, and `ATTI
 
 ```r
 exported_csv[(exported_csv$V1 == "DIAG"), ][1, ]
-#>      V1                  V2 V3 V4 V5       V6     V7     V8  V9
-#> 96 DIAG 2019-06-11 03:00:00          VR2AR-69 546310 17.744 150
-#>    V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25
-#> 96  87   0   0   0                                                
-#>    V26
-#> 96
+#>      V1                  V2 V3 V4 V5       V6     V7     V8  V9 V10
+#> 96 DIAG 2019-06-11 03:00:00          VR2AR-69 546310 17.744 150  87
+#>    V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26
+#> 96   0   0   0
 ```
 
 #### Detections are logged to the tenth of a millisecond
@@ -305,9 +296,9 @@ Detections are indicated by a row labeled with `DET`, followed by the raw logged
 exported_csv[(exported_csv$V1 == "DET"), ][1, ]
 #>       V1                       V2 V3 V4 V5       V6     V7 V8  V9
 #> 2567 DET 2019-06-11 13:03:32.0837          VR2AR-69 546310  1 PPM
-#>                 V10   V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21
-#> 2567 A69-1601-57060 57060                                        
-#>      V22 V23 V24 V25 V26
+#>                 V10   V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22
+#> 2567 A69-1601-57060 57060                                            
+#>      V23 V24 V25 V26
 #> 2567
 ```
 #### The last three rows are data associated with the download
@@ -324,26 +315,26 @@ tail(exported_csv)
 #> 16752 CFG_TRANSMITTER 2019-06-13 17:30:34          VR2AR-69 546310
 #> 16753       CLOCK_REF 2019-06-13 17:30:53          VR2AR-69 546310
 #> 16754   EVENT_OFFLOAD 2019-06-13 17:30:53          VR2AR-69 546310
-#>                        V8             V9     V10      V11     V12
-#> 16749               21.21                                        
-#> 16750                   0                                        
-#> 16751                   2                                        
-#> 16752                 PPM A69-1601-60774   60774 DISABLED     540
-#> 16753 2019-06-13 17:30:54              1 OFFLOAD                 
-#> 16754 2019-06-13 17:30:54      UTC-04:00             1328 99.6235
-#>       V13                         V14 V15 V16 V17 V18 V19 V20 V21
-#> 16749                                                            
-#> 16750                                                            
-#> 16751                                                            
-#> 16752 660                                                        
-#> 16753                                                            
-#> 16754     VR2AR_546310_20190613_1.vrl                            
-#>       V22 V23 V24 V25 V26
-#> 16749                    
-#> 16750                    
-#> 16751                    
-#> 16752                    
-#> 16753                    
+#>                        V8             V9     V10      V11     V12 V13
+#> 16749               21.21                                            
+#> 16750                   0                                            
+#> 16751                   2                                            
+#> 16752                 PPM A69-1601-60774   60774 DISABLED     540 660
+#> 16753 2019-06-13 17:30:54              1 OFFLOAD                     
+#> 16754 2019-06-13 17:30:54      UTC-04:00             1328 99.6235    
+#>                               V14 V15 V16 V17 V18 V19 V20 V21 V22 V23
+#> 16749                                                                
+#> 16750                                                                
+#> 16751                                                                
+#> 16752                                                                
+#> 16753                                                                
+#> 16754 VR2AR_546310_20190613_1.vrl                                    
+#>       V24 V25 V26
+#> 16749            
+#> 16750            
+#> 16751            
+#> 16752            
+#> 16753            
 #> 16754
 ```
 

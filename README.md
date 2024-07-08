@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is  generated from README.Rmd. Please edit that file -->
 
 # rvdat
 
@@ -136,7 +136,7 @@ What version?
 
 ``` r
 vdat_version()
-#> vdat-7.0.0-20231107-14c992-release
+#> vdat-9.13.2-20240607-7a2e9d-release
 ```
 
 Convert a VRL to CSV:
@@ -144,10 +144,10 @@ Convert a VRL to CSV:
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv
 ```
 
@@ -156,17 +156,17 @@ Convert a VRL to a folder of CSVs split by data type:
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
 #>   2021-04-20 173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpEDUiDu/readme_files/HR2-180 461396
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
 #>   2021-04-20 173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
-#>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_SET.csv"        "DATA_SOURCE_FILE.csv"
-#>  [7] "DET.csv"              "DET_FILTER.csv"       "DIAG_HR2.csv"        
-#> [10] "EVENT.csv"            "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   
-#> [13] "TEMP.csv"
+#>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_REF.csv"        "CLOCK_SET.csv"       
+#>  [7] "DATA_SOURCE_FILE.csv" "DET.csv"              "DET_FILTER.csv"      
+#> [10] "DIAG_HR2.csv"         "EVENT.csv"            "EVENT_INIT.csv"      
+#> [13] "EVENT_OFFLOAD.csv"    "TEMP.csv"
 ```
 
 Check out the file metadata:
@@ -450,11 +450,10 @@ vdat_template(format = "csv.fathom")
 #> [4] "Time Correction (s)"   "Model"                 "Serial Number"        
 #> [7] "Memory Remaining (%)"  "Relative Humidity (%)" "RTC Time"             
 #> 
-#> $NOISE_DESC
-#>  [1] "Device Time (UTC)"     "Time"                  "Time Offset (h)"      
-#>  [4] "Time Correction (s)"   "Model"                 "Serial Number"        
-#>  [7] "Channel 1 noise (TBD)" "Channel 2 noise (TBD)" "Channel 3 noise (TBD)"
-#> [10] "Channel 4 noise (TBD)"
+#> $HEALTH_NEXTRAK_DESC
+#> [1] "Device Time (UTC)"    "Time"                 "Time Offset (h)"     
+#> [4] "Time Correction (s)"  "Model"                "Serial Number"       
+#> [7] "Memory Remaining (%)"
 #> 
 #> $NOISE_STATS_VR2AR_DESC
 #>  [1] "Device Time (UTC)"       "Time"                   
@@ -493,88 +492,26 @@ vdat_template(format = "csv.fathom")
 #>  [7] "Ambient Min (deg C)"     "Ambient Max (deg C)"    
 #>  [9] "Ambient Mean (deg C)"    "Sample Count"           
 #> [11] "Accumulation Period (s)"
-#> 
-#> $XPND_EVENT_DESC
-#>  [1] "Device Time (UTC)"       "Time"                   
-#>  [3] "Time Offset (h)"         "Time Correction (s)"    
-#>  [5] "Model"                   "Serial Number"          
-#>  [7] "Type"                    "Subtype"                
-#>  [9] "Description"             "Values"                 
-#> [11] "Responder Model"         "Responder Serial Number"
-#> [13] "Responder Range (m)"     "Transmit Power (dB)"    
-#> [15] "Receive Signal (dB)"     "Receive Gain (dB)"      
-#> [17] "Latitude"                "Longitude"              
-#> [19] "GPS HDOP"
 ```
 
 Call VDAT using standard flags:
 
 ``` r
 vdat_call("--help")
-#> VDAT File Tool
-#> Usage:
-#>   vdat [OPTION...] [COMMAND [ARG]...]...
+#> Usage: C:\PROGRA~1\INNOVA~1\Fathom\vdat.exe [OPTIONS] [SUBCOMMAND]
 #> 
-#>  Common options:
-#>       --format FORMAT  Output file format (e.g. csv.fathom, csv.fathom.split,
-#>                        json.rxlog)
-#>       --output PATH    Output file or directory path
+#> Options:
+#>   -h,--help                   Show help and summary of commands, or detailed
+#>                               help for selected command (and exit)
+#>   --help-all                  Show help for all commands (and exit)
+#>   -v,--version                Print application version (and exit)
+#>   --app-id                    Print application identity (and exit)
 #> 
-#>  Conversion Options options:
-#>       --timec OPTION            Enable time correction (e.g. --timec=default)
-#>       --detection-filter FILTER
-#>                                 Detection filtering algorithm ???
-#>       --tagdb FILEPATH          Path of local tag database to be used for
-#>                                 sensor value conversion.
-#>       --offset-hours HOURS      Offset times by a number of hours. Typically
-#>                                 used to change time zone.
-#>       --segment-hours HOURS     Maximum data timespan (in hours) to include
-#>                                 in each output file
 #> 
-#>  General options:
-#>   -h, --help      Print application help (and exit)
-#>   -v, --version   Print application version (and exit)
-#>       --app-id    Print application identity (and exit)
-#>       --debug     Enable debug mode
-#>   -p, --progress  Output realtime progress to the console
-#> 
-#>  Logging options:
-#>       --log [=PATH(=C:\Users\darpa2\AppData\Local\Innovasea\VRPC\vdat)]
-#>                                 Enable file logging. Explicit path is
-#>                                 optional.
-#>       --log-level LEVEL         Set filter threshold for file logging [0
-#>                                 (most verbose), 1000 (least verbose)]
-#>       --trace                   Send all logging to console (no filtering)
-#>       --trace-debug             Send logging to console with debug-level
-#>                                 filtering (200)
-#>       --trace-info              Send logging to console with info-level
-#>                                 filtering (300)
-#> 
-#>  Commands:
-#>   convert   Convert file to the given file format
-#>             .  Usage:    vdat convert --format=<FORMAT> <INPUT_FILEPATH>
-#>             .
-#>             .  Optional: --output=<FILE_OR_DIRECTORY_PATH>
-#>             .            --timec=default
-#>             .            --detection-filter=<FILTER>
-#>             .            --tagdb=<FILEPATH>
-#>             .            --offset-hours=<HOURS>
-#>             .            --segment-hours=<HOURS>
-#>             .
-#>             .  Example:  vdat convert --format=csv.fathom <INPUT_FILEPATH>
-#>             .            vdat convert --format=json.rxlog <INPUT_FILEPATH>
-#>             
-#>   inspect   Describe the content of an existing file
-#>             .  Usage:    vdat inspect <INPUT_FILEPATH>
-#>             
-#>   template  Generate template for a given file format
-#>             .  Usage:    vdat template --format=<FORMAT>
-#>             .
-#>             .  Optional: --output=<OUTPUT_FILEPATH>
-#>             .
-#>             .  Example:  vdat template --format=vfwp
-#>             
-#> 
+#> Subcommands:
+#>   convert                     Convert file to the given file format
+#>   inspect                     Describe the content of an existing file
+#>   template                    Generate template for a given file format
 ```
 
 ## Development notes
