@@ -35,7 +35,7 @@ matos_login()
 Next, tell `rvdat` the location of the `vdat.exe` executable (check out the [`rvdat` documentation](https://rvdat.obrien.page) for more information on this).
 
 ```{r, eval=FALSE}
-vdat_here("vdat.exe")
+vdat_here()
 ```
 
 Using `matos`, I'm going to find the VDAT files associated with the [Mid-Bay Chesapeake Backbone array](https://matos.asascience.com/project/detail/161). Note that things like temperature and tilt are logged within the VRL/VDAT files, and so will be under the "detections" file type.

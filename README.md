@@ -43,18 +43,18 @@ Agreement.
 ![](man/figures/README-fathom_connect_download.png)
 
 Extract and run the installer, paying attention into which directory the
-program is installed. On my (Windows) machine, it installs itself into
-`C:\Program Files\Innovasea\Fathom`.
+program is installed. The default install location on Windows machines
+is `C:\Program Files\Innovasea\Fathom Connect`.
 
 ``` r
 path_to_vdat <- list.files(
-  path = "C:/Program Files/Innovasea/Fathom",
+  path = "C:/Program Files/Innovasea/Fathom Connect",
   pattern = "^vdat\\.exe$",
   full.names = TRUE
 )
 
 path_to_vdat
-#> [1] "C:/Program Files/Innovasea/Fathom/vdat.exe"
+#> [1] "C:/Program Files/Innovasea/Fathom Connect/vdat.exe"
 ```
 
 ### Install `rvdat`
@@ -88,7 +88,6 @@ remotes::install_github("mhpob/rvdat")
 
 - [ ] Sensor values
 - [ ] Logging
-- [ ] Look for `vdat.exe`
 
 ### Completed
 
@@ -101,6 +100,7 @@ remotes::install_github("mhpob/rvdat")
 - [x] Time correction
 - [x] Inspect content of file
 - [x] Create CSV template
+- [x] Look for `vdat.exe`
 
 ### Won’t add (for now)
 
@@ -128,45 +128,40 @@ library(rvdat)
 Set system location of vdat.exe:
 
 ``` r
-vdat_here(path_to_vdat)
-#> ℹ vdat.exe is located at C:/Program Files/Innovasea/Fathom/vdat.exe
+vdat_here()
+#> ℹ Looking for vdat in the typical locations.
+#> ℹ vdat is located at C:/Program Files/Innovasea/Fathom Connect/vdat.exe
 ```
 
 What version?
 
 ``` r
 vdat_version()
-#> vdat-9.13.2-20240607-7a2e9d-release
+#> vdat-11.0.1-20240830-d01c0d-release
 ```
 
 Convert a VRL to CSV:
 
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
+#> 0.0% - Converting File42.2% - Converting File                       
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
-#>   2021-04-20 173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
-#>   2021-04-20 173145.csv
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.csv
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
+#> 0.0% - Converting File42.2% - Converting File                       
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
-#>   2021-04-20 173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpINUXfp/readme_files/HR2-180 461396
-#>   2021-04-20 173145.csv-fathom-split
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
-#>  [1] "ATTITUDE.csv"         "BATTERY.csv"          "CFG_CHANNEL.csv"     
-#>  [4] "CFG_TRANSMITTER.csv"  "CLOCK_REF.csv"        "CLOCK_SET.csv"       
-#>  [7] "DATA_SOURCE_FILE.csv" "DET.csv"              "DET_FILTER.csv"      
-#> [10] "DIAG_HR2.csv"         "EVENT.csv"            "EVENT_INIT.csv"      
-#> [13] "EVENT_OFFLOAD.csv"    "TEMP.csv"
+#> character(0)
 ```
 
 Check out the file metadata:
@@ -176,7 +171,7 @@ Check out the file metadata:
 #> ==============================================================================
 #>                                      VDAT                                     
 #> ==============================================================================
-#> File:      HR2-180 461396 2021-04-20 173145.vdat
+#> File:      HR2-180_461396_2021-04-20_173145.vdat
 #> Original:  HR2-180 461396 2021-04-20 173145.vdat
 #> Container: Vemco Data File (com.vemco.file.vdat/1.0.0)
 #> Content:   HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)
@@ -390,6 +385,14 @@ vdat_template(format = "csv.fathom")
 #>  [7] "Pings (69 kHz)"       "Detections (69 kHz)"  "Pings (180 kHz)"     
 #> [10] "Detections (180 kHz)" "Tilt (deg)"          
 #> 
+#> $DIAG_NEXTRAK_DESC
+#>  [1] "Device Time (UTC)"           "Time"                       
+#>  [3] "Time Offset (h)"             "Time Correction (s)"        
+#>  [5] "Model"                       "Serial Number"              
+#>  [7] "Ambient Temperature (deg C)" "Noise (dB)"                 
+#>  [9] "Tilt (deg)"                  "Depth (m)"                  
+#> [11] "Pings"                       "Detections"                 
+#> 
 #> $EVENT_DESC
 #>  [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
 #>  [4] "Time Correction (s)" "Model"               "Serial Number"      
@@ -498,7 +501,7 @@ Call VDAT using standard flags:
 
 ``` r
 vdat_call("--help")
-#> Usage: C:\PROGRA~1\INNOVA~1\Fathom\vdat.exe [OPTIONS] [SUBCOMMAND]
+#> Usage: C:\PROGRA~1\INNOVA~1\FATHOM~1\vdat.exe [OPTIONS] [SUBCOMMAND]
 #> 
 #> Options:
 #>   -h,--help                   Show help and summary of commands, or detailed

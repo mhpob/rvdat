@@ -11,10 +11,10 @@ vignette: >
 
 This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
 
-The most recent changes were made on 2024-07-08.
+The most recent changes were made on 2024-11-15.
 
 
-```r
+``` r
 library(rvdat)
 ```
 
@@ -30,11 +30,11 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ```
 #>   receiver file_type n_data_types
-#> 1  HR2-180      VDAT           26
-#> 2    VR2AR       VRL           25
-#> 3    VR2TX       VRL           25
-#> 4     VR2W       VRL           27
-#> 5  VR2W180       VRL           27
+#> 1  HR2-180      VDAT           25
+#> 2    VR2AR       VRL           24
+#> 3    VR2TX       VRL           24
+#> 4     VR2W       VRL           26
+#> 5  VR2W180       VRL           26
 ```
 
 
@@ -42,7 +42,7 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 
 
-### HR2-180 VDAT, n = 26
+### HR2-180 VDAT, n = 25
 
 #### ATTITUDE, n = 7
 
@@ -654,37 +654,6 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-#### PING, n = 15
-
-:::: {style="display: flex;"}
-
-::: {}
-
- - Device Time (UTC)
- - Time
- - Time Offset (h)
- - Time Correction (s)
- - Model
- - Serial Number
- - Channel
- - Frequency (kHz)
-
-:::
-
-::: {}
-
- - Blanking (ms)
- - Signal Strength (dB)
- - Noise (dB)
- - Gain (dB)
- - Latitude
- - Longitude
- - GPS HDOP
-
-:::
-
-::::
-
 #### TEMP, n = 8
 
 :::: {style="display: flex;"}
@@ -736,7 +705,7 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-### VR2AR VRL, n = 25
+### VR2AR VRL, n = 24
 
 #### ATTITUDE, n = 7
 
@@ -1316,37 +1285,6 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-#### PING, n = 15
-
-:::: {style="display: flex;"}
-
-::: {}
-
- - Device Time (UTC)
- - Time
- - Time Offset (h)
- - Time Correction (s)
- - Model
- - Serial Number
- - Channel
- - Frequency (kHz)
-
-:::
-
-::: {}
-
- - Blanking (ms)
- - Signal Strength (dB)
- - Noise (dB)
- - Gain (dB)
- - Latitude
- - Longitude
- - GPS HDOP
-
-:::
-
-::::
-
 #### TEMP, n = 8
 
 :::: {style="display: flex;"}
@@ -1398,7 +1336,7 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-### VR2TX VRL, n = 25
+### VR2TX VRL, n = 24
 
 #### ATTITUDE, n = 7
 
@@ -1978,37 +1916,6 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-#### PING, n = 15
-
-:::: {style="display: flex;"}
-
-::: {}
-
- - Device Time (UTC)
- - Time
- - Time Offset (h)
- - Time Correction (s)
- - Model
- - Serial Number
- - Channel
- - Frequency (kHz)
-
-:::
-
-::: {}
-
- - Blanking (ms)
- - Signal Strength (dB)
- - Noise (dB)
- - Gain (dB)
- - Latitude
- - Longitude
- - GPS HDOP
-
-:::
-
-::::
-
 #### TEMP, n = 8
 
 :::: {style="display: flex;"}
@@ -2060,7 +1967,7 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-### VR2W VRL, n = 27
+### VR2W VRL, n = 26
 
 #### ATTITUDE, n = 7
 
@@ -2688,37 +2595,6 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-#### PING, n = 15
-
-:::: {style="display: flex;"}
-
-::: {}
-
- - Device Time (UTC)
- - Time
- - Time Offset (h)
- - Time Correction (s)
- - Model
- - Serial Number
- - Channel
- - Frequency (kHz)
-
-:::
-
-::: {}
-
- - Blanking (ms)
- - Signal Strength (dB)
- - Noise (dB)
- - Gain (dB)
- - Latitude
- - Longitude
- - GPS HDOP
-
-:::
-
-::::
-
 #### TEMP, n = 8
 
 :::: {style="display: flex;"}
@@ -2770,7 +2646,7 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
 
 ::::
 
-### VR2W180 VRL, n = 27
+### VR2W180 VRL, n = 26
 
 #### ATTITUDE, n = 7
 
@@ -3393,37 +3269,6 @@ The table below shows each receiver/VDAT type along with, in alphabetical order,
  - Serial Number
  - Memory Remaining (%)
  - RTC Time
-
-:::
-
-::::
-
-#### PING, n = 15
-
-:::: {style="display: flex;"}
-
-::: {}
-
- - Device Time (UTC)
- - Time
- - Time Offset (h)
- - Time Correction (s)
- - Model
- - Serial Number
- - Channel
- - Frequency (kHz)
-
-:::
-
-::: {}
-
- - Blanking (ms)
- - Signal Strength (dB)
- - Noise (dB)
- - Gain (dB)
- - Latitude
- - Longitude
- - GPS HDOP
 
 :::
 

@@ -26,7 +26,7 @@ I'll start off the same way as in `vignette('how-to-use-rvdat')`:
 2.    Downloading the example VRL file from the `glatos` package
 3.    Converting the VRL to a CSV using `vdat_to_csv`
 
-```{r, eval=FALSE}
+```{r}
 library(rvdat)
 
 td <- file.path(
@@ -38,7 +38,7 @@ dir.create(
   td
 )
 
-vdat_here("c:/program files/innovasea/fathom/vdat.exe")
+vdat_here()
 
 download.file(
   url = file.path(
