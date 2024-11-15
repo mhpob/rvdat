@@ -69,7 +69,7 @@
     
 <p>This vignette is a working draft. There will be lots of changes as
 <code>rvdat</code> gets fleshed out, so please check back often!</p>
-<p>The most recent changes were made on 2024-07-08.</p>
+<p>The most recent changes were made on 2024-11-15.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rvdat.obrien.page" class="external-link">rvdat</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
@@ -79,13 +79,13 @@
 alphabetical order, each logged data type (attitude, battery, etc.) and
 their respective column names/data fields in bullets.</p>
 <pre><code><span><span class="co">#&gt;   receiver file_type n_data_types</span></span>
-<span><span class="co">#&gt; 1  HR2-180      VDAT           26</span></span>
-<span><span class="co">#&gt; 2    VR2AR       VRL           25</span></span>
-<span><span class="co">#&gt; 3    VR2TX       VRL           25</span></span>
-<span><span class="co">#&gt; 4     VR2W       VRL           27</span></span>
-<span><span class="co">#&gt; 5  VR2W180       VRL           27</span></span></code></pre>
+<span><span class="co">#&gt; 1  HR2-180      VDAT           25</span></span>
+<span><span class="co">#&gt; 2    VR2AR       VRL           24</span></span>
+<span><span class="co">#&gt; 3    VR2TX       VRL           24</span></span>
+<span><span class="co">#&gt; 4     VR2W       VRL           26</span></span>
+<span><span class="co">#&gt; 5  VR2W180       VRL           26</span></span></code></pre>
 <div class="section level3">
-<h3 id="hr2-180-vdat-n-26">HR2-180 VDAT, n = 26<a class="anchor" aria-label="anchor" href="#hr2-180-vdat-n-26"></a>
+<h3 id="hr2-180-vdat-n-25">HR2-180 VDAT, n = 25<a class="anchor" aria-label="anchor" href="#hr2-180-vdat-n-25"></a>
 </h3>
 <div class="section level4">
 <h4 id="attitude-n-7">ATTITUDE, n = 7<a class="anchor" aria-label="anchor" href="#attitude-n-7"></a>
@@ -652,35 +652,6 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="ping-n-15">PING, n = 15<a class="anchor" aria-label="anchor" href="#ping-n-15"></a>
-</h4>
-<div style="display: flex;">
-<div>
-<ul>
-<li>Device Time (UTC)</li>
-<li>Time</li>
-<li>Time Offset (h)</li>
-<li>Time Correction (s)</li>
-<li>Model</li>
-<li>Serial Number</li>
-<li>Channel</li>
-<li>Frequency (kHz)</li>
-</ul>
-</div>
-<div>
-<ul>
-<li>Blanking (ms)</li>
-<li>Signal Strength (dB)</li>
-<li>Noise (dB)</li>
-<li>Gain (dB)</li>
-<li>Latitude</li>
-<li>Longitude</li>
-<li>GPS HDOP</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section level4">
 <h4 id="temp-n-8">TEMP, n = 8<a class="anchor" aria-label="anchor" href="#temp-n-8"></a>
 </h4>
 <div style="display: flex;">
@@ -729,7 +700,7 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="vr2ar-vrl-n-25">VR2AR VRL, n = 25<a class="anchor" aria-label="anchor" href="#vr2ar-vrl-n-25"></a>
+<h3 id="vr2ar-vrl-n-24">VR2AR VRL, n = 24<a class="anchor" aria-label="anchor" href="#vr2ar-vrl-n-24"></a>
 </h3>
 <div class="section level4">
 <h4 id="attitude-n-7-1">ATTITUDE, n = 7<a class="anchor" aria-label="anchor" href="#attitude-n-7-1"></a>
@@ -1266,35 +1237,6 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="ping-n-15-1">PING, n = 15<a class="anchor" aria-label="anchor" href="#ping-n-15-1"></a>
-</h4>
-<div style="display: flex;">
-<div>
-<ul>
-<li>Device Time (UTC)</li>
-<li>Time</li>
-<li>Time Offset (h)</li>
-<li>Time Correction (s)</li>
-<li>Model</li>
-<li>Serial Number</li>
-<li>Channel</li>
-<li>Frequency (kHz)</li>
-</ul>
-</div>
-<div>
-<ul>
-<li>Blanking (ms)</li>
-<li>Signal Strength (dB)</li>
-<li>Noise (dB)</li>
-<li>Gain (dB)</li>
-<li>Latitude</li>
-<li>Longitude</li>
-<li>GPS HDOP</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section level4">
 <h4 id="temp-n-8-1">TEMP, n = 8<a class="anchor" aria-label="anchor" href="#temp-n-8-1"></a>
 </h4>
 <div style="display: flex;">
@@ -1343,7 +1285,7 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="vr2tx-vrl-n-25">VR2TX VRL, n = 25<a class="anchor" aria-label="anchor" href="#vr2tx-vrl-n-25"></a>
+<h3 id="vr2tx-vrl-n-24">VR2TX VRL, n = 24<a class="anchor" aria-label="anchor" href="#vr2tx-vrl-n-24"></a>
 </h3>
 <div class="section level4">
 <h4 id="attitude-n-7-2">ATTITUDE, n = 7<a class="anchor" aria-label="anchor" href="#attitude-n-7-2"></a>
@@ -1880,35 +1822,6 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="ping-n-15-2">PING, n = 15<a class="anchor" aria-label="anchor" href="#ping-n-15-2"></a>
-</h4>
-<div style="display: flex;">
-<div>
-<ul>
-<li>Device Time (UTC)</li>
-<li>Time</li>
-<li>Time Offset (h)</li>
-<li>Time Correction (s)</li>
-<li>Model</li>
-<li>Serial Number</li>
-<li>Channel</li>
-<li>Frequency (kHz)</li>
-</ul>
-</div>
-<div>
-<ul>
-<li>Blanking (ms)</li>
-<li>Signal Strength (dB)</li>
-<li>Noise (dB)</li>
-<li>Gain (dB)</li>
-<li>Latitude</li>
-<li>Longitude</li>
-<li>GPS HDOP</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section level4">
 <h4 id="temp-n-8-2">TEMP, n = 8<a class="anchor" aria-label="anchor" href="#temp-n-8-2"></a>
 </h4>
 <div style="display: flex;">
@@ -1957,7 +1870,7 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="vr2w-vrl-n-27">VR2W VRL, n = 27<a class="anchor" aria-label="anchor" href="#vr2w-vrl-n-27"></a>
+<h3 id="vr2w-vrl-n-26">VR2W VRL, n = 26<a class="anchor" aria-label="anchor" href="#vr2w-vrl-n-26"></a>
 </h3>
 <div class="section level4">
 <h4 id="attitude-n-7-3">ATTITUDE, n = 7<a class="anchor" aria-label="anchor" href="#attitude-n-7-3"></a>
@@ -2538,35 +2451,6 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="ping-n-15-3">PING, n = 15<a class="anchor" aria-label="anchor" href="#ping-n-15-3"></a>
-</h4>
-<div style="display: flex;">
-<div>
-<ul>
-<li>Device Time (UTC)</li>
-<li>Time</li>
-<li>Time Offset (h)</li>
-<li>Time Correction (s)</li>
-<li>Model</li>
-<li>Serial Number</li>
-<li>Channel</li>
-<li>Frequency (kHz)</li>
-</ul>
-</div>
-<div>
-<ul>
-<li>Blanking (ms)</li>
-<li>Signal Strength (dB)</li>
-<li>Noise (dB)</li>
-<li>Gain (dB)</li>
-<li>Latitude</li>
-<li>Longitude</li>
-<li>GPS HDOP</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section level4">
 <h4 id="temp-n-8-3">TEMP, n = 8<a class="anchor" aria-label="anchor" href="#temp-n-8-3"></a>
 </h4>
 <div style="display: flex;">
@@ -2615,7 +2499,7 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="vr2w180-vrl-n-27">VR2W180 VRL, n = 27<a class="anchor" aria-label="anchor" href="#vr2w180-vrl-n-27"></a>
+<h3 id="vr2w180-vrl-n-26">VR2W180 VRL, n = 26<a class="anchor" aria-label="anchor" href="#vr2w180-vrl-n-26"></a>
 </h3>
 <div class="section level4">
 <h4 id="attitude-n-7-4">ATTITUDE, n = 7<a class="anchor" aria-label="anchor" href="#attitude-n-7-4"></a>
@@ -3196,35 +3080,6 @@ their respective column names/data fields in bullets.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="ping-n-15-4">PING, n = 15<a class="anchor" aria-label="anchor" href="#ping-n-15-4"></a>
-</h4>
-<div style="display: flex;">
-<div>
-<ul>
-<li>Device Time (UTC)</li>
-<li>Time</li>
-<li>Time Offset (h)</li>
-<li>Time Correction (s)</li>
-<li>Model</li>
-<li>Serial Number</li>
-<li>Channel</li>
-<li>Frequency (kHz)</li>
-</ul>
-</div>
-<div>
-<ul>
-<li>Blanking (ms)</li>
-<li>Signal Strength (dB)</li>
-<li>Noise (dB)</li>
-<li>Gain (dB)</li>
-<li>Latitude</li>
-<li>Longitude</li>
-<li>GPS HDOP</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="section level4">
 <h4 id="temp-n-8-4">TEMP, n = 8<a class="anchor" aria-label="anchor" href="#temp-n-8-4"></a>
 </h4>
 <div style="display: flex;">
@@ -3284,7 +3139,7 @@ their respective column names/data fields in bullets.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
