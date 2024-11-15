@@ -3,7 +3,7 @@ test_that("vdat_call gives expected results", {
 
   expect_output(
     vdat_call_result <- vdat_call(),
-    "VDAT File Tool"
+    "Usage.*Options.*Subcommands"
   )
 
   expect_invisible(vdat_call(print = FALSE))
