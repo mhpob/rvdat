@@ -157,7 +157,7 @@ list.files("SOME-VDAT-FILE.csv-fathom-split")
 
 list.files(
   file.path(td, "HR2-180_461396_2021-04-20_173145.vdat.csv-fathom-split")
-  )
+)
 ```
 
 Check out the file metadata:
