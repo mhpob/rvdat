@@ -2,20 +2,24 @@
 % Please edit documentation in R/vdat_here.R
 \name{vdat_here}
 \alias{vdat_here}
-\title{User-supplied location of \code{vdat.exe}.}
+\title{Write the location of \code{vdat.exe} to the environmental variables.}
 \usage{
-vdat_here(here)
+vdat_here(here = NULL)
 }
 \arguments{
 \item{here}{location of \code{vdat.exe}, either a full path name or relative
 to the current working directory.}
 }
 \description{
-User-supplied location of \code{vdat.exe}.
+Write the location of \code{vdat.exe} to the environmental variables.
 }
 \examples{
 \dontshow{if (all(skip_example_on_ci(), skip_example_on_runiverse())) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-vdat_here("c:/program files/innovasea/fathom/vdat.exe")
+# Auto-find vdat:
+vdat_here()
+
+# Provide an explicit location:
+vdat_here("c:/program files/innovasea/fathom connect/vdat.exe")
 \dontshow{\}) # examplesIf}
 }

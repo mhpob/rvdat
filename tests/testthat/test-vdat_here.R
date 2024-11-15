@@ -41,3 +41,9 @@ test_that("succeed with exe", {
     )
   )
 })
+
+test_that("Find vdat in the default Windows location", {
+  vdat_here() |>
+    expect_message("Looking for vdat in the typical locations.") |>
+    expect_message("vdat is located at")
+})
