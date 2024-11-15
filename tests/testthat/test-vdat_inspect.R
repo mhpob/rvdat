@@ -38,7 +38,7 @@ test_that("vdat_inspect outputs to console", {
   expect_output(
     vdat_inspect(
       grep(
-        "VR2W.*\\.vrl",
+        "VR2W_.*\\.vrl",
         testfiles,
         value = TRUE
       )
@@ -106,7 +106,7 @@ test_that("vdat_inspect invisibly returns a data frame", {
   vr2w69 <- expect_invisible(
     vdat_inspect(
       grep(
-        "VR2W.*\\.vrl",
+        "VR2W_.*\\.vrl",
         testfiles,
         value = TRUE
       ),
