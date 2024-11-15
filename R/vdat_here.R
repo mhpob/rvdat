@@ -24,7 +24,6 @@ vdat_here <- function(here = NULL) {
         c("x" = "There is no file at this location.")
       )
     }
-
   } else {
     cli::cli_alert_info(
       "Looking for vdat in the typical locations."
