@@ -13,9 +13,15 @@
 #' vdat_here("c:/program files/innovasea/fathom connect/vdat.exe")
 vdat_here <- function(here = NULL) {
   if (!is.null(here)) {
-    Sys.setenv(VDAT_EXE = here)
 
-    if (file.exists(Sys.getenv("VDAT_EXE"))) {
+    if (dir.exists(here)) {
+      cli::cli_abort(
+        c("x" = "Please include the file name in the path.")
+      )
+    }
+
+    if (file.exists(here)) {
+      Sys.setenv(VDAT_EXE = here)
       cli::cli_alert_info(
         "vdat is located at {Sys.getenv('VDAT_EXE')}"
       )
@@ -42,9 +48,9 @@ vdat_here <- function(here = NULL) {
       )
     }
 
-    Sys.setenv(VDAT_EXE = standard_location)
 
-    if (file.exists(Sys.getenv("VDAT_EXE"))) {
+    if (file.exists(standard_location)) {
+      Sys.setenv(VDAT_EXE = standard_location)
       cli::cli_alert_info(
         "vdat is located at {Sys.getenv('VDAT_EXE')}"
       )
