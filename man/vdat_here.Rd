@@ -8,7 +8,8 @@ vdat_here(here = Sys.getenv("VDAT_EXE"))
 }
 \arguments{
 \item{here}{location of \code{vdat.exe}, either a full path name or relative
-to the current working directory.}
+to the current working directory. Defaults to the value of the "VDAT_EXE"
+environment variable}
 }
 \description{
 Write the location of \code{vdat.exe} to the environmental variables.

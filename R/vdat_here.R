@@ -1,7 +1,8 @@
 #' Write the location of `vdat.exe` to the environmental variables.
 #'
 #' @param here location of `vdat.exe`, either a full path name or relative
-#'    to the current working directory.
+#'    to the current working directory. Defaults to the value of the "VDAT_EXE"
+#'    environment variable
 #'
 #' @export
 #' @examplesIf all(skip_example_on_ci(), skip_example_on_runiverse())
