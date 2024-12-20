@@ -13,7 +13,6 @@
 #' vdat_here("c:/program files/innovasea/fathom connect/vdat.exe")
 vdat_here <- function(here = NULL) {
   if (!is.null(here)) {
-
     if (dir.exists(here)) {
       cli::cli_abort(
         c("x" = "Please include the file name in the path.")
