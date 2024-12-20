@@ -9,6 +9,7 @@
 vdat_version <- function(...) {
   shell_out <- vdat_call(
     what = "--version",
+    print = FALSE,
     ...
   )
 
@@ -24,5 +25,6 @@ vdat_version <- function(...) {
   #   )
   # }
 
-  invisible(shell_out)
+  version <- rawToChar(shell_out$stdout)
+  gsub("\\r\\n$", "", version)
 }
