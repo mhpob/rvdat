@@ -190,7 +190,6 @@ If contributing, please use the following general style:
 
 ```{r, eval=FALSE}
 a_new_wrapper <- function(some_command) {
-
   vdat_call("--do this")
 
   cli::cli_alert_success("Woohoo!!")

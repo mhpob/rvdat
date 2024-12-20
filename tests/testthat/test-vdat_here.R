@@ -1,4 +1,3 @@
-
 test_that("fails if directory is provided", {
   err <- expect_error(
     vdat_here("/")
