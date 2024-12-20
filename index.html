@@ -170,31 +170,29 @@
 <p>Load the package:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rvdat.obrien.page" class="external-link">rvdat</a></span><span class="op">)</span></span></code></pre></div>
-<p>Set system location of vdat.exe:</p>
+<p>Set or look for system location of vdat.exe:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ℹ Looking for vdat in the typical locations.</span></span>
-<span><span class="co">#&gt; ℹ vdat is located at C:/Program Files/Innovasea/Fathom Connect/vdat.exe</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>What version?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_version.html">vdat_version</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; vdat-11.0.1-20240830-d01c0d-release</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "vdat-11.0.1-20240830-d01c0d-release"</span></span></code></pre></div>
 <p>Convert a VRL to CSV:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; 0.0% - Converting File42.2% - Converting File                       </span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.csv</span></span></code></pre></div>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.csv</span></span></code></pre></div>
 <p>Convert a VRL to a folder of CSVs split by data type:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
 <span><span class="co">#&gt; 0.0% - Converting File42.2% - Converting File                       </span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ Files saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split</span></span>
+<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split</span></span>
 <span><span class="co">## list.files("SOME-VDAT-FILE.csv-fathom-split")</span></span>
 <span><span class="co">#&gt; character(0)</span></span></code></pre></div>
 <p>Check out the file metadata:</p>
@@ -547,19 +545,14 @@
 </h2>
 <p>If contributing, please use the following general style:</p>
 <ul>
-<li>Begin any function that will call <code>vdat.exe</code> with the <code>vdat_loc &lt;- check_vdat_location()</code> helper function.</li>
-<li>Use the <a href="https://jeroen.r-universe.dev/sys" class="external-link"><code>sys</code> package</a> to send commands to <code>vdat.exe</code>, usually via <code><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">sys::exec_internal</a></code>. The “cmd” argument can then be <code>vdat_loc</code>.</li>
+<li>All functions that call vdat.exe should use <a href="https://rvdat.obrien.page/reference/vdat_call.html" class="external-link"><code>vdat_call</code></a>.</li>
 <li>Create informative messages, warnings, and errors using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code> package</a>.</li>
 <li>In summary:</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a_new_wrapper</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">some_command</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">vdat_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_vdat_location.html">check_vdat_location</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="fu">sys</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sys/man/exec.html" class="external-link">exec_internal</a></span><span class="op">(</span></span>
-<span>    <span class="va">vdat_loc</span>,</span>
-<span>    args <span class="op">=</span> <span class="va">some_command</span></span>
-<span>  <span class="op">)</span></span>
+<span>  <span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--do this"</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_success</a></span><span class="op">(</span><span class="st">"Woohoo!!"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
