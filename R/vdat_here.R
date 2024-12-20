@@ -49,7 +49,7 @@ vdat_here <- function(here = Sys.getenv("VDAT_EXE")) {
 
   vdat_env <- Sys.getenv("VDAT_EXE")
 
-  if (here != vdat_env) {
+  if (here != vdat_env & here != "") {
     cli::cli_warn("vdat.exe not found at {here}, but at {vdat_env}.")
   }
 
