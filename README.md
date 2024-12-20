@@ -125,19 +125,17 @@ Load the package:
 library(rvdat)
 ```
 
-Set system location of vdat.exe:
+Set or look for system location of vdat.exe:
 
 ``` r
 vdat_here()
-#> ℹ Looking for vdat in the typical locations.
-#> ℹ vdat is located at C:/Program Files/Innovasea/Fathom Connect/vdat.exe
 ```
 
 What version?
 
 ``` r
 vdat_version()
-#> vdat-11.0.1-20240830-d01c0d-release
+#> [1] "vdat-11.0.1-20240830-d01c0d-release"
 ```
 
 Convert a VRL to CSV:
@@ -146,9 +144,9 @@ Convert a VRL to CSV:
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> 0.0% - Converting File42.2% - Converting File                       
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.csv
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.csv
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
@@ -157,9 +155,9 @@ Convert a VRL to a folder of CSVs split by data type:
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> 0.0% - Converting File42.2% - Converting File                       
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmp04O2Xz/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
+#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #> character(0)
 ```
@@ -521,23 +519,16 @@ vdat_call("--help")
 
 If contributing, please use the following general style:
 
-- Begin any function that will call `vdat.exe` with the
-  `vdat_loc <- check_vdat_location()` helper function.
-- Use the [`sys` package](https://jeroen.r-universe.dev/sys) to send
-  commands to `vdat.exe`, usually via `sys::exec_internal`. The “cmd”
-  argument can then be `vdat_loc`.
+- All functions that call vdat.exe should use
+  [`vdat_call`](https://rvdat.obrien.page/reference/vdat_call.html).
 - Create informative messages, warnings, and errors using the [`cli`
   package](https://cli.r-lib.org/).
 - In summary:
 
 ``` r
 a_new_wrapper <- function(some_command) {
-  vdat_loc <- check_vdat_location()
 
-  sys::exec_internal(
-    vdat_loc,
-    args = some_command
-  )
+  vdat_call("--do this")
 
   cli::cli_alert_success("Woohoo!!")
 }

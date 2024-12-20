@@ -29,7 +29,7 @@ vdat_call <- function(what = "--help",
                       print = TRUE,
                       pass_error = FALSE,
                       ...) {
-  vdat_loc <- check_vdat_location()
+  vdat_loc <- vdat_here()
 
   shell_out <- sys::exec_internal(
     cmd = vdat_loc,
