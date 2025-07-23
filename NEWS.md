@@ -1,3 +1,9 @@
+# rvdat 0.3.0
+
+  - Experimental support for Linux systems by wrapping calls to `vdat.exe`
+  in a call to [Wine](https://www.winehq.org/). Needs Wine and Winetricks installed,
+  (~1.75 GB total!) so more of a bandage rather than an actual implementation.
+
 # rvdat 0.2.0
 
   - [vdat_here](https://rvdat.obrien.page/reference/vdat_here.html) now looks for

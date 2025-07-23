@@ -28,6 +28,8 @@ vdat_here <- function(here = Sys.getenv("VDAT_EXE")) {
       standard_location <- "C:/Program Files/Innovasea/Fathom Connect/vdat.exe"
     } else if (current_os == "Linux") {
       standard_location <- "/usr/local/Innovasea/Fathom Connect/vdat"
+      wine_location <-
+        "~/.wine/drive_c/Program Files/Innovasea/Fathom Connect/vdat.exe"
     } else if (current_os == "Darwin") {
       standard_location <- "~/Applications/Innovasea/Fathom Connect/vdat"
     } else {
@@ -36,9 +38,11 @@ vdat_here <- function(here = Sys.getenv("VDAT_EXE")) {
       )
     }
 
-
     if (file.exists(standard_location)) {
       Sys.setenv(VDAT_EXE = standard_location)
+    } else if (current_os == "Linux" && file.exists(wine_location)) {
+      Sys.setenv(VDAT_EXE = wine_location)
+      cli::cli_alert_info("VDAT detected in Wine installation.")
     } else {
       cli::cli_abort(
         c("x" = "Unable to find vdat, please provide an explicit location.")

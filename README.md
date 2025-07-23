@@ -42,20 +42,53 @@ Agreement.
 
 ![](man/figures/README-fathom_connect_download.png)
 
-Extract and run the installer, paying attention into which directory the
-program is installed. The default install location on Windows machines
-is `C:\Program Files\Innovasea\Fathom Connect`.
+### Install Fathom Connect
 
-``` r
-path_to_vdat <- list.files(
-  path = "C:/Program Files/Innovasea/Fathom Connect",
-  pattern = "^vdat\\.exe$",
-  full.names = TRUE
-)
+#### On Windows
 
-path_to_vdat
-#> [1] "C:/Program Files/Innovasea/Fathom Connect/vdat.exe"
+Fathom Connect is a Windows-specific program, so if you’re running
+Windows, you’re in luck! Just extract and run the installer, paying
+attention into which directory the program is installed. The default
+install location on Windows machines is
+`C:\Program Files\Innovasea\Fathom Connect`.
+
+#### On Linux
+
+Innovasea does not provide a non-Windows version of Fathom Connect and
+`vdat.exe`. If you’re up for doing a little bit more work, you can run
+`vdat.exe`, and thus `rdvat`, using [Wine](https://www.winehq.org).
+[Install Wine](https://gitlab.winehq.org/wine/wine/-/wikis/Download) on
+your Linux distribution of choice, followed by
+[Winetricks](https://github.com/Winetricks/winetricks); the latter is
+used to install the needed Windows .NET frameworks: v4.5.2 is needed to
+run the installer and v 4.8 is needed to run the program. Note that this
+is a ~1.75GB installation.
+
+After installing, initiate Wine via `wineboot`, then use `winetricks` to
+set Wine to run as Windows 10 (or greater) and install the needed .NET
+frameworks.
+
+``` bash
+wineboot
+winetricks -q win10 dotnet452 dotnet48
 ```
+
+Now, you need to install Fathom Connect. The installer is usually named
+something like “Install-Fathom-Connect-SOMELONGVERSION.msi”, switch this
+with “Fathom-Connect-Installer.msi” below.
+
+``` bash
+wine msiexec /i Fathom-Connect-Installer.msi /qb
+```
+
+If things don’t work and you’re not working headless, run
+`wine uninstaller` and install via the GUI interface. Yes, it is
+“`uninstaller`” (counter-intuitive).
+
+### On Mac
+
+There is currently no support for MacOS. There may be in the future
+using similar gymnastics as implemented for Linux, above
 
 ### Install `rvdat`
 
@@ -129,35 +162,34 @@ Set or look for system location of vdat.exe:
 
 ``` r
 vdat_here()
+#> [1] "C:/Program Files/Innovasea/Fathom Connect/vdat.exe"
 ```
 
 What version?
 
 ``` r
 vdat_version()
-#> [1] "vdat-11.0.1-20240830-d01c0d-release"
+#> [1] "vdat-12.9.1-20250203-976858-release"
 ```
 
 Convert a VRL to CSV:
 
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
-#> 0.0% - Converting File42.2% - Converting File                       
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.csv
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.csv
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
-#> 0.0% - Converting File42.2% - Converting File                       
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\Rtmpyw429H/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #> character(0)
 ```
@@ -527,7 +559,6 @@ If contributing, please use the following general style:
 
 ``` r
 a_new_wrapper <- function(some_command) {
-
   vdat_call("--do this")
 
   cli::cli_alert_success("Woohoo!!")

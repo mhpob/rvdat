@@ -36,3 +36,18 @@ test_that("Errors can be passed to higher-level functions", {
 
   expect_equal(err$status, 1)
 })
+
+test_that("Warns about Wine mode.", {
+  skip_on_os(c("mac", "windows", "solaris"))
+
+  skip_if(
+    Sys.which("wine") == "",
+    message = "Wine not installed"
+  )
+
+  expect_message(
+    vdat_call(print = FALSE),
+    "Using Wine mode: EXPERIMENTAL!",
+    fixed = TRUE
+  )
+})
