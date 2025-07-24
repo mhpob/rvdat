@@ -40,15 +40,27 @@ vdat_call <- function(
     Sys.setenv(WINEDEBUG = "fixme-all")
     on.exit(Sys.unsetenv("WINEDEBUG"))
 
-    what <- c(
-      path.expand(vdat_loc),
-      ifelse(
-        grepl("\\.(vrl|vdat)$", what) &
-          !grepl("^Z:/", what),
-        paste0("Z:/", what),
-        what
-      )
+    # Wine (often) internally mounts things as "Z:/", fix paths accordingly
+    what <- sapply(
+      what,
+      function(x) {
+        if (
+          # if ends with vrl or vdat
+          grepl("\\.(vrl|vdat)$", x, ignore.case = TRUE) &&
+            # ...and doesn't already begin with "Z:/"
+            !grepl("^Z:/", x)
+        ) {
+          file.path("Z:", normalizePath(x))
+        } else {
+          x
+        }
+      },
+      USE.NAMES = FALSE
     )
+
+    # Move VDAT.exe from the command to an argument
+    what <- c(path.expand(vdat_loc), what)
+    # Make /usr/bin/wine the command
     vdat_loc <- Sys.getenv("RVDAT_WINE_EXE")
   }
 
