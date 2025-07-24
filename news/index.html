@@ -41,7 +41,9 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="rvdat-030">rvdat 0.3.0<a class="anchor" aria-label="anchor" href="#rvdat-030"></a></h2>
-<ul><li>Experimental support for Linux systems by wrapping calls to <code>vdat.exe</code> in a call to <a href="https://www.winehq.org/" class="external-link">Wine</a>. Needs Wine and Winetricks installed, (~1.75 GB total!) so more of a bandage rather than an actual implementation.</li>
+<ul><li>
+<strong>BREAKING CHANGE</strong>: <code>rvdat</code> now looks for an environmental variable of <code>RVDAT_EXE</code> rather than <code>VDAT_EXE</code>. If you had this set between sessions, <a href="https://rvdat.obrien.page/articles/how-to-use-rvdat.html#getting-started" class="external-link">you will need to update your <code>.Renviron</code> accordingly</a>.</li>
+<li>Experimental support for Linux and Mac systems by wrapping calls to <code>vdat.exe</code> in a call to <a href="https://www.winehq.org/" class="external-link">Wine</a>. Needs Wine and Winetricks installed, (~1.75 GB total!) so more of a bandage rather than an actual implementation.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="rvdat-020">rvdat 0.2.0<a class="anchor" aria-label="anchor" href="#rvdat-020"></a></h2>
