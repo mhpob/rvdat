@@ -40,7 +40,15 @@ vdat_call <- function(
     Sys.setenv(WINEDEBUG = "fixme-all")
     on.exit(Sys.unsetenv("WINEDEBUG"))
 
-    what <- c(path.expand(vdat_loc), what)
+    what <- c(
+      path.expand(vdat_loc),
+      ifelse(
+        grepl("\\.(vrl|vdat)$", what) &
+          !grepl("^Z:/", what),
+        paste0("Z:/", what),
+        what
+      )
+    )
     vdat_loc <- Sys.getenv("RVDAT_WINE_EXE")
   }
 
