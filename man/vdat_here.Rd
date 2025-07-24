@@ -4,12 +4,16 @@
 \alias{vdat_here}
 \title{Write the location of \code{vdat.exe} to the environmental variables.}
 \usage{
-vdat_here(here = Sys.getenv("VDAT_EXE"))
+vdat_here(here = Sys.getenv("RVDAT_EXE"), wine = Sys.getenv("RVDAT_WINE_EXE"))
 }
 \arguments{
 \item{here}{location of \code{vdat.exe}, either a full path name or relative
 to the current working directory. Defaults to the value of the "VDAT_EXE"
 environment variable}
+
+\item{wine}{location of \code{wine.exe}, either a full path name or relative
+to the current working directory. Defaults to the value of the "VDAT_EXE"
+environment variable. Only used on Linux or Mac operating systems.}
 }
 \description{
 Write the location of \code{vdat.exe} to the environmental variables.

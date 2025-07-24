@@ -61,7 +61,7 @@ If things don't work and you're not working headless, run `wine uninstaller` and
 
 ### On Mac
 
-There is currently no support for MacOS. There may be in the future using similar gymnastics as implemented for Linux, above
+Similar to Linux, [install Wine](https://gitlab.winehq.org/wine/wine/-/wikis/MacOS). Install Fathom Connect accordingly.
 
 ### Install `rvdat`
 
