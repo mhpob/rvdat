@@ -11,7 +11,7 @@ vignette: >
 
 This vignette is a working draft. There will be lots of changes as `rvdat` gets fleshed out, so please check back often!
 
-The most recent changes were made on 2024-11-15.
+The most recent changes were made on 2025-07-24.
 
 ## Getting started
 
@@ -25,10 +25,15 @@ First, as we should always do when beginning a `rvdat` workflow, we tell R where
 
 ``` r
 vdat_here("c:/program files/innovasea/fathom connect/vdat.exe")
-#> ℹ vdat is located at c:/program files/innovasea/fathom connect/vdat.exe
+#> ℹ VDAT detected in Wine installation.
+#> Warning: vdat.exe not found at c:/program
+#> files/innovasea/fathom connect/vdat.exe,
+#> but at ~/.wine/drive_c/Program
+#> Files/Innovasea/Fathom Connect/vdat.exe.
+#> [1] "~/.wine/drive_c/Program Files/Innovasea/Fathom Connect/vdat.exe"
 ```
 
-If you don't want to do this every time you re-open R, you can add `VDAT_EXE="PATH_TO_VDAT.EXE"` to your `.Renviron` file. `rvdat` will automatically look for it there when you restart R. You can do this manually, but I find that the easiest way to edit `.Renviron` is using [`usethis::edit_r_environ()`](https://usethis.r-lib.org/reference/edit.html).
+If you don't want to do this every time you re-open R, you can add `RVDAT_EXE="PATH_TO_VDAT.EXE"` to your `.Renviron` file. If you're on Linux or MacOS, you can also add the location of your Wine installation as `RVDAT_WINE_EXE="/path/to/Wine"`. `rvdat` will automatically look for these in your `.Renviron` when you restart R. You can do this manually, but I find that the easiest way to edit `.Renviron` is using [`usethis::edit_r_environ()`](https://usethis.r-lib.org/reference/edit.html).
 
 Next, let's download a sample VRL file from the `glatos` package using `utils::download.file`. I'll be keeping everything in a temporary directory just to keep tidy.
 
@@ -66,40 +71,19 @@ To take a quick glimpse of the VDAT file's metadata, we can use `vdat_inspect`. 
 inspect_df <- vdat_inspect(
   file.path(td, "VR2AR_546310_20190613_1.vrl")
 )
-#> ==============================================================================
-#>                                      VRL                                      
-#> ==============================================================================
-#> File:      VR2AR_546310_20190613_1.vrl
-#> Original:  VR2AR_546310_20190613_1.vrl
-#> Container: VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)
-#> Created:   2019-06-13T13:30:54
-#> Data UUID: ffee6ee7-450a-db42-b54c-334b672fddf5
-#> Rx Model:  VR2AR-69
-#> Rx Serial: 546310
-#> 
-#> ==============================================================================
-#>                                     Device                                    
-#> ==============================================================================
-#> Decoding Map:      MAP-113
-#> Blanking Interval: 260 ms
-#> 
-#> 
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Error in `error_file_location()` at rvdat/R/vdat_inspect.R:18:5:
+#> ✖ Call to VDAT failed with error:
+#>   00b8:err:environ:init_peb starting
+#>   L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvw.exe"
+#>   in experimental wow64 mode !! ERROR:
+#>   Invalid Argument: file is required
+#> ℹ Is the location of
+#>   /tmp/RtmpZfiiUk/vignette/VR2AR_546310_20190613_1.vrl
+#>   correct?
 
 head(inspect_df)
-#>    variable                                                    value
-#> 1      File                              VR2AR_546310_20190613_1.vrl
-#> 2  Original                              VR2AR_546310_20190613_1.vrl
-#> 3 Container VR2AR VRL file (com.vemco.file.vrl.0207.ff02.ff02/5.0.1)
-#> 4   Created                                      2019-06-13T13:30:54
-#> 5 Data UUID                     ffee6ee7-450a-db42-b54c-334b672fddf5
-#> 6  Rx Model                                                 VR2AR-69
-#>   section
-#> 1     VRL
-#> 2     VRL
-#> 3     VRL
-#> 4     VRL
-#> 5     VRL
-#> 6     VRL
+#> Error: object 'inspect_df' not found
 ```
 
 ## Converting VDAT file to a CSV
@@ -112,14 +96,17 @@ vdat_to_csv(
   file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
-#> 0.0% - Converting File7.6% - Converting File9.2% - Converting File10.7% - Converting File12.2% - Converting File13.7% - Converting File15.3% - Converting File16.8% - Converting File18.3% - Converting File19.8% - Converting File21.4% - Converting File22.9% - Converting File24.4% - Converting File26.0% - Converting File27.5% - Converting File29.0% - Converting File30.5% - Converting File32.1% - Converting File33.6% - Converting File35.1% - Converting File36.6% - Converting File38.2% - Converting File39.7% - Converting File41.2% - Converting File42.7% - Converting File44.3% - Converting File45.8% - Converting File47.3% - Converting File48.9% - Converting File50.4% - Converting File51.9% - Converting File53.4% - Converting File55.0% - Converting File56.5% - Converting File58.0% - Converting File59.5% - Converting File61.1% - Converting File62.6% - Converting File64.1% - Converting File65.6% - Converting File67.2% - Converting File68.7% - Converting File70.2% - Converting File71.8% - Converting File73.3% - Converting File74.8% - Converting File76.3% - Converting File77.9% - Converting File79.4% - Converting File80.9% - Converting File82.4% - Converting File84.0% - Converting File85.5% - Converting File87.0% - Converting File88.5% - Converting File90.1% - Converting File91.6% - Converting File93.1% - Converting File94.7% - Converting File96.2% - Converting File97.7% - Converting File100.0% - Converting File                        
-#> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1.vrl
-#> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1.csv
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Error in `error_file_location()` at rvdat/R/vdat_to.R:105:5:
+#> ✖ Call to VDAT failed with error:
+#>   !! ERROR: Invalid Argument: file is
+#>   required
+#> ℹ Is the location of
+#>   /tmp/RtmpZfiiUk/vignette/VR2AR_546310_20190613_1.vrl
+#>   correct?
 
 list.files(td, pattern = "VR2AR")
-#> [1] "VR2AR_546310_20190613_1.csv" "VR2AR_546310_20190613_1.vrl"
+#> [1] "VR2AR_546310_20190613_1.vrl"
 ```
 `vdat` is very respectful of your data in that it never overwrites files that exist in the same directory. It'll just tack on a time stamp to the name of the newly-exported file.
 
@@ -129,16 +116,17 @@ vdat_to_csv(
   file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
-#> 0.0% - Converting File7.6% - Converting File9.2% - Converting File10.7% - Converting File12.2% - Converting File13.7% - Converting File15.3% - Converting File16.8% - Converting File18.3% - Converting File19.8% - Converting File21.4% - Converting File22.9% - Converting File24.4% - Converting File26.0% - Converting File27.5% - Converting File29.0% - Converting File30.5% - Converting File32.1% - Converting File33.6% - Converting File35.1% - Converting File36.6% - Converting File38.2% - Converting File39.7% - Converting File41.2% - Converting File42.7% - Converting File44.3% - Converting File45.8% - Converting File47.3% - Converting File48.9% - Converting File50.4% - Converting File51.9% - Converting File53.4% - Converting File55.0% - Converting File56.5% - Converting File58.0% - Converting File59.5% - Converting File61.1% - Converting File62.6% - Converting File64.1% - Converting File65.6% - Converting File67.2% - Converting File68.7% - Converting File70.2% - Converting File71.8% - Converting File73.3% - Converting File74.8% - Converting File76.3% - Converting File77.9% - Converting File79.4% - Converting File80.9% - Converting File82.4% - Converting File84.0% - Converting File85.5% - Converting File87.0% - Converting File88.5% - Converting File90.1% - Converting File91.6% - Converting File93.1% - Converting File94.7% - Converting File96.2% - Converting File97.7% - Converting File100.0% - Converting File                        
-#> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1.vrl
-#> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1[20241115-12-53-03-xxxxxx].csv
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Error in `error_file_location()` at rvdat/R/vdat_to.R:105:5:
+#> ✖ Call to VDAT failed with error:
+#>   !! ERROR: Invalid Argument: file is
+#>   required
+#> ℹ Is the location of
+#>   /tmp/RtmpZfiiUk/vignette/VR2AR_546310_20190613_1.vrl
+#>   correct?
 
 list.files(td, pattern = "VR2AR")
-#> [1] "VR2AR_546310_20190613_1.csv"                          
-#> [2] "VR2AR_546310_20190613_1.vrl"                          
-#> [3] "VR2AR_546310_20190613_1[20241115-12-53-03-400292].csv"
+#> [1] "VR2AR_546310_20190613_1.vrl"
 ```
 ## Converting a VDAT file to a CSV with time correction
 
@@ -151,11 +139,14 @@ vdat_to_csv(
   outdir = td,
   time_corrected = TRUE
 )
-#> 0.0% - Extracting clock data7.6% - Extracting clock data9.2% - Extracting clock data10.7% - Extracting clock data12.2% - Extracting clock data13.7% - Extracting clock data15.3% - Extracting clock data16.8% - Extracting clock data18.3% - Extracting clock data19.8% - Extracting clock data21.4% - Extracting clock data22.9% - Extracting clock data24.4% - Extracting clock data26.0% - Extracting clock data27.5% - Extracting clock data29.0% - Extracting clock data30.5% - Extracting clock data32.1% - Extracting clock data33.6% - Extracting clock data35.1% - Extracting clock data36.6% - Extracting clock data38.2% - Extracting clock data39.7% - Extracting clock data41.2% - Extracting clock data42.7% - Extracting clock data44.3% - Extracting clock data45.8% - Extracting clock data47.3% - Extracting clock data48.9% - Extracting clock data50.4% - Extracting clock data51.9% - Extracting clock data53.4% - Extracting clock data55.0% - Extracting clock data56.5% - Extracting clock data58.0% - Extracting clock data59.5% - Extracting clock data61.1% - Extracting clock data62.6% - Extracting clock data64.1% - Extracting clock data65.6% - Extracting clock data67.2% - Extracting clock data68.7% - Extracting clock data70.2% - Extracting clock data71.8% - Extracting clock data73.3% - Extracting clock data74.8% - Extracting clock data76.3% - Extracting clock data77.9% - Extracting clock data79.4% - Extracting clock data80.9% - Extracting clock data82.4% - Extracting clock data84.0% - Extracting clock data85.5% - Extracting clock data87.0% - Extracting clock data88.5% - Extracting clock data90.1% - Extracting clock data91.6% - Extracting clock data93.1% - Extracting clock data94.7% - Extracting clock data96.2% - Extracting clock data97.7% - Extracting clock data100.0% - Extracting clock data                              0.0% - Converting File7.6% - Converting File9.2% - Converting File10.7% - Converting File12.2% - Converting File13.7% - Converting File15.3% - Converting File16.8% - Converting File18.3% - Converting File19.8% - Converting File21.4% - Converting File22.9% - Converting File24.4% - Converting File26.0% - Converting File27.5% - Converting File29.0% - Converting File30.5% - Converting File32.1% - Converting File33.6% - Converting File35.1% - Converting File36.6% - Converting File38.2% - Converting File39.7% - Converting File41.2% - Converting File42.7% - Converting File44.3% - Converting File45.8% - Converting File47.3% - Converting File48.9% - Converting File50.4% - Converting File51.9% - Converting File53.4% - Converting File55.0% - Converting File56.5% - Converting File58.0% - Converting File59.5% - Converting File61.1% - Converting File62.6% - Converting File64.1% - Converting File65.6% - Converting File67.2% - Converting File68.7% - Converting File70.2% - Converting File71.8% - Converting File73.3% - Converting File74.8% - Converting File76.3% - Converting File77.9% - Converting File79.4% - Converting File80.9% - Converting File82.4% - Converting File84.0% - Converting File85.5% - Converting File87.0% - Converting File88.5% - Converting File90.1% - Converting File91.6% - Converting File93.1% - Converting File94.7% - Converting File96.2% - Converting File97.7% - Converting File100.0% - Converting File                        
-#> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1.vrl
-#> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1[20241115-12-53-03-xxxxxx].csv
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Error in `error_file_location()` at rvdat/R/vdat_to.R:105:5:
+#> ✖ Call to VDAT failed with error:
+#>   !! ERROR: Invalid Argument: file is
+#>   required
+#> ℹ Is the location of
+#>   /tmp/RtmpZfiiUk/vignette/VR2AR_546310_20190613_1.vrl
+#>   correct?
 ```
 
 A new column is added with time corrected down to the microsecond.
@@ -166,10 +157,10 @@ corrected <- read.csv(
   list.files(td, pattern = "VR2AR.*\\]\\.csv$", full.names = TRUE)[2],
   header = FALSE
 )
+#> Error in file(file, "rt"): invalid 'description' argument
 
 corrected[46, c(2:3)]
-#>                     V2                         V3
-#> 46 2019-06-11 02:47:00 2019-06-11 02:47:00.000725
+#> Error: object 'corrected' not found
 ```
 
 
@@ -187,25 +178,22 @@ vdat_to_folder(
   file.path(td, "VR2AR_546310_20190613_1.vrl"),
   outdir = td
 )
-#> 0.0% - Converting File7.6% - Converting File9.2% - Converting File10.7% - Converting File12.2% - Converting File13.7% - Converting File15.3% - Converting File16.8% - Converting File18.3% - Converting File19.8% - Converting File21.4% - Converting File22.9% - Converting File24.4% - Converting File26.0% - Converting File27.5% - Converting File29.0% - Converting File30.5% - Converting File32.1% - Converting File33.6% - Converting File35.1% - Converting File36.6% - Converting File38.2% - Converting File39.7% - Converting File41.2% - Converting File42.7% - Converting File44.3% - Converting File45.8% - Converting File47.3% - Converting File48.9% - Converting File50.4% - Converting File51.9% - Converting File53.4% - Converting File55.0% - Converting File56.5% - Converting File58.0% - Converting File59.5% - Converting File61.1% - Converting File62.6% - Converting File64.1% - Converting File65.6% - Converting File67.2% - Converting File68.7% - Converting File70.2% - Converting File71.8% - Converting File73.3% - Converting File74.8% - Converting File76.3% - Converting File77.9% - Converting File79.4% - Converting File80.9% - Converting File82.4% - Converting File84.0% - Converting File85.5% - Converting File87.0% - Converting File88.5% - Converting File90.1% - Converting File91.6% - Converting File93.1% - Converting File94.7% - Converting File96.2% - Converting File97.7% - Converting File100.0% - Converting File                        
-#> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1.vrl
-#> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpusjJ5z/vignette/VR2AR_546310_20190613_1.csv-fathom-split
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Error in `error_file_location()` at rvdat/R/vdat_to.R:105:5:
+#> ✖ Call to VDAT failed with error:
+#>   !! ERROR: Invalid Argument: file is
+#>   required
+#> ℹ Is the location of
+#>   /tmp/RtmpZfiiUk/vignette/VR2AR_546310_20190613_1.vrl
+#>   correct?
 
 list.dirs(td, full.names = F, recursive = F)
-#> [1] "VR2AR_546310_20190613_1.csv-fathom-split"
+#> character(0)
 
 list.files(
   list.dirs(td, full.names = T, recursive = F)
 )
-#>  [1] "ATTITUDE.csv"         "BATTERY.csv"         
-#>  [3] "CFG_CHANNEL.csv"      "CFG_TRANSMITTER.csv" 
-#>  [5] "CLOCK_REF.csv"        "DATA_SOURCE_FILE.csv"
-#>  [7] "DEPTH.csv"            "DET.csv"             
-#>  [9] "DIAG.csv"             "DIAG_FAST.csv"       
-#> [11] "EVENT_INIT.csv"       "EVENT_OFFLOAD.csv"   
-#> [13] "HEALTH_VR2AR.csv"     "TEMP.csv"
+#> character(0)
 ```
 
 
@@ -229,63 +217,18 @@ download.file(
 )
 
 hr_output <- vdat_inspect(
-  file.path(td,"HR2-180_461396_2021-04-20_173145.vdat")
-  )
-#> ==============================================================================
-#>                                      VDAT                                     
-#> ==============================================================================
-#> File:      HR2-180_461396_2021-04-20_173145.vdat
-#> Original:  HR2-180 461396 2021-04-20 173145.vdat
-#> Container: Vemco Data File (com.vemco.file.vdat/1.0.0)
-#> Content:   HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)
-#> Created:   2021-04-20T17:31:45
-#> File UUID: f1a18604-46ea-4985-b57c-24809d37ad46
-#> Data UUID: 1a595886-99ea-4ee9-a996-2e4d92dc01c3
-#> Size:      39370
-#> Blocks:    17
-#> Block Types: 
-#>            VRDP Header (com.vemco.file.vrdp.header/1.1.0)
-#>            RxLog General Summary (com.vemco.protobuf.rxlog.summary.general/1.0.0)
-#>            HR2 Offload Header (com.vemco.device.vrhr2.offload.header/1.0.0)
-#>            HR2 Offload Footer (com.vemco.device.vrhr2.offload.footer/1.0.0)
-#>            HR2 Detection Log Block (com.vemco.device.vrhr2.log.detect/1.0.0)
-#>            HR2 Ping Log Block (com.vemco.device.vrhr2.log.ping/1.0.0)
-#> Codecs: 
-#>            zlib compression (com.vemco.file.vdat.codec.zlib/1.2.11)
-#> 
-#> ==============================================================================
-#>                                      VRDP                                     
-#> ==============================================================================
-#> Creator:   fathom-2.5.0-19700101--release
-#> Source:    HR2-180 (0814)
-#> 
-#> ==============================================================================
-#>                                    Offload                                    
-#> ==============================================================================
-#> Firmware Version: 2.0.1
-#> Receiver Time @ Init: 2021-04-20T17:20:05Z
-#> Client Time @ Init: 2021-04-20T17:20:06Z
-#> Client Time Zone @ Init: -04:00
-#> Receiver Time @ Offload: 2021-04-20T21:31:45Z
-#> Client Time @ Offload: 2021-04-20T21:31:45Z
-#> Client Time Zone @ Offload: -04:00
-#> 
-#> 
+  file.path(td, "HR2-180_461396_2021-04-20_173145.vdat")
+)
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Error in `error_file_location()` at rvdat/R/vdat_inspect.R:18:5:
+#> ✖ Call to VDAT failed with error:
+#>   !! ERROR: Invalid Argument: file is
+#>   required
+#> ℹ Is the location of
+#>   /tmp/RtmpZfiiUk/vignette/HR2-180_461396_2021-04-20_173145.vdat
+#>   correct?
 head(hr_output)
-#>    variable                                                    value
-#> 1      File                    HR2-180_461396_2021-04-20_173145.vdat
-#> 2  Original                    HR2-180 461396 2021-04-20 173145.vdat
-#> 3 Container              Vemco Data File (com.vemco.file.vdat/1.0.0)
-#> 4   Content HR2 Receiver Data Pack (com.vemco.file.vrdp.vrhr2/1.0.0)
-#> 5   Created                                      2021-04-20T17:31:45
-#> 6 File UUID                     f1a18604-46ea-4985-b57c-24809d37ad46
-#>   section
-#> 1    VDAT
-#> 2    VDAT
-#> 3    VDAT
-#> 4    VDAT
-#> 5    VDAT
-#> 6    VDAT
+#> Error: object 'hr_output' not found
 ```
 
 

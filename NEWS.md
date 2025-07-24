@@ -1,6 +1,9 @@
 # rvdat 0.3.0
 
-  - Experimental support for Linux systems by wrapping calls to `vdat.exe`
+  - **BREAKING CHANGE**: `rvdat` now looks for an environmental variable of
+  `RVDAT_EXE` rather than `VDAT_EXE`. If you had this set between sessions,
+  [you will need to update your `.Renviron` accordingly](https://rvdat.obrien.page/articles/how-to-use-rvdat.html#getting-started).
+  - Experimental support for Linux and Mac systems by wrapping calls to `vdat.exe`
   in a call to [Wine](https://www.winehq.org/). Needs Wine and Winetricks installed,
   (~1.75 GB total!) so more of a bandage rather than an actual implementation.
 

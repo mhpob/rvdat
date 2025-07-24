@@ -26,21 +26,22 @@
 #' }
 #'
 vdat_call <- function(
-    what = "--help",
-    print = TRUE,
-    pass_error = FALSE,
-    ...) {
+  what = "--help",
+  print = TRUE,
+  pass_error = FALSE,
+  ...
+) {
   vdat_loc <- vdat_here()
 
   ## Enter Wine mode if needed
-  if (grepl("wine", vdat_loc)) {
+  if (Sys.getenv("RVDAT_WINE_EXE") != "") {
     cli::cli_alert_info("Using Wine mode: EXPERIMENTAL!")
 
     Sys.setenv(WINEDEBUG = "fixme-all")
     on.exit(Sys.unsetenv("WINEDEBUG"))
 
     what <- c(path.expand(vdat_loc), what)
-    vdat_loc <- Sys.which("wine")
+    vdat_loc <- Sys.getenv("RVDAT_WINE_EXE")
   }
 
   shell_out <- sys::exec_internal(

@@ -87,8 +87,9 @@ If things don’t work and you’re not working headless, run
 
 ### On Mac
 
-There is currently no support for MacOS. There may be in the future
-using similar gymnastics as implemented for Linux, above
+Similar to Linux, [install
+Wine](https://gitlab.winehq.org/wine/wine/-/wikis/MacOS). Install Fathom
+Connect accordingly.
 
 ### Install `rvdat`
 
@@ -177,9 +178,9 @@ Convert a VRL to CSV:
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.csv
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.csv
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
@@ -187,9 +188,9 @@ Convert a VRL to a folder of CSVs split by data type:
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpK6GyDK/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
+#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #> character(0)
 ```
