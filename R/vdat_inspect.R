@@ -40,15 +40,22 @@ vdat_inspect <- function(vdata_file, ...) {
   ###   11 spaces then a character
   metadata_1 <- metadata[grepl(":|^\\s{11}[[:alnum:]]", metadata)]
 
+  ### section headers need the parsed metadata
   ### Repeat those indices however many times to match the number of rows
-  ###   in the section
+  ### in the section
+  ### when reading in a vrl file the length of the section
+  ### headers becomes an issue so we have moved the location of this to happen
+  ### after the metadata has been parsed then
+  ### Because metadata_1 has the headers removed it will get the
+  ### spacing correct to sequience along as we do not
+  ### remove the  the headers, themselves which was in the orginal
+  ### You will also notice that we are first subseting metadata as it has
+  ### the section names in their index location which is first grabbed then
+  ### sequencing along at the length of metadata_1
   section_headers <- metadata[
     section_headers[
       # Repeat the headers however many times
-      findInterval(seq_along(metadata), vec = section_headers)[
-        # But not the headers, themselves
-        -section_headers
-      ]
+      findInterval(seq_along(metadata_1), vec = section_headers)
     ]
   ] |>
     # Remove the spaces
