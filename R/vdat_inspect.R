@@ -61,7 +61,7 @@ vdat_inspect <- function(vdata_file, ...) {
     # Remove the spaces
     gsub("\\s", "", x = _)
   ### Split according to colons followed by multiple spaces.
-  metadata <- metadata |>
+  metadata_1 <- metadata_1 |>
     strsplit(":\\s+") |>
     ### Variables with multiple entries have those entries indented and split
     ###   into different lines. Split these into two columns according to a
@@ -84,17 +84,17 @@ vdat_inspect <- function(vdata_file, ...) {
     x[which(isnotblank)][cumsum(isnotblank)]
   }
 
-  metadata$X1 <- locf(metadata$X1)
+  metadata_1$X1 <- locf(metadata_1$X1)
 
   ### Add back section headers
-  metadata$section <- section_headers
+  metadata_1$section <- section_headers
 
   ### Remove redundant variables
-  metadata <- metadata[metadata$X1 != metadata$X2, ]
+  metadata_1 <- metadata_1[metadata_1$X1 != metadata_1$X2, ]
 
   ### Rename
-  names(metadata) <- c("variable", "value", "section")
+  names(metadata_1) <- c("variable", "value", "section")
 
 
-  invisible(metadata)
+  invisible(metadata_1)
 }
