@@ -32,6 +32,14 @@ vdat_inspect <- function(vdata_file, ...) {
     grepl("\\s{12,}", x = _) |>
     which()
 
+
+
+
+  ## Parse the metadata
+  ### Drop section headers by selecting rows that have a ":" or start with
+  ###   11 spaces then a character
+  metadata_1 <- metadata[grepl(":|^\\s{11}[[:alnum:]]", metadata)]
+
   ### Repeat those indices however many times to match the number of rows
   ###   in the section
   section_headers <- metadata[
@@ -45,12 +53,6 @@ vdat_inspect <- function(vdata_file, ...) {
   ] |>
     # Remove the spaces
     gsub("\\s", "", x = _)
-
-  ## Parse the metadata
-  ### Drop section headers by selecting rows that have a ":" or start with
-  ###   11 spaces then a character
-  metadata <- metadata[grepl(":|^\\s{11}[[:alnum:]]", metadata)]
-
   ### Split according to colons followed by multiple spaces.
   metadata <- metadata |>
     strsplit(":\\s+") |>
