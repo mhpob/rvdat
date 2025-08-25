@@ -28,28 +28,22 @@ vdat_inspect <- function(vdata_file, ...) {
 
   ## Parse section headers
   ### Find section header indices (rows with >= 12 spaces)
-  section_headers <- metadata |>
+  section_header_indices <- metadata |>
     grepl("\\s{12,}", x = _) |>
     which()
 
-  ### Repeat those indices however many times to match the number of rows
-  ###   in the section
+  ## Parse the metadata
+  ### Grab section headers
   section_headers <- metadata[
-    section_headers[
+    section_header_indices[
       # Repeat the headers however many times
-      findInterval(seq_along(metadata), vec = section_headers)[
-        # But not the headers, themselves
-        -section_headers
-      ]
+      findInterval(seq_along(metadata), vec = section_header_indices)
     ]
   ] |>
     # Remove the spaces
-    gsub("\\s", "", x = _)
-
-  ## Parse the metadata
-  ### Drop section headers by selecting rows that have a ":" or start with
-  ###   11 spaces then a character
-  metadata <- metadata[grepl(":|^\\s{11}[[:alnum:]]", metadata)]
+    gsub("\\s", "", x = _) |>
+    # Drop header rows
+    _[-section_header_indices]
 
   ### Split according to colons followed by multiple spaces.
   metadata <- metadata |>
@@ -59,12 +53,14 @@ vdat_inspect <- function(vdata_file, ...) {
     ###   space that precedes an alphanumeric character
     lapply(function(.) {
       unlist(
-        strsplit(., "\\s{2,}(?=[[:alpha:]])", perl = T)
+        strsplit(., "\\s{2,}(?=[[:alpha:]])", perl = TRUE)
       )
     }) |>
     ### Now that every section has two entries, bind them together
     do.call(rbind, args = _) |>
-    data.frame()
+    data.frame() |>
+    ### Remove section headers
+    _[-section_header_indices, ]
 
   ### Fill in blanks using last observation carried forward
   ###   Function adapted (trimmed down) from:
@@ -85,7 +81,7 @@ vdat_inspect <- function(vdata_file, ...) {
 
   ### Rename
   names(metadata) <- c("variable", "value", "section")
-
+  rownames(metadata) <- NULL
 
   invisible(metadata)
 }
