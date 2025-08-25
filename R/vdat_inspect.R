@@ -28,52 +28,39 @@ vdat_inspect <- function(vdata_file, ...) {
 
   ## Parse section headers
   ### Find section header indices (rows with >= 12 spaces)
-  section_headers <- metadata |>
+  section_header_indices <- metadata |>
     grepl("\\s{12,}", x = _) |>
     which()
 
-
-
-
   ## Parse the metadata
-  ### Drop section headers by selecting rows that have a ":" or start with
-  ###   11 spaces then a character
-  metadata_1 <- metadata[grepl(":|^\\s{11}[[:alnum:]]", metadata)]
-
-  ### section headers need the parsed metadata
-  ### Repeat those indices however many times to match the number of rows
-  ### in the section
-  ### when reading in a vrl file the length of the section
-  ### headers becomes an issue so we have moved the location of this to happen
-  ### after the metadata has been parsed then
-  ### Because metadata_1 has the headers removed it will get the
-  ### spacing correct to sequience along as we do not
-  ### remove the  the headers, themselves which was in the orginal
-  ### You will also notice that we are first subseting metadata as it has
-  ### the section names in their index location which is first grabbed then
-  ### sequencing along at the length of metadata_1
+  ### Grab section headers
   section_headers <- metadata[
-    section_headers[
+    section_header_indices[
       # Repeat the headers however many times
-      findInterval(seq_along(metadata_1), vec = section_headers)
+      findInterval(seq_along(metadata), vec = section_header_indices)
     ]
   ] |>
     # Remove the spaces
-    gsub("\\s", "", x = _)
+    gsub("\\s", "", x = _) |>
+    # Drop header rows
+    _[-section_header_indices]
+
   ### Split according to colons followed by multiple spaces.
-  metadata_1 <- metadata_1 |>
+  metadata <- metadata |>
     strsplit(":\\s+") |>
     ### Variables with multiple entries have those entries indented and split
     ###   into different lines. Split these into two columns according to a
     ###   space that precedes an alphanumeric character
     lapply(function(.) {
       unlist(
-        strsplit(., "\\s{2,}(?=[[:alpha:]])", perl = T)
+        strsplit(., "\\s{2,}(?=[[:alpha:]])", perl = TRUE)
       )
     }) |>
     ### Now that every section has two entries, bind them together
     do.call(rbind, args = _) |>
-    data.frame()
+    data.frame() |>
+    ### Remove section headers
+    _[-section_header_indices, ]
 
   ### Fill in blanks using last observation carried forward
   ###   Function adapted (trimmed down) from:
@@ -84,17 +71,17 @@ vdat_inspect <- function(vdata_file, ...) {
     x[which(isnotblank)][cumsum(isnotblank)]
   }
 
-  metadata_1$X1 <- locf(metadata_1$X1)
+  metadata$X1 <- locf(metadata$X1)
 
   ### Add back section headers
-  metadata_1$section <- section_headers
+  metadata$section <- section_headers
 
   ### Remove redundant variables
-  metadata_1 <- metadata_1[metadata_1$X1 != metadata_1$X2, ]
+  metadata <- metadata[metadata$X1 != metadata$X2, ]
 
   ### Rename
-  names(metadata_1) <- c("variable", "value", "section")
+  names(metadata) <- c("variable", "value", "section")
+  rownames(metadata) <- NULL
 
-
-  invisible(metadata_1)
+  invisible(metadata)
 }
