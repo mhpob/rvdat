@@ -47,17 +47,35 @@ vdat_inspect <- function(vdata_file, ...) {
 
   ### Split according to colons followed by multiple spaces.
   metadata <- metadata |>
-    strsplit(":\\s+") |>
-    ### Variables with multiple entries have those entries indented and split
-    ###   into different lines. Split these into two columns according to a
-    ###   space that precedes an alphanumeric character
+    strsplit(":(\\s+|$)") |>
+    ### Variables with multiple entries either have those entries indented and
+    ###   split into different lines OR split into different lines and preceeded
+    ###   with a dash. Split these into two columns according to a space that
+    ###   precedes an alphanumeric character OR a dash that precedes a space.
     lapply(function(.) {
       unlist(
-        strsplit(., "\\s{2,}(?=[[:alpha:]])", perl = TRUE)
+        strsplit(
+          .,
+          "(\\s{2,}(?=[[:alpha:]]))|-\\s|\\s(?=(\\[|\\())",
+          perl = TRUE
+        )
       )
+    })
+
+  ### Now that every section has at least two entries, bind them together
+  metadata <- do.call(rbind, metadata) |>
+    # silence warning associated with rbind auto-filling while letting
+    #   others through
+    withCallingHandlers(warning = function(w) {
+      if (
+        grepl(
+          "number of columns of result is not a multiple of vector length",
+          conditionMessage(w)
+        )
+      ) {
+        invokeRestart("muffleWarning")
+      }
     }) |>
-    ### Now that every section has two entries, bind them together
-    do.call(rbind, args = _) |>
     data.frame() |>
     ### Remove section headers
     _[-section_header_indices, ]
@@ -71,17 +89,35 @@ vdat_inspect <- function(vdata_file, ...) {
     x[which(isnotblank)][cumsum(isnotblank)]
   }
 
-  metadata$X1 <- locf(metadata$X1)
+  ### Rename
+  names(metadata) <- c("variable", "subvariable", "value")
+
+  metadata$variable <- locf(metadata$variable)
 
   ### Add back section headers
   metadata$section <- section_headers
 
   ### Remove redundant variables
-  metadata <- metadata[metadata$X1 != metadata$X2, ]
-
-  ### Rename
-  names(metadata) <- c("variable", "value", "section")
+  metadata <- metadata[metadata$variable != metadata$subvariable, ]
   rownames(metadata) <- NULL
+
+  ### Reorganize values
+  metadata$value <- ifelse(
+    metadata$variable == metadata$value,
+    metadata$subvariable,
+    metadata$value
+  )
+  metadata$subvariable <- ifelse(
+    metadata$subvariable == metadata$value,
+    NA,
+    metadata$subvariable
+  )
+
+  ### Convert NA in value column
+  metadata[metadata$value == "N/A", "value"] <- NA
+
+  ### Drop parentheses
+  metadata$value <- gsub("\\]|\\[|\\(|\\)", "", metadata$value)
 
   invisible(metadata)
 }
