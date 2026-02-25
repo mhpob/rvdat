@@ -7,6 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/mhpob/rvdat/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mhpob/rvdat?branch=main)
 <!-- badges: end -->
@@ -83,6 +84,16 @@ wine msiexec /i Fathom-Connect-Installer.msi /qb
 If things don’t work and you’re not working headless, run
 `wine uninstaller` and install via the GUI interface. Yes, it is
 “`uninstaller`” (counter-intuitive).
+
+To test the installation, run the following. If you see the help dialog,
+you’re good to go!
+
+``` bash
+wine ./.wine/drive_c/Program\ Files/Innovasea/Fathom\ Connect/vdat.exe --help
+```
+
+`rvdat` should detect the location of the vdat executable within the
+Wine installation. Confrim by running `rvdat::vdat_here()`.
 
 ### On Mac
 
@@ -162,34 +173,38 @@ Set or look for system location of vdat.exe:
 
 ``` r
 vdat_here()
-#> [1] "C:/Program Files/Innovasea/Fathom Connect/vdat.exe"
+#> ℹ VDAT detected in Wine installation.
+#> [1] "~/.wine/drive_c/Program Files/Innovasea/Fathom Connect/vdat.exe"
 ```
 
 What version?
 
 ``` r
 vdat_version()
-#> [1] "vdat-12.9.1-20250203-976858-release"
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> [1] "vdat-14.12.3-20251208-47edf0-release"
 ```
 
 Convert a VRL to CSV:
 
 ``` r
 ## vdat_to_csv("SOME-VDAT-FILE")
+#> ℹ Using Wine mode: EXPERIMENTAL!
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ File saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.csv
+#>   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.csv
 ```
 
 Convert a VRL to a folder of CSVs split by data type:
 
 ``` r
 ## vdat_to_folder("SOME-VDAT-FILE")
+#> ℹ Using Wine mode: EXPERIMENTAL!
 #> ✔ File converted:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.vdat
+#>   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.vdat
 #> ℹ Files saved in:
-#>   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
+#>   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split
 ## list.files("SOME-VDAT-FILE.csv-fathom-split")
 #> character(0)
 ```
@@ -198,6 +213,7 @@ Check out the file metadata:
 
 ``` r
 ## vdat_inspect("SOME-VDAT-FILE")
+#> ℹ Using Wine mode: EXPERIMENTAL!
 #> ==============================================================================
 #>                                      VDAT                                     
 #> ==============================================================================
@@ -244,6 +260,7 @@ See the fields associated with different data types:
 
 ``` r
 vdat_template(format = "csv.fathom")
+#> ℹ Using Wine mode: EXPERIMENTAL!
 #> $ATTITUDE_DESC
 #> [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    
 #> [4] "Time Correction (s)" "Model"               "Serial Number"      
@@ -531,7 +548,8 @@ Call VDAT using standard flags:
 
 ``` r
 vdat_call("--help")
-#> Usage: C:\PROGRA~1\INNOVA~1\FATHOM~1\vdat.exe [OPTIONS] [SUBCOMMAND]
+#> ℹ Using Wine mode: EXPERIMENTAL!
+#> Usage: C:\Program Files\Innovasea\Fathom Connect\vdat.exe [OPTIONS] [SUBCOMMAND]
 #> 
 #> Options:
 #>   -h,--help                   Show help and summary of commands, or detailed

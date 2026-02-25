@@ -59,6 +59,13 @@ wine msiexec /i Fathom-Connect-Installer.msi /qb
 ```
 If things don't work and you're not working headless, run `wine uninstaller` and install via the GUI interface. Yes, it is "`uninstaller`" (counter-intuitive).
 
+To test the installation, run the following. If you see the help dialog, you're good to go!
+```{bash, eval=FALSE, engine='sh'}
+wine ./.wine/drive_c/Program\ Files/Innovasea/Fathom\ Connect/vdat.exe --help
+```
+
+`rvdat` should detect the location of the vdat executable within the Wine installation. Confrim by running `rvdat::vdat_here()`. 
+
 ### On Mac
 
 Similar to Linux, [install Wine](https://gitlab.winehq.org/wine/wine/-/wikis/MacOS). Install Fathom Connect accordingly.
@@ -148,14 +155,16 @@ download.file(
     td,
     "HR2-180_461396_2021-04-20_173145.vdat"
   ),
-  mode = "wb", quiet = TRUE
+  mode = "wb",
+  quiet = TRUE
 )
 ```
 
 ```{r, eval=-1, echo=1}
 vdat_to_csv("SOME-VDAT-FILE")
 
-vdat_to_csv(list.files(td, pattern = "HR2.*\\.vdat$", full.names = T),
+vdat_to_csv(
+  list.files(td, pattern = "HR2.*\\.vdat$", full.names = T),
   outdir = td
 )
 ```
@@ -164,7 +173,8 @@ Convert a VRL to a folder of CSVs split by data type:
 ```{r, eval=c(-1, -5), echo=c(1, 5)}
 vdat_to_folder("SOME-VDAT-FILE")
 
-vdat_to_folder(list.files(td, pattern = "HR2.*\\.vdat$", full.names = T),
+vdat_to_folder(
+  list.files(td, pattern = "HR2.*\\.vdat$", full.names = T),
   outdir = td
 )
 
