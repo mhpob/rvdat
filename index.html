@@ -91,6 +91,9 @@
 <p>Now, you need to install Fathom Connect. The installer is usually named something like “Install-Fathom-Connect-SOMELONGVERSION.msi”, switch this with “Fathom-Connect-Installer.msi” below.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">wine</span> msiexec /i Fathom-Connect-Installer.msi /qb</span></code></pre></div>
 <p>If things don’t work and you’re not working headless, run <code>wine uninstaller</code> and install via the GUI interface. Yes, it is “<code>uninstaller</code>” (counter-intuitive).</p>
+<p>To test the installation, run the following. If you see the help dialog, you’re good to go!</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">wine</span> ./.wine/drive_c/Program\ Files/Innovasea/Fathom\ Connect/vdat.exe <span class="at">--help</span></span></code></pre></div>
+<p><code>rvdat</code> should detect the location of the vdat executable within the Wine installation. Confrim by running <code><a href="reference/vdat_here.html">rvdat::vdat_here()</a></code>.</p>
 </div>
 </div>
 <div class="section level3">
@@ -104,7 +107,7 @@
 </h3>
 <p>You can install the most-up-to-date version of this package from <a href="https://mhpob.r-universe.dev/rvdat" class="external-link">R-universe</a> or <a href="https://github.com/mhpob/rvdat" class="external-link">GitHub</a>.</p>
 <p>R-universe:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
 <span>  <span class="st">"rvdat"</span>,</span>
 <span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
@@ -113,7 +116,7 @@
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>GitHub:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mhpob/rvdat"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -183,35 +186,40 @@
 <h2 id="using-the-package">Using the package<a class="anchor" aria-label="anchor" href="#using-the-package"></a>
 </h2>
 <p>Load the package:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rvdat.obrien.page" class="external-link">rvdat</a></span><span class="op">)</span></span></code></pre></div>
 <p>Set or look for system location of vdat.exe:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "C:/Program Files/Innovasea/Fathom Connect/vdat.exe"</span></span></code></pre></div>
-<p>What version?</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_version.html">vdat_version</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "vdat-12.9.1-20250203-976858-release"</span></span></code></pre></div>
-<p>Convert a VRL to CSV:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_here.html">vdat_here</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ VDAT detected in Wine installation.</span></span>
+<span><span class="co">#&gt; [1] "~/.wine/drive_c/Program Files/Innovasea/Fathom Connect/vdat.exe"</span></span></code></pre></div>
+<p>What version?</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
-<span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
-<span><span class="co">#&gt; ℹ File saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.csv</span></span></code></pre></div>
-<p>Convert a VRL to a folder of CSVs split by data type:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_version.html">vdat_version</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Using Wine mode: EXPERIMENTAL!</span></span>
+<span><span class="co">#&gt; [1] "vdat-14.12.3-20251208-47edf0-release"</span></span></code></pre></div>
+<p>Convert a VRL to CSV:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
+<code class="sourceCode R"><span><span class="co">## vdat_to_csv("SOME-VDAT-FILE")</span></span>
+<span><span class="co">#&gt; ℹ Using Wine mode: EXPERIMENTAL!</span></span>
 <span><span class="co">#&gt; ✔ File converted:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
+<span><span class="co">#&gt;   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
+<span><span class="co">#&gt; ℹ File saved in:</span></span>
+<span><span class="co">#&gt;   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.csv</span></span></code></pre></div>
+<p>Convert a VRL to a folder of CSVs split by data type:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## vdat_to_folder("SOME-VDAT-FILE")</span></span>
+<span><span class="co">#&gt; ℹ Using Wine mode: EXPERIMENTAL!</span></span>
+<span><span class="co">#&gt; ✔ File converted:</span></span>
+<span><span class="co">#&gt;   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.vdat</span></span>
 <span><span class="co">#&gt; ℹ Files saved in:</span></span>
-<span><span class="co">#&gt;   C:\Users\darpa2\AppData\Local\Temp\RtmpOs8CLb/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split</span></span>
+<span><span class="co">#&gt;   /tmp/RtmpzpijvS/readme_files/HR2-180_461396_2021-04-20_173145.csv-fathom-split</span></span>
 <span><span class="co">## list.files("SOME-VDAT-FILE.csv-fathom-split")</span></span>
 <span><span class="co">#&gt; character(0)</span></span></code></pre></div>
 <p>Check out the file metadata:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## vdat_inspect("SOME-VDAT-FILE")</span></span>
+<span><span class="co">#&gt; ℹ Using Wine mode: EXPERIMENTAL!</span></span>
 <span><span class="co">#&gt; ==============================================================================</span></span>
 <span><span class="co">#&gt;                                      VDAT                                     </span></span>
 <span><span class="co">#&gt; ==============================================================================</span></span>
@@ -253,8 +261,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span></code></pre></div>
 <p>See the fields associated with different data types:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_template.html">vdat_template</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"csv.fathom"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Using Wine mode: EXPERIMENTAL!</span></span>
 <span><span class="co">#&gt; $ATTITUDE_DESC</span></span>
 <span><span class="co">#&gt; [1] "Device Time (UTC)"   "Time"                "Time Offset (h)"    </span></span>
 <span><span class="co">#&gt; [4] "Time Correction (s)" "Model"               "Serial Number"      </span></span>
@@ -537,9 +546,10 @@
 <span><span class="co">#&gt;  [9] "Ambient Mean (deg C)"    "Sample Count"           </span></span>
 <span><span class="co">#&gt; [11] "Accumulation Period (s)"</span></span></code></pre></div>
 <p>Call VDAT using standard flags:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--help"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Usage: C:\PROGRA~1\INNOVA~1\FATHOM~1\vdat.exe [OPTIONS] [SUBCOMMAND]</span></span>
+<span><span class="co">#&gt; ℹ Using Wine mode: EXPERIMENTAL!</span></span>
+<span><span class="co">#&gt; Usage: C:\Program Files\Innovasea\Fathom Connect\vdat.exe [OPTIONS] [SUBCOMMAND]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Options:</span></span>
 <span><span class="co">#&gt;   -h,--help                   Show help and summary of commands, or detailed</span></span>
@@ -563,7 +573,7 @@
 <li>Create informative messages, warnings, and errors using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code> package</a>.</li>
 <li>In summary:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a_new_wrapper</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">some_command</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="reference/vdat_call.html">vdat_call</a></span><span class="op">(</span><span class="st">"--do this"</span><span class="op">)</span></span>
 <span></span>
@@ -607,6 +617,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mhpob/rvdat/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/mhpob/rvdat?branch=main" class="external-link"><img src="https://codecov.io/gh/mhpob/rvdat/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
@@ -620,7 +631,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
